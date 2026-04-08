@@ -7,6 +7,8 @@ export const siteConfig = {
   lang: "pl",
   locale: "pl_PL",
   author: "B2B Collective",
+  email: "[EMAIL_ADDRESS]",
+  tel: "+48 123 456 789",
   twitter: "@b2bcollective",
   ogImage: ogImage,
   socialLinks: {
@@ -16,10 +18,10 @@ export const siteConfig = {
     linkedin: "https://linkedin.com",
   },
   navLinks: [
-    { text: "O nas", href: "/about" },
+    { text: "O nas", href: "/o-nas" },
     {
       text: "Oferta",
-      href: "/services",
+      href: "/oferta",
       children: [
         { text: "SEO Techniczne", href: "/oferta/seo-techniczne" },
         { text: "Migracje stron i sklepow", href: "/oferta/migracje-stron" },
@@ -31,6 +33,6 @@ export const siteConfig = {
       ],
     },
     { text: "Baza Wiedzy", href: "/blog" },
-    { text: "Kontakt", href: "/contact" },
+    { text: "Kontakt", href: "/kontakt" },
   ],
 };

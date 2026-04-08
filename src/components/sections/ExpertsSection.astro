@@ -18,29 +18,40 @@ const { experts } = Astro.props;
 		<div class="flex justify-between items-end mb-16 reveal-on-scroll">
 			<h2 class="font-serif text-5xl md:text-6xl">Eksperci</h2>
 			<div class="hidden md:block text-right">
-				<span class="block text-sm uppercase tracking-widest text-muted-foreground">Kolektyw</span>
-				<span class="font-serif text-2xl">{String(experts.length).padStart(2, '0')} Osoby</span>
+				<span
+					class="block text-sm uppercase tracking-widest text-muted-foreground"
+					>Kolektyw</span
+				>
+				<span class="font-serif text-2xl"
+					>{String(experts.length).padStart(2)} Osób</span
+				>
 			</div>
 		</div>
 		<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-			{experts.map((expert, i) => (
-				<div class="group reveal-on-scroll">
-					<div class="relative overflow-hidden mb-6 bg-muted aspect-[3/4]">
-						<img
-							alt={expert.name}
-							class="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0"
-							src={expert.image}
-							loading="lazy"
-						/>
-						<div class="absolute top-4 left-4 text-white font-mono text-sm opacity-60">
-							{String(i + 1).padStart(2, '0')}
+			{
+				experts.map((expert, i) => (
+					<div class="group reveal-on-scroll">
+						<div class="relative overflow-hidden mb-6 bg-muted aspect-[3/4]">
+							<img
+								alt={expert.name}
+								class="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0"
+								src={expert.image}
+								loading="lazy"
+							/>
+							<div class="absolute top-4 left-4 text-white font-mono text-sm opacity-60">
+								{String(i + 1).padStart(2, "0")}
+							</div>
 						</div>
+						<h3 class="text-2xl font-serif mb-1">{expert.name}</h3>
+						<p class="text-sm font-bold uppercase tracking-wide text-muted-foreground mb-2">
+							{expert.role}
+						</p>
+						<p class="text-sm text-muted-foreground leading-relaxed border-t border-border pt-3">
+							{expert.description}
+						</p>
 					</div>
-					<h3 class="text-2xl font-serif mb-1">{expert.name}</h3>
-					<p class="text-sm font-bold uppercase tracking-wide text-muted-foreground mb-2">{expert.role}</p>
-					<p class="text-sm text-muted-foreground leading-relaxed border-t border-border pt-3">{expert.description}</p>
-				</div>
-			))}
+				))
+			}
 		</div>
 	</div>
 </section>
