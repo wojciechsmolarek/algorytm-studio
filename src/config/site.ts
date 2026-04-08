@@ -2,7 +2,7 @@ import ogImage from "../assets/og-image.png";
 
 export const siteConfig = {
   name: "B2B Collective",
-  description: "Kolektyw 3 ekspertow B2B: SEO, Web Development, Strategia. Wspolnie budujemy widocznosc Twojej firmy.",
+  description: "Kolektyw 3 ekspertów B2B: SEO, Web Development, Strategia. Wspólnie budujemy widoczność Twojej firmy.",
   url: "https://b2bcollective.pl",
   lang: "pl",
   locale: "pl_PL",
@@ -24,12 +24,12 @@ export const siteConfig = {
       href: "/oferta",
       children: [
         { text: "SEO Techniczne", href: "/oferta/seo-techniczne" },
-        { text: "Migracje stron i sklepow", href: "/oferta/migracje-stron" },
+        { text: "Migracje stron i sklepów", href: "/oferta/migracje-stron" },
         { text: "Konsultacje SEO", href: "/oferta/konsultacje-seo" },
         { text: "SEO dla e-commerce", href: "/oferta/seo-ecommerce" },
         { text: "SEO pre-paid", href: "/oferta/seo-pre-paid" },
         { text: "Pozycjonowanie w AI", href: "/oferta/pozycjonowanie-ai" },
-        { text: "Strony, ktore zarabiaja", href: "/oferta/strony-ktore-zarabiaja" },
+        { text: "Strony, które zarabiają", href: "/oferta/strony-ktore-zarabiaja" },
       ],
     },
     { text: "Baza Wiedzy", href: "/blog" },

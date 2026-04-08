@@ -8,44 +8,44 @@ export interface ServiceItem {
 export const services: ServiceItem[] = [
   {
     num: "01",
-    title: "Strony, ktore zarabiaja",
+    title: "Strony, które zarabiają",
     description:
-      "Projektujemy serwisy nastawione na konwersje. UX/UI dopasowany do sciezki zakupowej klienta B2B, maksymalizujacy ilosc zapytan ofertowych.",
+      "Projektujemy serwisy nastawione na konwersje. UX/UI dopasowany do ścieżki zakupowej klienta B2B, maksymalizujący ilość zapytań ofertowych.",
     tags: ["Web Design", "Development", "UX Research"],
   },
   {
     num: "02",
     title: "SEO B2B",
     description:
-      "Pozycjonujemy liderow. Tworzymy dedykowane strategie widocznosci, ktore buduja autorytet domeny i przyciagaja ruch intencyjny.",
-    tags: ["Audyty SEO", "Link Building", "Optymalizacja tresci"],
+      "Pozycjonujemy liderów. Tworzymy dedykowane strategie widoczności, które budują autorytet domeny i przyciągają ruch intencyjny.",
+    tags: ["Audyty SEO", "Link Building", "Optymalizacja treści"],
   },
   {
     num: "03",
     title: "Utrzymanie WWW",
     description:
-      "Stale wsparcie techniczne i optymalizacja wydajnosci, by Twoja strona zawsze dzialala bez zarzutu i byla bezpieczna.",
+      "Stałe wsparcie techniczne i optymalizacja wydajności, by Twoja strona zawsze działała bez zarzutu i była bezpieczna.",
     tags: ["Security", "Updates", "Monitoring 24/7"],
   },
   {
     num: "04",
-    title: "Nadzor nad migracjami",
+    title: "Nadzór nad migracjami",
     description:
-      "Kompleksowe zarzadzanie procesem przenoszenia serwisu. Gwarantujemy zachowanie widocznosci w wynikach wyszukiwania po wdrozeniu nowej strony.",
-    tags: ["Mapa przekierowan", "Testy", "Wdrozenie"],
+      "Kompleksowe zarządzanie procesem przenoszenia serwisu. Gwarantujemy zachowanie widoczności w wynikach wyszukiwania po wdrożeniu nowej strony.",
+    tags: ["Mapa przekierowań", "Testy", "Wdrożenie"],
   },
   {
     num: "05",
     title: "Strategia Content",
     description:
-      "Tworzymy plany tresci eksperckich, ktore edukuja rynek, rozwiazuja problemy klientow i buduja wizerunek lidera branzy.",
+      "Tworzymy plany treści eksperckich, które edukują rynek, rozwiązują problemy klientów i budują wizerunek lidera branży.",
     tags: ["Content Plan", "Copywriting", "Dystrybucja"],
   },
   {
     num: "06",
     title: "Audyty UX/UI",
     description:
-      "Szczegolowa analiza uzytecznosci strony. Identyfikujemy bariery w konwersji i proponujemy rozwiazania zwiekszajace sprzedaz.",
+      "Szczegółowa analiza użyteczności strony. Identyfikujemy bariery w konwersji i proponujemy rozwiązania zwiększające sprzedaż.",
     tags: ["Heatmaps", "User Testing", "Raportowanie"],
   },
 ];
