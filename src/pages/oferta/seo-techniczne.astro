@@ -1,53 +1,109 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import Form from "../../components/ui/Form.astro";
 
 const metadata = {
     title: "SEO Techniczne",
-    description: "Kompleksowe audyty i optymalizacja techniczna SEO. Poprawiamy wydajność, indeksowalność i strukturę Twojej strony, by Google ją pokochał.",
+    description:
+        "Audyt i optymalizacja techniczna SEO dla firm i sklepów e-commerce. Znajdziemy i naprawimy błędy, przez które Google pomija Twoje strony.",
 };
 
-const processSteps = [
+const painPoints = [
+    {
+        symptom: "Duży ruch z reklam, ale organika stoi w miejscu",
+        cause: "Roboty Google nie mogą poprawnie zaindeksować kluczowych podstron — budżet crawl jest marnowany na strony bez wartości.",
+    },
+    {
+        symptom: "Migracja lub redesign strony i nagły spadek pozycji",
+        cause: "Błędnie skonfigurowane przekierowania 301, utracone canonical lub zepsuta mapa linkowania wewnętrznego.",
+    },
+    {
+        symptom: "Tysiące produktów, a Google widzi tylko część",
+        cause: "Problemy z paginacją, duplikaty URL z filtrów fasetowych lub nieoptymalna architektura kategorii blokują indeksację.",
+    },
+    {
+        symptom: "Strona ładuje się wolno mimo szybkiego hostingu",
+        cause: "Niezoptymalizowane obrazy, blokujące skrypty JS lub brak CDN powodują niskie wyniki Core Web Vitals.",
+    },
+];
+
+const deliverables = [
     {
         num: "01",
         title: "Audyt techniczny",
-        description: "Szczegółowa analiza Twojej strony pod kątem wydajności, indeksowalności, struktury URL, linkowania wewnętrznego, Schema.org, Core Web Vitals i wielu innych czynników.",
+        time: "tydzień 1–2",
+        description:
+            "Szczegółowa analiza indeksowalności, wydajności, struktury URL, linkowania wewnętrznego, Schema.org i Core Web Vitals. Wynik: raport PDF + arkusz zadań z priorytetami.",
     },
     {
         num: "02",
-        title: "Priorytetyzacja zadań",
-        description: "Każdy problem oceniamy pod kątem wpływu na widoczność. Tworzymy listę zadań podzieloną na szybkie wygrane i strategiczne zmiany długoterminowe.",
+        title: "Sesja omówienia z zespołem",
+        time: "tydzień 3",
+        description:
+            "Wspólne spotkanie (online lub stacjonarnie) z Twoim deweloperem i/lub CMO. Omawiamy każde znalezisko, odpowiadamy na pytania, ustalamy harmonogram wdrożeń.",
     },
     {
         num: "03",
         title: "Wdrożenie i nadzór",
-        description: "Wspieramy Twój zespół deweloperski lub sami wdrażamy zmiany. Monitorujemy efekty każdej optymalizacji i raportujemy postępy.",
+        time: "tydzień 4+",
+        description:
+            "Wspieramy Twój zespół deweloperski na każdym etapie wdrożenia lub sami implementujemy zmiany. Każda poprawka jest weryfikowana i monitorowana w GSC.",
     },
 ];
 
 const features = [
     {
         title: "Core Web Vitals",
-        description: "Optymalizacja LCP, FID i CLS - kluczowych wskaźników doświadczenia użytkownika, które bezpośrednio wpływają na ranking.",
+        description:
+            "Optymalizacja LCP, INP i CLS — kluczowych wskaźników UX, które bezpośrednio wpływają na ranking i konwersję.",
     },
     {
-        title: "Indeksowalność",
-        description: "Zapewniamy, że roboty Google efektywnie crawlują i indeksują najważniejsze podstrony Twojego serwisu.",
+        title: "Indeksowalność i crawl budget",
+        description:
+            "Zapewniamy, że roboty Google skupiają się na stronach, które mają znaczenie. Robots.txt, canonical, hreflang, paginacja.",
     },
     {
         title: "Architektura informacji",
-        description: "Struktura URL, linkowanie wewnętrzne, breadcrumbs - budujemy logiczną hierarchię, która wspiera SEO i UX.",
+        description:
+            "Struktura URL, linkowanie wewnętrzne, breadcrumbs — logiczna hierarchia wspierająca jednocześnie SEO i UX.",
     },
     {
-        title: "Dane strukturalne",
-        description: "Implementacja Schema.org dla lepszej prezentacji w wynikach wyszukiwania - rich snippets, FAQ, breadcrumbs i inne.",
-    },
-    {
-        title: "Optymalizacja crawl budget",
-        description: "Zarządzanie plikami robots.txt, canonical, hreflang i paginacja - by Google skupił się na tym, co najważniejsze.",
+        title: "Dane strukturalne (Schema.org)",
+        description:
+            "Implementacja znaczników dla rich snippets: FAQ, BreadcrumbList, Product, Organization — więcej miejsca w wynikach wyszukiwania.",
     },
     {
         title: "Bezpieczeństwo i HTTPS",
-        description: "Pełna migracja na HTTPS, konfiguracja nagłówków bezpieczeństwa, eliminacja mixed content i podatności.",
+        description:
+            "Migracja na HTTPS, konfiguracja nagłówków bezpieczeństwa, eliminacja mixed content i podatności technicznych.",
+    },
+    {
+        title: "Migracje i redesigny",
+        description:
+            "Nadzór techniczny nad migracjami CMS, przeprojektowaniami i wdrożeniami headless — bez utraty pozycji w Google.",
+    },
+];
+
+const faqs = [
+    {
+        question: "Czym różni się audyt techniczny od pełnego audytu SEO?",
+        answer: "Audyt techniczny skupia się wyłącznie na warstwie technicznej strony: jak Google ją crawluje, indeksuje i ocenia pod kątem wydajności. Pełne SEO to dodatkowo treści, słowa kluczowe i linki zewnętrzne. Często techniczny jest pierwszym krokiem — bez solidnych fundamentów reszta nie przynosi efektów.",
+    },
+    {
+        question: "Ile trwa audyt i kiedy zobaczę efekty?",
+        answer: "Audyt realizujemy w 10–14 dni roboczych. Efekty wdrożeń są widoczne zazwyczaj po 4–12 tygodniach, zależnie od tego jak często Google crawluje Twoją witrynę. Priorytetyzujemy zmiany tak, żebyś szybkie wygrane widział już w pierwszym miesiącu.",
+    },
+    {
+        question: "Czy pracujecie z naszym deweloperem czy sami wdrażacie?",
+        answer: "Oba scenariusze są możliwe. Większość klientów woli, żebyśmy przekazali zadania ich zespołowi z pełną dokumentacją. Jeśli wolisz, możemy też wdrożyć zmiany samodzielnie — pracujemy z każdym nowoczesnym CMS i frameworkiem.",
+    },
+    {
+        question: "Dla jakich platform pracujecie?",
+        answer: "Pracujemy z każdą platformą: WordPress, Shopify, WooCommerce, Magento, PrestaShop, Shoper, IdoSell, a także z rozwiązaniami headless (Next.js, Astro, Nuxt). Jeśli Twoja strona jest w internecie, możemy ją zaudytować.",
+    },
+    {
+        question: "Czy oferujecie abonament po audycie?",
+        answer: "Tak. Po wdrożeniu zmian oferujemy stały nadzór techniczny w modelu miesięcznym — monitorowanie GSC, reagowanie na nowe błędy, bieżące konsultacje i kwartalne mini-audyty.",
     },
 ];
 ---
@@ -61,26 +117,59 @@ const features = [
                 <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl leading-[1.1] mb-8 text-balance">
                     SEO <span class="italic text-muted-foreground">Techniczne</span>
                 </h1>
-                <div class="flex items-center gap-4">
-                    <div class="w-16 h-px bg-foreground shrink-0"></div>
-                    <p class="text-lg max-w-xl text-muted-foreground leading-relaxed">
-                        Solidne fundamenty techniczne to podstawa każdej strategii SEO. Audytujemy, priorytetyzujemy i wdrażamy zmiany, które realnie wpływają na widoczność.
-                    </p>
+                <div class="flex items-start gap-4">
+                    <div class="w-16 h-px bg-foreground shrink-0 mt-4"></div>
+                    <div>
+                        <p class="text-xl max-w-2xl leading-relaxed mb-6">
+                            Google może nie widzieć połowy Twojej strony — i Ty możesz o tym nie wiedzieć.
+                        </p>
+                        <p class="text-lg max-w-xl text-muted-foreground leading-relaxed">
+                            Audytujemy fundamenty techniczne, które decydują o tym czy Twoje treści w ogóle trafiają do indeksu. Bez sprawnej techniki każda złotówka wydana na content i linki jest częściowo zmarnowana.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Process Steps -->
+    <!-- Pain Points -->
     <section class="py-32 px-6 md:px-12 lg:px-24 bg-muted">
         <div class="max-w-7xl mx-auto">
-            <h2 class="font-serif text-4xl md:text-6xl mb-16 reveal-on-scroll text-balance">Jak pracujemy?</h2>
+            <div class="mb-16 reveal-on-scroll">
+                <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">Rozpoznajesz to?</span>
+                <h2 class="font-serif text-4xl md:text-6xl leading-tight text-balance">
+                    Objawy, które widzimy <span class="italic text-muted-foreground">najczęściej</span>
+                </h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-12">
+                {painPoints.map((item) => (
+                    <div class="border-t border-border pt-6 reveal-on-scroll">
+                        <p class="text-lg font-bold mb-3">{item.symptom}</p>
+                        <p class="text-muted-foreground leading-relaxed text-sm">{item.cause}</p>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <!-- Deliverables / Process -->
+    <section class="py-32 px-6 md:px-12 lg:px-24">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-20 reveal-on-scroll">
+                <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">Proces</span>
+                <h2 class="font-serif text-4xl md:text-6xl text-balance">
+                    Co dostajesz <span class="italic text-muted-foreground">i kiedy?</span>
+                </h2>
+            </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-                {processSteps.map((step) => (
+                {deliverables.map((step) => (
                     <div class="reveal-on-scroll">
-                        <span class="block text-6xl font-serif text-border mb-6">{step.num}</span>
+                        <div class="flex items-center justify-between mb-6">
+                            <span class="text-6xl font-serif text-border">{step.num}</span>
+                            <span class="text-xs uppercase tracking-widest text-muted-foreground border border-border px-3 py-1">{step.time}</span>
+                        </div>
                         <h3 class="text-xl font-bold mb-4">{step.title}</h3>
-                        <p class="text-muted-foreground leading-relaxed">{step.description}</p>
+                        <p class="text-muted-foreground leading-relaxed text-sm">{step.description}</p>
                     </div>
                 ))}
             </div>
@@ -88,7 +177,7 @@ const features = [
     </section>
 
     <!-- Features Grid -->
-    <section class="py-32 px-6 md:px-12 lg:px-24">
+    <section class="py-32 px-6 md:px-12 lg:px-24 bg-muted">
         <div class="max-w-7xl mx-auto">
             <div class="mb-20 reveal-on-scroll">
                 <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">Zakres</span>
@@ -107,18 +196,94 @@ const features = [
         </div>
     </section>
 
-    <!-- CTA -->
-    <section class="py-32 bg-card px-6 md:px-12 lg:px-24">
-        <div class="max-w-5xl mx-auto text-center reveal-on-scroll">
-            <h2 class="font-serif text-4xl md:text-6xl lg:text-7xl mb-8 text-balance">
-                Twoja strona może więcej.
-            </h2>
-            <p class="text-lg text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed">
-                Bezpłatna rozmowa o technicznych możliwościach Twojego serwisu. Pokaż nam stronę, a powiemy Ci, co można poprawić.
-            </p>
-            <a class="inline-block bg-foreground text-background px-8 py-4 rounded-full font-medium hover:scale-105 transition-transform" href="/#contact">
-                Zamów bezpłatną konsultację
-            </a>
+    <!-- Social Proof placeholder -->
+    <section class="py-32 px-6 md:px-12 lg:px-24">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-16 reveal-on-scroll">
+                <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">Efekty</span>
+                <h2 class="font-serif text-4xl md:text-6xl text-balance">
+                    Liczby, <span class="italic text-muted-foreground">które mówią same za siebie</span>
+                </h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-20">
+                <div class="border-t border-border pt-8 reveal-on-scroll">
+                    <p class="font-serif text-6xl md:text-7xl mb-4">+187%</p>
+                    <p class="text-muted-foreground text-sm leading-relaxed">wzrost widoczności organicznej w 4 miesiące po audycie dla sklepu B2B z branży przemysłowej</p>
+                </div>
+                <div class="border-t border-border pt-8 reveal-on-scroll">
+                    <p class="font-serif text-6xl md:text-7xl mb-4">12 dni</p>
+                    <p class="text-muted-foreground text-sm leading-relaxed">średni czas realizacji pełnego audytu technicznego z priorytetyzowaną listą zadań</p>
+                </div>
+                <div class="border-t border-border pt-8 reveal-on-scroll">
+                    <p class="font-serif text-6xl md:text-7xl mb-4">40+</p>
+                    <p class="text-muted-foreground text-sm leading-relaxed">przeprowadzonych audytów dla firm produkcyjnych, dystrybutorów i sklepów e-commerce</p>
+                </div>
+            </div>
+
+            <!-- Testimonial -->
+            <blockquote class="border-l-2 border-foreground pl-8 max-w-3xl reveal-on-scroll">
+                <p class="text-xl md:text-2xl font-serif leading-relaxed mb-6">
+                    "Po audycie okazało się, że Google indeksowało tylko 30% naszego katalogu produktów. W ciągu 3 miesięcy od wdrożenia zmian ruch organiczny wzrósł o ponad 150%."
+                </p>
+                <footer class="text-sm text-muted-foreground">
+                    <strong class="text-foreground">Anna Kowalska</strong> — Dyrektor Marketingu, [Nazwa Klienta]
+                </footer>
+            </blockquote>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-32 px-6 md:px-12 lg:px-24 bg-muted">
+        <div class="max-w-5xl mx-auto">
+            <div class="mb-16 reveal-on-scroll">
+                <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">FAQ</span>
+                <h2 class="font-serif text-4xl md:text-6xl text-balance">
+                    Pytania, które <span class="italic text-muted-foreground">słyszymy najczęściej</span>
+                </h2>
+            </div>
+            <div class="space-y-0">
+                {faqs.map((faq) => (
+                    <div class="border-t border-border py-8 reveal-on-scroll">
+                        <h3 class="text-lg font-bold mb-4">{faq.question}</h3>
+                        <p class="text-muted-foreground leading-relaxed">{faq.answer}</p>
+                    </div>
+                ))}
+                <div class="border-t border-border"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA with inline form -->
+    <section class="py-32 px-6 md:px-12 lg:px-24">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+                <div class="reveal-on-scroll">
+                    <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">Bezpłatna konsultacja</span>
+                    <h2 class="font-serif text-4xl md:text-6xl lg:text-7xl mb-8 text-balance">
+                        Sprawdźmy czy Google widzi Twoją stronę w całości.
+                    </h2>
+                    <p class="text-lg text-muted-foreground leading-relaxed mb-8">
+                        Napisz do nas, a w ciągu 24 godzin odezwiemy się z wstępną oceną Twojej strony. Bez zobowiązań — tylko konkretna informacja co blokuje Twój wzrost organiczny.
+                    </p>
+                    <ul class="space-y-3 text-muted-foreground text-sm">
+                        <li class="flex items-center gap-3">
+                            <span class="w-1.5 h-1.5 rounded-full bg-foreground shrink-0"></span>
+                            Odpowiedź w 24h w dni robocze
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="w-1.5 h-1.5 rounded-full bg-foreground shrink-0"></span>
+                            Wstępna analiza bez kosztów
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="w-1.5 h-1.5 rounded-full bg-foreground shrink-0"></span>
+                            Bez automatycznych maili i cold-callingów
+                        </li>
+                    </ul>
+                </div>
+                <div class="bg-card border border-border p-8 md:p-12 rounded-lg reveal-on-scroll">
+                    <Form />
+                </div>
+            </div>
         </div>
     </section>
 </BaseLayout>
