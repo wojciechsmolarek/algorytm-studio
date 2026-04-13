@@ -1,80 +1,175 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import Form from "../../components/ui/Form.astro";
 
 const metadata = {
     title: "Strony, które zarabiają",
-    description: "Projektujemy serwisy nastawione na konwersje. UX/UI dopasowany do ścieżki zakupowej klienta B2B, maksymalizujący zapytania ofertowe.",
+    description:
+        "Projektujemy i wdrażamy strony firmowe oraz sklepy internetowe nastawione na sprzedaż. Bez lock-inu, z panelem do samodzielnej edycji i wsparciem po starcie.",
 };
 
-const principles = [
+const projectTypes = [
     {
-        title: "Konwersja przede wszystkim",
-        description: "Każdy element strony służy jednemu celowi - przekształceniu odwiedzającego w lead. Projektujemy ścieżki użytkownika, które naturalnie prowadzą do zapytania ofertowego.",
+        title: "Sklep internetowy",
+        description:
+            "Sklep gotowy do sprzedaży: karty produktów, koszyk, płatności, integracje z kurierami i systemami magazynowymi. Budujesz własny kanał sprzedaży niezależny od marketplace'ów.",
     },
     {
-        title: "Szybkość ładowania",
-        description: "Strona ładująca się w 1 sekundę konwertuje 3x lepiej niż strona ładująca się w 5 sekund. Optymalizujemy każdy kilobajt.",
+        title: "Strona firmowa",
+        description:
+            "Profesjonalny serwis, który prezentuje ofertę, buduje zaufanie i generuje zapytania. Dla firm usługowych, producentów i dystrybutorów szukających klientów online.",
     },
     {
-        title: "Mobile-first, nie mobile-friendly",
-        description: "Ponad 60% ruchu B2B pochodzi z urządzeń mobilnych. Projektujemy od mobile w górę, nie odwrotnie.",
+        title: "Landing page",
+        description:
+            "Dedykowana strona pod konkretny produkt, usługę lub kampanię reklamową. Jeden cel, jedna konwersja — zaprojektowana tak żeby reklama nie przepalała budżetu.",
     },
     {
-        title: "SEO w DNA",
-        description: "Każda strona jest od początku projektowana z myślą o widoczności w Google. Struktura, treści, szybkość - SEO nie jest dodatkiem, to fundament.",
+        title: "Redesign istniejącego serwisu",
+        description:
+            "Odświeżenie przestarzałej strony bez utraty pozycji w Google. Nowy design, szybsze ładowanie, lepsza konwersja — przy zachowaniu tego co już działa.",
+    },
+];
+
+const whatYouGet = [
+    {
+        title: "Panel CMS — edytujesz sam",
+        description:
+            "Dostajesz prosty panel do samodzielnej edycji treści, zdjęć i produktów. Zmiana tekstu czy dodanie nowego produktu nie wymaga programisty ani kontaktu z nami.",
+    },
+    {
+        title: "Hosting zawarty w cenie",
+        description:
+            "Strona jest postawiona na naszej infrastrukturze. Nie musisz szukać hostingu, konfigurować serwera ani martwić się certyfikatem SSL. Działa od pierwszego dnia.",
+    },
+    {
+        title: "Szkolenie z obsługi",
+        description:
+            "Po oddaniu projektu przeprowadzamy sesję szkoleniową dla Ciebie i Twojego zespołu. Nagrywamy ją — możesz wrócić do niej kiedy chcesz.",
+    },
+    {
+        title: "30 dni wsparcia po starcie",
+        description:
+            "Przez miesiąc od wdrożenia jesteśmy dostępni na błędy, pytania i drobne poprawki. Nie zostawiamy Cię z nową stroną bez opieki.",
+    },
+    {
+        title: "Optymalizacja pod Google od startu",
+        description:
+            "Strona wychodzi z SEO technicznym już na etapie budowy — szybkość, struktura, dane strukturalne, sitemap. Nie dopłacasz za to osobno.",
+    },
+    {
+        title: "Brak lock-inu",
+        description:
+            "Dostajesz pełny dostęp do kodu, domeny i serwera. Możesz przenieść stronę do innego dostawcy w dowolnym momencie — bez żadnych opłat za wyjście.",
     },
 ];
 
 const processSteps = [
     {
         num: "01",
-        title: "Discovery i strategia",
-        description: "Analiza Twojego biznesu, konkurencji i grupy docelowej. Definiujemy cele, KPI i ścieżkę użytkownika, zanim narysujemy pierwszy piksel.",
+        title: "Rozmowa wstępna",
+        time: "dzień 1",
+        description:
+            "Bezpłatna 45-minutowa rozmowa o Twoim biznesie, celach i budżecie. Omawiamy zakres, zadajemy pytania, które pozwolą nam wycenić projekt.",
     },
     {
         num: "02",
-        title: "UX Research i prototyp",
-        description: "Wireframe'y i prototypy klikalne, testowane z realnymi użytkownikami. Walidujemy każde założenie, zanim przejdziemy do designu.",
+        title: "Wycena i umowa",
+        time: "dzień 2–3",
+        description:
+            "Otrzymujesz szczegółową wycenę z zakresem prac i harmonogramem. Po akceptacji podpisujemy umowę i zaczynamy.",
     },
     {
         num: "03",
-        title: "Design i development",
-        description: "Nowoczesny design nastawiony na konwersje. Development w technologiach zapewniających wydajność: Astro, Next.js, headless CMS.",
+        title: "Projekt i treści",
+        time: "tydzień 1–3",
+        description:
+            "Tworzymy prototyp i projekt graficzny — akceptujesz go przed wdrożeniem. Pomagamy też z treściami jeśli ich nie masz.",
     },
     {
         num: "04",
-        title: "Testy i optymalizacja",
-        description: "Testy A/B, analityka, heatmapy. Po wdrożeniu ciągle optymalizujemy stronę, by zwiększać wskaźniki konwersji.",
+        title: "Wdrożenie i testy",
+        time: "tydzień 3–6",
+        description:
+            "Kodujemy stronę, integrujemy płatności i narzędzia analityczne. Testujesz na środowisku testowym przed publikacją.",
+    },
+    {
+        num: "05",
+        title: "Start i szkolenie",
+        time: "tydzień 6–8",
+        description:
+            "Publikujemy stronę, przeprowadzamy szkolenie z panelu CMS i pozostajemy do dyspozycji przez 30 dni od startu.",
     },
 ];
 
-const technologies = [
-    "Astro",
-    "Next.js",
-    "React",
-    "Headless CMS",
-    "Tailwind CSS",
-    "Vercel",
-    "Cloudflare",
-    "Analytics & Tracking",
+const packages = [
+    {
+        name: "Strona firmowa",
+        range: "od 8 000 PLN",
+        time: "4–6 tygodni",
+        best: "Firmy usługowe, specjaliści, B2B",
+        includes: [
+            "Do 10 podstron",
+            "Panel CMS do samodzielnej edycji",
+            "SEO techniczne w cenie",
+            "Hosting przez 12 miesięcy",
+            "Szkolenie z obsługi",
+            "30 dni wsparcia po starcie",
+        ],
+    },
+    {
+        name: "Sklep internetowy",
+        range: "od 15 000 PLN",
+        time: "6–10 tygodni",
+        best: "E-commerce B2C i B2B",
+        includes: [
+            "Nieograniczona liczba produktów",
+            "Płatności online (Przelewy24, PayU, Stripe)",
+            "Integracje z kurierami i magazynem",
+            "Panel zarządzania zamówieniami",
+            "SEO techniczne dla e-commerce",
+            "30 dni wsparcia po starcie",
+        ],
+    },
+    {
+        name: "Landing page",
+        range: "od 3 500 PLN",
+        time: "1–2 tygodnie",
+        best: "Kampanie reklamowe, nowe produkty",
+        includes: [
+            "Jedna strona skupiona na konwersji",
+            "Formularz lub CTA zintegrowane z CRM",
+            "Optymalizacja pod kampanie Google/Meta",
+            "Testy A/B (opcjonalnie)",
+            "14 dni wsparcia po starcie",
+        ],
+    },
 ];
 
-const deliverables = [
+const faqs = [
     {
-        title: "Strona korporacyjna B2B",
-        description: "Profesjonalny serwis firmowy, który buduje zaufanie, prezentuje ofertę i generuje leady. Od wizytówki po rozbudowany portal.",
+        question: "Ile dokładnie kosztuje strona lub sklep?",
+        answer: "Ostateczna cena zależy od zakresu — liczby podstron, integracji, funkcjonalności. Widełki w pakietach to punkty startowe. Po krótkiej rozmowie wstępnej wystawiamy szczegółową wycenę bez zobowiązań. Pierwsza rozmowa jest bezpłatna.",
     },
     {
-        title: "Landing page",
-        description: "Dedykowane strony docelowe pod kampanie, produkty lub usługi. Zoptymalizowane pod jeden cel konwersji.",
+        question: "Czy muszę mieć gotowe teksty i zdjęcia?",
+        answer: "Nie — pomagamy z treściami. Możemy napisać teksty na stronie lub sklep (copywriting wyceniamy osobno) i doradzić z materiałami wizualnymi. Mamy też dostęp do bibliotek stockowych. Im więcej materiałów dostarczysz, tym niższy koszt całkowity.",
     },
     {
-        title: "Mikrostrony produktowe",
-        description: "Samodzielne serwisy prezentujące produkt lub usługę. Idealne do kampanii i pozycjonowania na konkretne frazy.",
+        question: "Czy po oddaniu strony mogę ją sam edytować?",
+        answer: "Tak, to standard w każdym naszym projekcie. Dostajesz panel CMS, w którym samodzielnie edytujesz teksty, zdjęcia, produkty i ceny. Zmiany nie wymagają programisty ani kontaktu z nami.",
     },
     {
-        title: "Redesign istniejącego serwisu",
-        description: "Odświeżenie designu i optymalizacja UX przy zachowaniu widoczności SEO. Nadzór nad migracją włączony w cenę.",
+        question: "Co się dzieje po 30 dniach wsparcia?",
+        answer: "Oferujemy abonament utrzymaniowy — od aktualizacji technicznych, przez reagowanie na awarie, po drobne zmiany na żądanie. Możesz też korzystać z naszych konsultacji na godziny jeśli potrzebujesz wsparcia okazjonalnie.",
+    },
+    {
+        question: "Czy możecie przejąć moją istniejącą stronę?",
+        answer: "Tak. Przed przejęciem robimy audyt techniczny i omawiamy co warto zachować, a co zmienić. Redesign istniejącej strony jest zwykle tańszy niż budowa od zera i nie oznacza utraty pozycji w Google — zajmujemy się tym kompleksowo.",
+    },
+    {
+        question: "Na jakiej platformie jest zbudowana strona?",
+        answer: "Dobieramy technologię do projektu — nie narzucamy jednej platformy wszystkim. Strony firmowe budujemy w Astro lub Next.js (szybkie, tanie w utrzymaniu). Sklepy — w WooCommerce, Shopify lub rozwiązaniach headless. Zawsze tłumaczymy dlaczego wybieramy daną technologię w kontekście Twojego biznesu.",
     },
 ];
 ---
@@ -88,31 +183,90 @@ const deliverables = [
                 <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl leading-[1.1] mb-8 text-balance">
                     Strony, które <span class="italic text-muted-foreground">zarabiają</span>
                 </h1>
-                <div class="flex items-center gap-4">
-                    <div class="w-16 h-px bg-foreground shrink-0"></div>
-                    <p class="text-lg max-w-xl text-muted-foreground leading-relaxed">
-                        Nie budujemy stron "bo trzeba mieć stronę". Projektujemy serwisy, które są przedłużeniem Twojego działu sprzedaży - generują leady, budują zaufanie i zamykają deale.
-                    </p>
+                <div class="flex items-start gap-4">
+                    <div class="w-16 h-px bg-foreground shrink-0 mt-4"></div>
+                    <div>
+                        <p class="text-xl max-w-2xl leading-relaxed mb-6">
+                            Strona firmowa lub sklep internetowy, który faktycznie sprzedaje — nie tylko wygląda ładnie.
+                        </p>
+                        <p class="text-lg max-w-xl text-muted-foreground leading-relaxed">
+                            Dostajesz gotowy serwis z panelem do samodzielnej edycji, hostingiem i szkoleniem. Bez uzależnienia od programisty przy każdej zmianie zdjęcia.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Principles -->
+    <!-- Project types -->
     <section class="py-32 px-6 md:px-12 lg:px-24 bg-muted">
         <div class="max-w-7xl mx-auto">
             <div class="mb-16 reveal-on-scroll">
-                <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">Filozofia</span>
+                <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">Co tworzymy</span>
                 <h2 class="font-serif text-4xl md:text-6xl leading-tight text-balance">
-                    Nasze <span class="italic text-muted-foreground">zasady projektowania</span>
+                    Rodzaje <span class="italic text-muted-foreground">projektów</span>
                 </h2>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-12">
-                {principles.map((item) => (
+                {projectTypes.map((item) => (
                     <div class="border-t border-border pt-6 reveal-on-scroll">
                         <h3 class="text-xl font-bold mb-3">{item.title}</h3>
                         <p class="text-muted-foreground leading-relaxed">{item.description}</p>
                     </div>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <!-- Packages -->
+    <section class="py-32 px-6 md:px-12 lg:px-24">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-20 reveal-on-scroll">
+                <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">Cennik orientacyjny</span>
+                <h2 class="font-serif text-4xl md:text-6xl text-balance">
+                    Ile to <span class="italic text-muted-foreground">kosztuje?</span>
+                </h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {packages.map((pkg, i) => (
+                    <div class={`border border-border p-8 reveal-on-scroll ${i === 1 ? "bg-card" : ""}`}>
+                        <p class="text-sm uppercase tracking-widest text-muted-foreground mb-4">{pkg.name}</p>
+                        <p class="font-serif text-4xl mb-1">{pkg.range}</p>
+                        <p class="text-sm text-muted-foreground mb-1">netto</p>
+                        <p class="text-xs uppercase tracking-widest text-muted-foreground mb-2">Czas realizacji: {pkg.time}</p>
+                        <p class="text-sm text-muted-foreground mb-8 border-b border-border pb-8">{pkg.best}</p>
+                        <ul class="space-y-3">
+                            {pkg.includes.map((item) => (
+                                <li class="flex items-start gap-3 text-sm text-muted-foreground">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-foreground shrink-0 mt-1.5"></span>
+                                    {item}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                ))}
+            </div>
+            <p class="text-sm text-muted-foreground mt-8 reveal-on-scroll">
+                Ceny orientacyjne — ostateczna wycena zależy od zakresu projektu. Skontaktuj się z nami po bezpłatną wycenę.
+            </p>
+        </div>
+    </section>
+
+    <!-- What you get -->
+    <section class="py-32 px-6 md:px-12 lg:px-24 bg-muted">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-20 reveal-on-scroll">
+                <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">Co dostajesz</span>
+                <h2 class="font-serif text-4xl md:text-6xl leading-tight text-balance">
+                    Standard w każdym <span class="italic text-muted-foreground">projekcie</span>
+                </h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
+                {whatYouGet.map((item) => (
+                    <article class="border-t border-border pt-6 reveal-on-scroll">
+                        <h3 class="text-xl font-bold mb-3">{item.title}</h3>
+                        <p class="text-muted-foreground text-sm leading-relaxed">{item.description}</p>
+                    </article>
                 ))}
             </div>
         </div>
@@ -121,12 +275,20 @@ const deliverables = [
     <!-- Process -->
     <section class="py-32 px-6 md:px-12 lg:px-24">
         <div class="max-w-7xl mx-auto">
-            <h2 class="font-serif text-4xl md:text-6xl mb-16 reveal-on-scroll text-balance">Jak pracujemy?</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+            <div class="mb-20 reveal-on-scroll">
+                <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">Proces</span>
+                <h2 class="font-serif text-4xl md:text-6xl text-balance">
+                    Od rozmowy <span class="italic text-muted-foreground">do gotowej strony</span>
+                </h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
                 {processSteps.map((step) => (
                     <div class="reveal-on-scroll">
-                        <span class="block text-6xl font-serif text-border mb-6">{step.num}</span>
-                        <h3 class="text-xl font-bold mb-4">{step.title}</h3>
+                        <div class="flex items-center justify-between mb-6">
+                            <span class="text-5xl font-serif text-border">{step.num}</span>
+                            <span class="text-xs uppercase tracking-widest text-muted-foreground border border-border px-2 py-1">{step.time}</span>
+                        </div>
+                        <h3 class="text-lg font-bold mb-3">{step.title}</h3>
                         <p class="text-muted-foreground leading-relaxed text-sm">{step.description}</p>
                     </div>
                 ))}
@@ -134,57 +296,58 @@ const deliverables = [
         </div>
     </section>
 
-    <!-- Deliverables -->
-    <section class="py-32 px-6 md:px-12 lg:px-24 bg-card">
-        <div class="max-w-7xl mx-auto">
-            <div class="mb-20 reveal-on-scroll">
-                <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">Co tworzymy</span>
-                <h2 class="font-serif text-4xl md:text-6xl leading-tight text-balance">
-                    Rodzaje <span class="italic text-muted-foreground">projektów</span>
+    <!-- FAQ -->
+    <section class="py-32 px-6 md:px-12 lg:px-24 bg-muted">
+        <div class="max-w-5xl mx-auto">
+            <div class="mb-16 reveal-on-scroll">
+                <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">FAQ</span>
+                <h2 class="font-serif text-4xl md:text-6xl text-balance">
+                    Pytania, które <span class="italic text-muted-foreground">słyszymy najczęściej</span>
                 </h2>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-12">
-                {deliverables.map((item) => (
-                    <div class="border-t border-border pt-6 reveal-on-scroll">
-                        <h3 class="text-xl font-bold mb-3">{item.title}</h3>
-                        <p class="text-muted-foreground leading-relaxed">{item.description}</p>
+            <div class="space-y-0">
+                {faqs.map((faq) => (
+                    <div class="border-t border-border py-8 reveal-on-scroll">
+                        <h3 class="text-lg font-bold mb-4">{faq.question}</h3>
+                        <p class="text-muted-foreground leading-relaxed">{faq.answer}</p>
                     </div>
                 ))}
+                <div class="border-t border-border"></div>
             </div>
         </div>
     </section>
 
-    <!-- Technologies -->
+    <!-- CTA with inline form -->
     <section class="py-32 px-6 md:px-12 lg:px-24">
         <div class="max-w-7xl mx-auto">
-            <div class="mb-16 reveal-on-scroll">
-                <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">Technologie</span>
-                <h2 class="font-serif text-4xl md:text-6xl leading-tight text-balance">
-                    Narzędzia, które <span class="italic text-muted-foreground">wybieramy</span>
-                </h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+                <div class="reveal-on-scroll">
+                    <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">Bezpłatna wycena</span>
+                    <h2 class="font-serif text-4xl md:text-6xl lg:text-7xl mb-8 text-balance">
+                        Powiedz nam o swoim projekcie.
+                    </h2>
+                    <p class="text-lg text-muted-foreground leading-relaxed mb-8">
+                        Opisz krótko czego potrzebujesz — strony, sklepu, redesignu. Odezwiemy się w ciągu 24 godzin z pytaniami lub od razu z wstępną wyceną.
+                    </p>
+                    <ul class="space-y-3 text-muted-foreground text-sm">
+                        <li class="flex items-center gap-3">
+                            <span class="w-1.5 h-1.5 rounded-full bg-foreground shrink-0"></span>
+                            Odpowiedź w 24h w dni robocze
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="w-1.5 h-1.5 rounded-full bg-foreground shrink-0"></span>
+                            Wycena bez zobowiązań
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="w-1.5 h-1.5 rounded-full bg-foreground shrink-0"></span>
+                            Pierwsza rozmowa bezpłatna
+                        </li>
+                    </ul>
+                </div>
+                <div class="bg-card border border-border p-8 md:p-12 rounded-lg reveal-on-scroll">
+                    <Form />
+                </div>
             </div>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 reveal-on-scroll">
-                {technologies.map((tech) => (
-                    <div class="border border-border px-5 py-4 text-sm text-muted-foreground hover:text-foreground hover:border-foreground transition-colors">
-                        {tech}
-                    </div>
-                ))}
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="py-32 px-6 md:px-12 lg:px-24 bg-card">
-        <div class="max-w-5xl mx-auto text-center reveal-on-scroll">
-            <h2 class="font-serif text-4xl md:text-6xl lg:text-7xl mb-8 text-balance">
-                Twoja strona może sprzedawać więcej.
-            </h2>
-            <p class="text-lg text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed">
-                Porozmawiajmy o tym, jak Twoja strona może lepiej wspierać sprzedaż. Bezpłatna analiza obecnego serwisu i rekomendacje zmian.
-            </p>
-            <a class="inline-block bg-foreground text-background px-8 py-4 rounded-full font-medium hover:scale-105 transition-transform" href="/#contact">
-                Zamów bezpłatną analizę
-            </a>
         </div>
     </section>
 </BaseLayout>
