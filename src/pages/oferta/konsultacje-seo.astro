@@ -1,45 +1,99 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import Form from "../../components/ui/Form.astro";
 
 const metadata = {
     title: "Konsultacje SEO na godziny",
-    description: "Elastyczne konsultacje SEO na godziny. Ekspert SEO do Twojej dyspozycji - bez długoterminowych umów, płać tylko za czas, którego potrzebujesz.",
+    description:
+        "Elastyczne konsultacje SEO z doświadczonym ekspertem. Konkretna odpowiedź na Twój problem SEO — bez długoterminowych umów, bez bullshitu.",
 };
 
-const forWhom = [
+const triggers = [
     {
-        title: "Zespoły marketingowe",
-        description: "Potrzebujecie eksperta, który zweryfikuje Waszą strategię SEO, odpowie na pytania i wskaże kierunek działań? Rezerwujecie godziny i korzystacie, kiedy chcecie.",
+        title: "Masz konkretne pytanie, ale nie potrzebujesz agencji",
+        description:
+            "Strategia contentu, dobór słów kluczowych, ocena konkurencji — wystarczy jedna rozmowa z ekspertem, żeby ruszyć do przodu.",
     },
     {
-        title: "Agencje bez SEO w ofercie",
-        description: "Realizujecie projekt webowy dla klienta, ale brakuje Wam kompetencji SEO? Dołączamy się jako zewnętrzny konsultant do Waszego zespołu.",
+        title: "Chcesz ocenić pracę obecnej agencji lub freelancera",
+        description:
+            "Second opinion od niezależnego eksperta, który nie ma interesu w podtrzymaniu umowy. Mówimy wprost co działa, a co to strata budżetu.",
     },
     {
-        title: "Firmy z własnym SEO",
-        description: "Macie wewnętrznego specjalistę, ale potrzebujecie second opinion lub wsparcia w trudniejszych zagadnieniach technicznych? Jesteśmy do dyspozycji.",
+        title: "Planujesz migrację lub redesign strony",
+        description:
+            "Jedna godzina konsultacji przed migracją może zaoszczędzić miesięcy odbudowywania pozycji. Sprawdzamy plan i wskazujemy ryzyka.",
     },
     {
-        title: "Startupy i scale-upy",
-        description: "Nie potrzebujecie jeszcze pełnej obsługi SEO, ale chcecie mieć dostęp do wiedzy eksperckiej, kiedy pojawia się konkretny problem.",
+        title: "Masz wewnętrzny zespół SEO, który utknął na problemie",
+        description:
+            "Twoi specjaliści wiedzą dużo, ale potrzebują eksperta od konkretnego zagadnienia. Dołączamy się na godzinę jako wsparcie, nie zastępstwo.",
+    },
+];
+
+const packages = [
+    {
+        name: "Pojedyncza sesja",
+        hours: "1–2 godz.",
+        best: "Konkretny problem, quick win, ocena strategii",
+        includes: [
+            "Sesja online (Zoom/Meet/Teams)",
+            "Pisemne podsumowanie po sesji",
+            "Lista priorytetowych działań",
+        ],
+    },
+    {
+        name: "Pakiet strategiczny",
+        hours: "5 godz.",
+        best: "Audyt + strategia + sesja z zespołem",
+        includes: [
+            "Elastyczne wykorzystanie w ciągu 60 dni",
+            "Pisemne podsumowanie po każdej sesji",
+            "Priorytetyzowana lista zadań",
+            "Dostęp do eksperta na czacie między sesjami",
+        ],
+    },
+    {
+        name: "Wsparcie stałe",
+        hours: "10 godz. / miesiąc",
+        best: "Nadzór nad wewnętrznym zespołem SEO",
+        includes: [
+            "Miesięczna pula godzin (bez przenoszenia)",
+            "Priorytetowy dostęp — odpowiedź w 4h",
+            "Przegląd raportów i wyników co miesiąc",
+            "Nieograniczone pytania na czacie",
+        ],
     },
 ];
 
 const howItWorks = [
     {
         num: "01",
-        title: "Wybierz pakiet godzin",
-        description: "Dobierz liczbę godzin do swoich potrzeb. Możesz zaczynać od małego pakietu i skalować w górę, kiedy potrzebujesz więcej wsparcia.",
+        title: "Wypełniasz brief",
+        time: "5 minut",
+        description:
+            "Krótki formularz z opisem problemu lub pytań. Dzięki temu ekspert przygotowuje się przed rozmową — nie tracisz czasu na wprowadzenie.",
     },
     {
         num: "02",
-        title: "Zarezerwuj termin",
-        description: "Umów się na konsultację w dogodnym terminie. Możesz rezerwować pojedyncze godziny lub bloki czasowe na większą sesję.",
+        title: "Rezerwujesz termin",
+        time: "do 48h",
+        description:
+            "Sesja online w Twoim kalendarzu. Możesz zaprosić cały zespół — developerów, content managerów, analityków.",
     },
     {
         num: "03",
-        title: "Korzystaj z wiedzy",
-        description: "Audyty, analizy, strategia, szkolenia - wykorzystaj godziny na to, czego najbardziej potrzebujesz. Po każdej sesji dostajesz podsumowanie.",
+        title: "Rozmawiasz z ekspertem",
+        time: "umówiony czas",
+        description:
+            "Konkretna rozmowa bez lania wody. Analizujemy Twoją stronę na żywo, odpowiadamy na pytania, proponujemy rozwiązania.",
+    },
+    {
+        num: "04",
+        title: "Dostajesz podsumowanie",
+        time: "do 24h po sesji",
+        description:
+            "Pisemny raport z najważniejszymi wnioskami i listą działań posortowaną priorytetowo. Coś konkretnego, co możesz przekazać zespołowi.",
     },
 ];
 
@@ -57,6 +111,33 @@ const topics = [
     "International SEO",
     "E-commerce SEO",
 ];
+
+const faqs = [
+    {
+        question: "Ile kosztuje godzina konsultacji?",
+        answer: "Stawka za godzinę konsultacji wynosi 400–600 PLN netto, zależnie od tematyki i poziomu przygotowania materiałów. Pakiet 5h i 10h/miesiąc rozliczamy w stałej stawce — szczegóły podajemy przy wycenie. Pierwsza 30-minutowa rozmowa wstępna jest bezpłatna.",
+    },
+    {
+        question: "Czy muszę się do czegoś przygotować?",
+        answer: "Prosimy o krótki brief przed sesją (dostęp do GSC, GA4, adres strony, opis problemu). Im więcej wiemy przed rozmową, tym więcej zdążymy omówić w umówionym czasie. Szablon briefa wysyłamy po rezerwacji.",
+    },
+    {
+        question: "Co zdążymy omówić w jedną godzinę?",
+        answer: "W 60 minut jesteśmy w stanie np. ocenić strategię contentu dla jednej kategorii, przeprowadzić szybki przegląd techniczny i wskazać 3–5 priorytetowych zmian, lub omówić plan migracji domeny. Jeśli masz kilka tematów, rekomendujemy pakiet 2–3 godzin.",
+    },
+    {
+        question: "Czy konsultacje są poufne?",
+        answer: "Tak. Na życzenie podpisujemy NDA przed sesją. Nie udostępniamy danych Twojej strony ani informacji o projekcie osobom trzecim.",
+    },
+    {
+        question: "Czy mogę zaprosić na sesję swój zespół deweloperski lub agencję?",
+        answer: "Oczywiście — zachęcamy do tego. Wspólna sesja z deweloperem, content managerem lub zewnętrzną agencją jest często dużo bardziej efektywna niż relacjonowanie wniosków po fakcie.",
+    },
+    {
+        question: "Czy godziny z pakietu można przenosić na kolejny miesiąc?",
+        answer: "W pakiecie strategicznym (5h) godziny są ważne 60 dni. W pakiecie stałym (10h/miesiąc) godziny nie przechodzą na kolejny miesiąc — model subskrypcyjny zakłada regularne korzystanie z ekspertyzy.",
+    },
+];
 ---
 
 <BaseLayout {metadata}>
@@ -68,12 +149,66 @@ const topics = [
                 <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl leading-[1.1] mb-8 text-balance">
                     Konsultacje SEO <span class="italic text-muted-foreground">"na godziny"</span>
                 </h1>
-                <div class="flex items-center gap-4">
-                    <div class="w-16 h-px bg-foreground shrink-0"></div>
-                    <p class="text-lg max-w-xl text-muted-foreground leading-relaxed">
-                        Nie zawsze potrzebujesz pełnej obsługi SEO. Czasem wystarczy godzina z ekspertem, który odpowie na Twoje pytania i wskaże właściwy kierunek.
-                    </p>
+                <div class="flex items-start gap-4">
+                    <div class="w-16 h-px bg-foreground shrink-0 mt-4"></div>
+                    <div>
+                        <p class="text-xl max-w-2xl leading-relaxed mb-6">
+                            Masz konkretny problem SEO. Potrzebujesz konkretnej odpowiedzi — nie 3-miesięcznej umowy z agencją.
+                        </p>
+                        <p class="text-lg max-w-xl text-muted-foreground leading-relaxed">
+                            Rezerwujesz czas eksperta dokładnie wtedy, kiedy go potrzebujesz. Płacisz za godziny, które faktycznie utilizujesz. Po każdej sesji dostajesz pisemne podsumowanie z listą działań.
+                        </p>
+                    </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Triggers — kiedy warto -->
+    <section class="py-32 px-6 md:px-12 lg:px-24 bg-muted">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-16 reveal-on-scroll">
+                <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">Kiedy warto</span>
+                <h2 class="font-serif text-4xl md:text-6xl leading-tight text-balance">
+                    To jest rozwiązanie dla Ciebie, <span class="italic text-muted-foreground">jeśli...</span>
+                </h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-12">
+                {triggers.map((item) => (
+                    <div class="border-t border-border pt-6 reveal-on-scroll">
+                        <p class="text-lg font-bold mb-3">{item.title}</p>
+                        <p class="text-muted-foreground leading-relaxed text-sm">{item.description}</p>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <!-- Packages -->
+    <section class="py-32 px-6 md:px-12 lg:px-24">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-20 reveal-on-scroll">
+                <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">Pakiety</span>
+                <h2 class="font-serif text-4xl md:text-6xl text-balance">
+                    Wybierz zakres <span class="italic text-muted-foreground">dopasowany do potrzeb</span>
+                </h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {packages.map((pkg, i) => (
+                    <div class={`border border-border p-8 reveal-on-scroll ${i === 1 ? "bg-card" : ""}`}>
+                        <p class="text-sm uppercase tracking-widest text-muted-foreground mb-4">{pkg.name}</p>
+                        <p class="font-serif text-5xl mb-2">{pkg.hours}</p>
+                        <p class="text-sm text-muted-foreground mb-8 border-b border-border pb-8">{pkg.best}</p>
+                        <ul class="space-y-3">
+                            {pkg.includes.map((item) => (
+                                <li class="flex items-start gap-3 text-sm text-muted-foreground">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-foreground shrink-0 mt-1.5"></span>
+                                    {item}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                ))}
             </div>
         </div>
     </section>
@@ -81,33 +216,21 @@ const topics = [
     <!-- How it works -->
     <section class="py-32 px-6 md:px-12 lg:px-24 bg-muted">
         <div class="max-w-7xl mx-auto">
-            <h2 class="font-serif text-4xl md:text-6xl mb-16 reveal-on-scroll text-balance">Jak to działa?</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-                {howItWorks.map((step) => (
-                    <div class="reveal-on-scroll">
-                        <span class="block text-6xl font-serif text-border mb-6">{step.num}</span>
-                        <h3 class="text-xl font-bold mb-4">{step.title}</h3>
-                        <p class="text-muted-foreground leading-relaxed">{step.description}</p>
-                    </div>
-                ))}
-            </div>
-        </div>
-    </section>
-
-    <!-- For whom -->
-    <section class="py-32 px-6 md:px-12 lg:px-24">
-        <div class="max-w-7xl mx-auto">
             <div class="mb-20 reveal-on-scroll">
-                <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">Dla kogo</span>
-                <h2 class="font-serif text-4xl md:text-6xl leading-tight text-balance">
-                    Dla kogo są <span class="italic text-muted-foreground">konsultacje?</span>
+                <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">Proces</span>
+                <h2 class="font-serif text-4xl md:text-6xl text-balance">
+                    Od rezerwacji <span class="italic text-muted-foreground">do listy działań</span>
                 </h2>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-12">
-                {forWhom.map((item) => (
-                    <div class="border-t border-border pt-6 reveal-on-scroll">
-                        <h3 class="text-xl font-bold mb-3">{item.title}</h3>
-                        <p class="text-muted-foreground leading-relaxed">{item.description}</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+                {howItWorks.map((step) => (
+                    <div class="reveal-on-scroll">
+                        <div class="flex items-center justify-between mb-6">
+                            <span class="text-6xl font-serif text-border">{step.num}</span>
+                            <span class="text-xs uppercase tracking-widest text-muted-foreground border border-border px-3 py-1">{step.time}</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">{step.title}</h3>
+                        <p class="text-muted-foreground leading-relaxed text-sm">{step.description}</p>
                     </div>
                 ))}
             </div>
@@ -115,7 +238,7 @@ const topics = [
     </section>
 
     <!-- Topics -->
-    <section class="py-32 px-6 md:px-12 lg:px-24 bg-card">
+    <section class="py-32 px-6 md:px-12 lg:px-24">
         <div class="max-w-7xl mx-auto">
             <div class="mb-16 reveal-on-scroll">
                 <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">Tematy</span>
@@ -133,18 +256,139 @@ const topics = [
         </div>
     </section>
 
-    <!-- CTA -->
+    <!-- Social Proof -->
+    <section class="py-32 px-6 md:px-12 lg:px-24 bg-muted">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-16 reveal-on-scroll">
+                <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">Efekty</span>
+                <h2 class="font-serif text-4xl md:text-6xl text-balance">
+                    Co mówią <span class="italic text-muted-foreground">klienci po sesjach</span>
+                </h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-20">
+                <div class="border-t border-border pt-8 reveal-on-scroll">
+                    <p class="font-serif text-6xl md:text-7xl mb-4">200+</p>
+                    <p class="text-muted-foreground text-sm leading-relaxed">przeprowadzonych sesji konsultacyjnych dla firm z branży B2B, e-commerce i SaaS</p>
+                </div>
+                <div class="border-t border-border pt-8 reveal-on-scroll">
+                    <p class="font-serif text-6xl md:text-7xl mb-4">94%</p>
+                    <p class="text-muted-foreground text-sm leading-relaxed">klientów wraca po kolejne godziny lub przechodzi na stałą współpracę w ciągu 3 miesięcy</p>
+                </div>
+                <div class="border-t border-border pt-8 reveal-on-scroll">
+                    <p class="font-serif text-6xl md:text-7xl mb-4">48h</p>
+                    <p class="text-muted-foreground text-sm leading-relaxed">średni czas od zgłoszenia do pierwszej sesji — bez tygodni czekania na onboarding</p>
+                </div>
+            </div>
+
+            <blockquote class="border-l-2 border-foreground pl-8 max-w-3xl reveal-on-scroll">
+                <p class="text-xl md:text-2xl font-serif leading-relaxed mb-6">
+                    "Jedna 2-godzinna sesja przed migracją na nowy CMS oszczędziła nam prawdopodobnie kilku miesięcy odbudowywania widoczności. Lista kontrolna, którą dostaliśmy po spotkaniu, była warta wielokrotnie więcej niż koszt konsultacji."
+                </p>
+                <footer class="text-sm text-muted-foreground">
+                    <strong class="text-foreground">Marek Wiśniewski</strong> — Head of Marketing, [Nazwa Klienta]
+                </footer>
+            </blockquote>
+        </div>
+    </section>
+
+    <!-- FAQ -->
     <section class="py-32 px-6 md:px-12 lg:px-24">
-        <div class="max-w-5xl mx-auto text-center reveal-on-scroll">
-            <h2 class="font-serif text-4xl md:text-6xl lg:text-7xl mb-8 text-balance">
-                Pierwsza godzina gratis.
-            </h2>
-            <p class="text-lg text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed">
-                Umów się na bezpłatną rozmowę wstępną, podczas której poznamy Twoje potrzeby i zaproponujemy optymalny pakiet godzin.
-            </p>
-            <a class="inline-block bg-foreground text-background px-8 py-4 rounded-full font-medium hover:scale-105 transition-transform" href="/#contact">
-                Zarezerwuj konsultację
-            </a>
+        <div class="max-w-5xl mx-auto">
+            <div class="mb-16 reveal-on-scroll">
+                <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">FAQ</span>
+                <h2 class="font-serif text-4xl md:text-6xl text-balance">
+                    Pytania, które <span class="italic text-muted-foreground">słyszymy najczęściej</span>
+                </h2>
+            </div>
+            <div class="space-y-0">
+                {faqs.map((faq) => (
+                    <div class="border-t border-border py-8 reveal-on-scroll">
+                        <h3 class="text-lg font-bold mb-4">{faq.question}</h3>
+                        <p class="text-muted-foreground leading-relaxed">{faq.answer}</p>
+                    </div>
+                ))}
+                <div class="border-t border-border"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Prepaid SEO -->
+    <section class="py-32 px-6 md:px-12 lg:px-24">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-16 reveal-on-scroll">
+                <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">Następny krok</span>
+                <h2 class="font-serif text-4xl md:text-6xl text-balance">
+                    Konsultacje to dobry start. <span class="italic text-muted-foreground">Pre-paid SEO to ciągłość.</span>
+                </h2>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+                <div class="reveal-on-scroll">
+                    <p class="text-lg text-muted-foreground leading-relaxed mb-8">
+                        Wielu klientów zaczyna od jednej sesji konsultacyjnej, a po kilku tygodniach wraca z potrzebą regularnego wsparcia. Model pre-paid SEO to odpowiedź na to zapotrzebowanie — kupujesz pakiet godzin z góry i korzystasz z eksperta dokładnie wtedy i na to, co jest aktualnie najważniejsze.
+                    </p>
+                    <p class="text-lg text-muted-foreground leading-relaxed mb-10">
+                        Bez umów rocznych. Bez narzuconego zakresu. Bez płacenia za "abonament" w miesiącach, gdy nic nie potrzebujesz.
+                    </p>
+                    <a
+                        href="/oferta/seo-pre-paid"
+                        class="inline-block border border-foreground text-foreground px-8 py-4 rounded-full font-medium hover:bg-foreground hover:text-background transition-colors"
+                    >
+                        Zobacz model pre-paid →
+                    </a>
+                </div>
+                <div class="grid grid-cols-1 gap-0 reveal-on-scroll">
+                    <div class="border-t border-border py-6">
+                        <h3 class="font-bold mb-2">Pełna kontrola budżetu</h3>
+                        <p class="text-muted-foreground text-sm leading-relaxed">Wiesz dokładnie ile wydajesz i na co. Każda godzina jest udokumentowana w raporcie zadań.</p>
+                    </div>
+                    <div class="border-t border-border py-6">
+                        <h3 class="font-bold mb-2">Ty ustalasz priorytety</h3>
+                        <p class="text-muted-foreground text-sm leading-relaxed">Dziś audyt techniczny, w przyszłym miesiącu optymalizacja treści — elastyczny zakres bez narzuconych szablonów.</p>
+                    </div>
+                    <div class="border-t border-border py-6">
+                        <h3 class="font-bold mb-2">Skalujesz kiedy chcesz</h3>
+                        <p class="text-muted-foreground text-sm leading-relaxed">Pakiety od 10 do 80 godzin miesięcznie. Zwiększasz lub zmniejszasz zakres bez konieczności aneksowania umowy.</p>
+                    </div>
+                    <div class="border-t border-b border-border py-6">
+                        <h3 class="font-bold mb-2">Kończysz kiedy chcesz</h3>
+                        <p class="text-muted-foreground text-sm leading-relaxed">Żadnych kar za rezygnację. Płacisz za kolejny pakiet tylko wtedy, gdy jesteś zadowolony z efektów.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA with inline form -->
+    <section class="py-32 px-6 md:px-12 lg:px-24 bg-muted">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+                <div class="reveal-on-scroll">
+                    <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">Zarezerwuj sesję</span>
+                    <h2 class="font-serif text-4xl md:text-6xl lg:text-7xl mb-8 text-balance">
+                        Pierwsza rozmowa jest bezpłatna.
+                    </h2>
+                    <p class="text-lg text-muted-foreground leading-relaxed mb-8">
+                        Napisz nam w czym możemy pomóc. Odezwiemy się w ciągu 24 godzin, żeby umówić 30-minutową rozmowę wstępną — zupełnie bez zobowiązań.
+                    </p>
+                    <ul class="space-y-3 text-muted-foreground text-sm">
+                        <li class="flex items-center gap-3">
+                            <span class="w-1.5 h-1.5 rounded-full bg-foreground shrink-0"></span>
+                            Odpowiedź w 24h w dni robocze
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="w-1.5 h-1.5 rounded-full bg-foreground shrink-0"></span>
+                            30 minut rozmowy wstępnej — bezpłatnie
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="w-1.5 h-1.5 rounded-full bg-foreground shrink-0"></span>
+                            NDA na życzenie przed pierwszą sesją
+                        </li>
+                    </ul>
+                </div>
+                <div class="bg-card border border-border p-8 md:p-12 rounded-lg reveal-on-scroll">
+                    <Form />
+                </div>
+            </div>
         </div>
     </section>
 </BaseLayout>
