@@ -28,7 +28,7 @@ export const siteConfig = {
         { text: "SEO dla e-commerce", href: "/oferta/seo-ecommerce" },
         { text: "Pozycjonowanie w AI", href: "/oferta/pozycjonowanie-ai" },
         { text: "Strony, które zarabiają", href: "/oferta/strony-ktore-zarabiaja" },
-        { text: "Automatyzacje AI", href: "/" },
+        { text: "Automatyzacje AI", href: "/oferta/automatyzacje-ai" },
       ],
     },
     { text: "Baza Wiedzy", href: "/blog" },

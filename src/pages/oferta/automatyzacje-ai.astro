@@ -1,0 +1,548 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import FormAutomation from "../../components/ui/FormAutomation.astro";
+
+const metadata = {
+    title: "Automatyzacje AI",
+    description: "Automatyzujemy powtarzalne procesy biznesowe przy użyciu n8n, Make i modeli AI. Twój zespół przestaje przepisywać dane i zaczyna robić to, do czego jest naprawdę potrzebny.",
+};
+
+const painPoints = [
+    {
+        symptom: "Dane z formularzy, maili i zamówień przepisywane ręcznie do CRM",
+        cause: "Każde ręczne przepisanie to ryzyko błędu i stracony czas. Automatyzacja przejmuje ten przepływ w całości — bez udziału człowieka.",
+    },
+    {
+        symptom: "Lead wpada o 17:00 i czeka do następnego dnia na odpowiedź",
+        cause: "Pierwsza odpowiedź decyduje o konwersji. Automatyczny routing i wiadomość powitalna w ciągu minut, niezależnie od pory.",
+    },
+    {
+        symptom: "Co tydzień ktoś spędza kilka godzin na składaniu raportu z różnych systemów",
+        cause: "Dane są w GA4, CRM, arkuszu i platformie reklamowej. Automatyzacja zbiera je, przetwarza i wysyła gotowy raport — bez dotykania żadnego z tych narzędzi.",
+    },
+    {
+        symptom: "Faktury wchodzą mailem i ktoś ręcznie wprowadza je do systemu",
+        cause: "AI odczytuje treść dokumentu, wyciąga dane i wpisuje je do systemu finansowego. Człowiek jedynie zatwierdza.",
+    },
+    {
+        symptom: "Onboarding nowego klienta to seria kroków przypominanych z pamięci",
+        cause: "Każdy etap onboardingu można zamknąć w przepływie: przydzielenie opiekuna, wysłanie materiałów, reminder po 7 dniach — automatycznie.",
+    },
+    {
+        symptom: "Zespół obsługi klienta odpowiada na te same pytania dziesiątki razy dziennie",
+        cause: "Chatbot lub automatyczny routing oparty na AI obsługuje powtarzalne zapytania i kieruje złożone sprawy do właściwej osoby.",
+    },
+];
+
+const automationTypes = [
+    {
+        title: "Sprzedaż i CRM",
+        description: "Automatyczny routing leadów, follow-upy oparte na zachowaniu, scoring kontaktów, synchronizacja danych między formularzami a CRM.",
+        examples: ["Lead z formularza → CRM + powiadomienie handlowca + email powitalny", "Brak aktywności → automatyczny follow-up po 3 dniach", "Zamknięta szansa → wpis do bazy wiedzy + zadanie onboardingowe"],
+    },
+    {
+        title: "Obsługa klienta",
+        description: "Klasyfikacja i routing zgłoszeń, automatyczne odpowiedzi na powtarzalne pytania, powiadomienia o statusie zamówienia.",
+        examples: ["Mail z zapytaniem → AI klasyfikuje → trafia do właściwego działu", "Pytanie o status → automatyczna odpowiedź z aktualnym statusem", "Negatywna opinia → alert do managera + priorytetowy routing"],
+    },
+    {
+        title: "Raportowanie i analityka",
+        description: "Automatyczne raporty składane z wielu systemów: GA4, CRM, platformy reklamowe, arkusze — dostarczone w ustalonej godzinie.",
+        examples: ["Poniedziałkowy raport tygodniowy złożony z GA4 + CRM + Meta Ads", "Alert gdy ROAS spada poniżej progu", "Miesięczne podsumowanie dla klienta generowane automatycznie"],
+    },
+    {
+        title: "Dokumenty i finanse",
+        description: "OCR i ekstrakcja danych z faktur, umów i formularzy, automatyczne wprowadzanie do systemów finansowych i ERP.",
+        examples: ["Faktura PDF → AI wyciąga dane → wpis do systemu finansowego", "Umowa mailem → podpis elektroniczny → archiwizacja → CRM", "Zamówienie w sklepie → dokument WZ → aktualizacja magazynu"],
+    },
+    {
+        title: "Marketing i content",
+        description: "Automatyczne dystrybucja treści, monitoring wzmianek, powiadomienia o kampaniach i automatyzacja obiegu materiałów.",
+        examples: ["Nowy wpis blogowy → automatyczna dystrybucja na social media", "Wzmianka o marce w sieci → alert + propozycja odpowiedzi", "Kampania Google Ads poniżej KPI → powiadomienie + raport diagnostyczny"],
+    },
+    {
+        title: "HR i operacje",
+        description: "Onboarding pracowników i klientów, obieg dokumentów, przypomnienia, zarządzanie zadaniami i eskalacje.",
+        examples: ["Nowy pracownik → konto IT + dostępy + harmonogram szkoleń", "Umowa do podpisania → reminder co 48h aż do podpisu", "Wniosek urlopowy → akceptacja → aktualizacja kalendarza + HR system"],
+    },
+];
+
+const results = [
+    {
+        client: "Sklep e-commerce — obsługa zwrotów",
+        metrics: [
+            { value: "3h → 8 min", label: "czas obsługi zwrotu" },
+            { value: "20h / tyg.", label: "zaoszczędzone" },
+            { value: "~2 400 zł", label: "oszczędność miesięcznie" },
+        ],
+        description: "Zwrot wymagał ręcznej weryfikacji zamówienia, wystawienia korekty, aktualizacji magazynu i wysłania potwierdzenia. Pełny przepływ n8n z integracją WooCommerce, systemu magazynowego i szablonów email — zero ręcznych kroków dla standardowych przypadków.",
+        tools: "n8n + WooCommerce API + BaseLinker",
+    },
+    {
+        client: "Agencja marketingowa — raportowanie klientów",
+        metrics: [
+            { value: "12h → 45 min", label: "czas tworzenia raportów / tyg." },
+            { value: "11h / tyg.", label: "zaoszczędzone" },
+            { value: "4 analityków", label: "uwolnionych od raportowania" },
+        ],
+        description: "Co tydzień 4 analityków spędzało łącznie 12 godzin na składaniu raportów z GA4, Meta Ads, Google Ads i CRM dla 20 klientów. Automatyzacja zbiera dane, buduje raport w Looker Studio i wysyła gotowy PDF — każdy klient dostaje swój raport w poniedziałek o 8:00.",
+        tools: "Make + GA4 API + Meta Graph API + Looker Studio",
+    },
+    {
+        client: "Firma B2B — kwalifikacja i routing leadów",
+        metrics: [
+            { value: "4h → 4 min", label: "czas pierwszej odpowiedzi" },
+            { value: "+38%", label: "konwersja leadów" },
+            { value: "0", label: "leadów bez follow-upu" },
+        ],
+        description: "Leady z formularza trafiały do jednej skrzynki, skąd handlowcy wybierali je ręcznie. AI ocenia kwalifikację leada, przydziela go do odpowiedniego handlowca według branży, wysyła spersonalizowany email powitalny i tworzy zadanie w CRM — w 4 minuty od wypełnienia formularza.",
+        tools: "n8n + GPT-4o + HubSpot API",
+    },
+];
+
+const processSteps = [
+    {
+        num: "01",
+        title: "Warsztat procesowy",
+        time: "dzień 1–2",
+        description: "Mapujemy procesy, które kandydują do automatyzacji. Liczymy czas tracony na każdy z nich, szacujemy potencjalne oszczędności i ustalamy priorytety. Dostajesz listę gotową do decyzji.",
+    },
+    {
+        num: "02",
+        title: "Projekt przepływu",
+        time: "dzień 3–5",
+        description: "Projektujemy mapę automatyzacji: co wchodzi, co wychodzi, jakie narzędzia, gdzie są wyjątki. Omawiamy projekt z Twoim zespołem przed rozpoczęciem budowy — żadnych niespodzianek.",
+    },
+    {
+        num: "03",
+        title: "Budowa i testy",
+        time: "tydzień 2–4",
+        description: "Budujemy automatyzację i testujemy na rzeczywistych danych — nie na próbkach. Każdy przypadek brzegowy jest obsłużony zanim przejdziemy dalej.",
+    },
+    {
+        num: "04",
+        title: "Wdrożenie i szkolenie",
+        time: "tydzień 4–5",
+        description: "Uruchamiamy na produkcji, szkolimy Twój zespół z obsługi i monitorowania. Dostajesz dokumentację — co robi każdy krok przepływu i co zrobić gdy coś pójdzie nie tak.",
+    },
+    {
+        num: "05",
+        title: "Wsparcie i monitoring",
+        time: "30 dni po starcie",
+        description: "Monitorujemy automatyzację przez 30 dni, naprawiamy błędy i dostrajamy przepływ na podstawie rzeczywistego użycia. Po tym czasie możesz przejść na abonament lub przejąć całość samodzielnie.",
+    },
+];
+
+const packages = [
+    {
+        name: "Prosta automatyzacja",
+        range: "od 1 800 PLN",
+        time: "1–2 tygodnie",
+        best: "1–2 systemy, jeden przepływ, brak AI",
+        includes: [
+            "Analiza i projekt przepływu",
+            "Integracja 1–2 narzędzi",
+            "Testy na rzeczywistych danych",
+            "Dokumentacja techniczna",
+            "Szkolenie z obsługi",
+            "30 dni wsparcia po starcie",
+        ],
+        priceFactors: "Cenę podnosi: obsługa wyjątków i ścieżek alternatywnych, niestandardowe API, transformacje danych.",
+    },
+    {
+        name: "Zaawansowany workflow",
+        range: "od 4 500 PLN",
+        time: "3–6 tygodni",
+        best: "AI processing, 3+ integracji, złożona logika",
+        includes: [
+            "Warsztat procesowy",
+            "Integracja 3+ systemów",
+            "Przetwarzanie AI (klasyfikacja, ekstrakcja, generowanie)",
+            "Obsługa błędów i alertów",
+            "Dokumentacja i monitoring",
+            "30 dni wsparcia po starcie",
+        ],
+        priceFactors: "Cenę podnosi: wiele równoległych przepływów, integracja z systemami ERP/legacy, zaawansowane modele AI, SLA.",
+    },
+    {
+        name: "Retainer — ciągły rozwój",
+        range: "od 900 PLN / mies.",
+        time: "umowa miesięczna",
+        best: "Stały rozwój i utrzymanie automatyzacji",
+        includes: [
+            "Pula godzin na nowe automatyzacje",
+            "Utrzymanie i monitoring istniejących",
+            "Reagowanie na błędy w ciągu 4h",
+            "Miesięczna sesja przeglądu i planowania",
+            "Priorytetowy dostęp do zespołu",
+        ],
+        priceFactors: "Pakiet skaluje się z liczbą i złożonością utrzymywanych automatyzacji. Wycenę ustalamy po pierwszym projekcie.",
+    },
+];
+
+const tools = [
+    { name: "n8n", description: "Self-hosted automation — pełna kontrola danych, nieograniczone przepływy, zero kosztów per-wykonanie. Nasza platforma pierwszego wyboru dla złożonych integracji." },
+    { name: "Make (Integromat)", description: "Wizualny builder przepływów z setkami gotowych integracji. Idealny dla mniej technicznych zespołów, które chcą samodzielnie zarządzać automatyzacjami." },
+    { name: "OpenAI / GPT-4o", description: "Klasyfikacja, ekstrakcja danych z dokumentów, generowanie treści, analiza sentymentu — wszędzie tam gdzie przepływ musi 'rozumieć' dane, nie tylko je przesyłać." },
+    { name: "Google AI Studio / Gemini", description: "Przetwarzanie dokumentów, tabel i obrazów. Szczególnie skuteczny przy OCR i ekstrakcji danych z nieustrukturyzowanych źródeł." },
+    { name: "Anthropic Claude API", description: "Złożone zadania analityczne i konwersacyjne. Używamy go tam gdzie potrzebna jest wysoka precyzja i długi kontekst — np. analiza umów czy skomplikowana korespondencja." },
+    { name: "Zapier / własne API", description: "Gotowe konektory do setek popularnych narzędzi SaaS. Dla systemów bez gotowej integracji budujemy własne łączniki API dostosowane do Twojej infrastruktury." },
+];
+
+const whatYouGet = [
+    {
+        title: "Kod i konfiguracja należą do Ciebie",
+        description: "Dostajesz pełny export konfiguracji automatyzacji i dostęp do kodu. Możesz przenieść wszystko do siebie lub do innego wykonawcy bez żadnych opłat za wyjście.",
+    },
+    {
+        title: "Dokumentacja każdego kroku",
+        description: "Każda automatyzacja ma opis: co robi, skąd bierze dane, gdzie je wysyła, co zrobić gdy przestanie działać. Twój zespół nie jest zależny od naszej pamięci.",
+    },
+    {
+        title: "Monitoring i alerty",
+        description: "Każdy przepływ ma wbudowane powiadomienia o błędach. Gdy automatyzacja natrafi na problem — dostajesz alert z opisem co poszło nie tak, zanim klient to zauważy.",
+    },
+    {
+        title: "Szkolenie dla zespołu",
+        description: "Szkolimy osoby, które będą pracować z automatyzacją na co dzień. Nagrywamy sesję — Twój zespół może wrócić do niej kiedy chce.",
+    },
+    {
+        title: "30 dni wsparcia po wdrożeniu",
+        description: "Przez miesiąc monitorujemy przepływ i naprawiamy błędy wynikające z rzeczywistego użycia. Żadna automatyzacja nie jest idealna od pierwszego dnia.",
+    },
+    {
+        title: "Brak lock-inu technologicznego",
+        description: "Nie uzależniamy Cię od własnych narzędzi ani platform. Dobieramy technologię do problemu — nie odwrotnie.",
+    },
+];
+
+const testimonials = [
+    {
+        quote: "Nasz zespół obsługi klienta odpowiadał na te same 15 pytań kilkadziesiąt razy dziennie. Po wdrożeniu automatyzacji 70% standardowych zapytań obsługuje się samo — ludzie zajmują się teraz tym co naprawdę wymaga człowieka.",
+        name: "Katarzyna Lewandowska",
+        role: "COO",
+        company: "Sklep e-commerce, 35 pracowników",
+    },
+    {
+        quote: "Najbardziej zaskakujące było to, że wdrożenie zajęło 3 tygodnie, a zwrot z inwestycji pojawił się w pierwszym miesiącu. Oszczędzamy ponad 40 godzin tygodniowo na raportowaniu i przepisywaniu danych.",
+        name: "Piotr Nowicki",
+        role: "Dyrektor operacyjny",
+        company: "Agencja marketingowa, 18 osób",
+    },
+    {
+        quote: "Bałem się że to będzie czarna skrzynka którą tylko oni rozumieją. Dostałem dokumentację, szkolenie i eksport konfiguracji. Mój developer rozumie co tam jest i może samodzielnie wprowadzać drobne zmiany.",
+        name: "Michał Jabłoński",
+        role: "CEO",
+        company: "Firma B2B, branża logistyczna",
+    },
+];
+
+const faqs = [
+    {
+        question: "Co się dzieje, kiedy automatyzacja przestaje działać?",
+        answer: "Każdy przepływ ma wbudowany monitoring i alerty — dostaniesz powiadomienie email lub Slack z opisem błędu zanim Twój zespół to zauważy. W ramach 30-dniowego wsparcia po wdrożeniu naprawiamy błędy bez dodatkowych kosztów. Po tym czasie możesz wybrać abonament utrzymaniowy z SLA lub przejąć monitoring samodzielnie — dokumentacja opisuje co robić w typowych przypadkach awarii.",
+    },
+    {
+        question: "Czy muszę być techniczną osobą żeby korzystać z automatyzacji?",
+        answer: "Nie. Twój zespół obsługuje gotową automatyzację, która działa w tle — nie musi wiedzieć jak jest zbudowana. Szkolimy z obsługi panelu, gdzie widać logi i można ręcznie uruchomić przepływ. Dla chętnych robimy też szkolenie z n8n lub Make — żebyś mógł samodzielnie modyfikować prostsze przepływy.",
+    },
+    {
+        question: "Czy integrujecie się z naszym CRM / ERP / systemem na miarę?",
+        answer: "Jeśli system ma API — tak, integrujemy. Pracowaliśmy z HubSpot, Pipedrive, Salesforce, SAP, Subiekt, Comarch ERP, BaseLinker i wieloma innymi. Dla systemów bez udokumentowanego API analizujemy alternatywy (web scraping, eksport CSV, bazy danych) i informujemy o ograniczeniach przed wyceną.",
+    },
+    {
+        question: "Ile trwa wdrożenie?",
+        answer: "Prosta automatyzacja (1–2 systemy, prosty przepływ) to zazwyczaj 1–2 tygodnie. Złożony workflow z AI i wieloma integracjami — 3–6 tygodni. Czas zależy głównie od dostępności API Twoich systemów i szybkości feedbacku z Twojej strony. Harmonogram ustalamy na etapie projektu przepływu.",
+    },
+    {
+        question: "Czy kod i konfiguracja należą do mnie po wdrożeniu?",
+        answer: "Tak, w 100%. Dostajesz export konfiguracji z n8n lub Make, dostęp do kodu własnych integracji i pełną dokumentację. Możesz przenieść automatyzację na własny serwer lub do innego dostawcy — bez żadnych opłat za wyjście i bez naszego udziału.",
+    },
+    {
+        question: "Czym różni się prosta automatyzacja od tej z AI?",
+        answer: "Prosta automatyzacja to przepływ danych według reguł: jeśli X, to Y. Działa świetnie gdy dane są ustrukturyzowane (formularze, API, arkusze). Automatyzacja z AI wchodzi tam gdzie dane są nieustrukturyzowane — maile, PDF-y, obrazy, tekst swobodny. AI 'rozumie' treść, klasyfikuje ją lub wyciąga dane, a potem reguły decydują co dalej. Często najlepsze rozwiązania łączą oba podejścia.",
+    },
+    {
+        question: "Jak wyceniacie projekty?",
+        answer: "Wycena jest stała — podajemy ją przed podpisaniem umowy i trzymamy się jej niezależnie od czasu który poświęcimy. Cena zależy od złożoności przepływu, liczby integracji i zakresu obsługi błędów. Widełki w pakietach to typowe projekty — po warsztacie procesowym podajemy dokładną kwotę.",
+    },
+];
+---
+
+<BaseLayout {metadata}>
+    <!-- Hero -->
+    <section class="relative pt-40 pb-24 px-6 md:px-12 lg:px-24 border-b border-border">
+        <div class="max-w-5xl mx-auto">
+            <div class="reveal-on-scroll">
+                <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">Oferta</span>
+                <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl leading-[1.1] mb-8 text-balance">
+                    Automatyzacje <span class="italic text-muted-foreground">AI</span>
+                </h1>
+                <div class="flex items-start gap-4">
+                    <div class="w-16 h-px bg-foreground shrink-0 mt-4"></div>
+                    <div>
+                        <p class="text-xl max-w-2xl leading-relaxed mb-6">
+                            Twój zespół robi rzeczy, które spokojnie mógłby robić komputer.
+                        </p>
+                        <p class="text-lg max-w-xl text-muted-foreground leading-relaxed">
+                            Automatyzujemy powtarzalne procesy przy użyciu n8n, Make i modeli AI — żeby ludzie zajmowali się tym, do czego naprawdę są potrzebni.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pain Points -->
+    <section class="py-32 px-6 md:px-12 lg:px-24 bg-muted">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-16 reveal-on-scroll">
+                <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">Rozpoznajesz to?</span>
+                <h2 class="font-serif text-4xl md:text-6xl leading-tight text-balance">
+                    Procesy, które <span class="italic text-muted-foreground">zjadają czas zespołu</span>
+                </h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-12">
+                {painPoints.map((item) => (
+                    <div class="border-t border-border pt-6 reveal-on-scroll">
+                        <p class="text-lg font-bold mb-3">{item.symptom}</p>
+                        <p class="text-muted-foreground leading-relaxed text-sm">{item.cause}</p>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <!-- Results -->
+    <section class="py-32 px-6 md:px-12 lg:px-24 border-b border-border">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-16 reveal-on-scroll">
+                <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">Realizacje</span>
+                <h2 class="font-serif text-4xl md:text-6xl leading-tight text-balance">
+                    Czas odzyskany, <span class="italic text-muted-foreground">pieniądze zaoszczędzone</span>
+                </h2>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                {results.map((item) => (
+                    <article class="border border-border p-8 reveal-on-scroll">
+                        <p class="text-sm font-medium mb-6 pb-6 border-b border-border">{item.client}</p>
+                        <div class="grid grid-cols-3 gap-4 mb-6">
+                            {item.metrics.map((m) => (
+                                <div>
+                                    <p class="font-serif text-xl font-bold mb-1 leading-tight">{m.value}</p>
+                                    <p class="text-xs text-muted-foreground leading-tight">{m.label}</p>
+                                </div>
+                            ))}
+                        </div>
+                        <p class="text-sm text-muted-foreground leading-relaxed mb-4">{item.description}</p>
+                        <p class="text-xs text-muted-foreground border-t border-border pt-4">{item.tools}</p>
+                    </article>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <!-- What can be automated -->
+    <section class="py-32 px-6 md:px-12 lg:px-24">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-20 reveal-on-scroll">
+                <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">Zakres</span>
+                <h2 class="font-serif text-4xl md:text-6xl leading-tight text-balance">
+                    Co możemy <span class="italic text-muted-foreground">zautomatyzować?</span>
+                </h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
+                {automationTypes.map((item) => (
+                    <article class="border-t border-border pt-6 reveal-on-scroll">
+                        <h3 class="text-xl font-bold mb-3">{item.title}</h3>
+                        <p class="text-muted-foreground text-sm leading-relaxed mb-5">{item.description}</p>
+                        <ul class="space-y-2">
+                            {item.examples.map((example) => (
+                                <li class="flex items-start gap-2 text-xs text-muted-foreground">
+                                    <span class="mt-1 w-3 h-px bg-muted-foreground shrink-0 inline-block"></span>
+                                    {example}
+                                </li>
+                            ))}
+                        </ul>
+                    </article>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <!-- Process -->
+    <section class="py-32 px-6 md:px-12 lg:px-24 bg-muted">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-20 reveal-on-scroll">
+                <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">Proces</span>
+                <h2 class="font-serif text-4xl md:text-6xl text-balance">
+                    Od pomysłu <span class="italic text-muted-foreground">do działającej automatyzacji</span>
+                </h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
+                {processSteps.map((step) => (
+                    <div class="reveal-on-scroll">
+                        <div class="flex items-center justify-between mb-6">
+                            <span class="text-5xl font-serif text-border">{step.num}</span>
+                            <span class="text-xs uppercase tracking-widest text-muted-foreground border border-border px-2 py-1">{step.time}</span>
+                        </div>
+                        <h3 class="text-lg font-bold mb-3">{step.title}</h3>
+                        <p class="text-muted-foreground leading-relaxed text-sm">{step.description}</p>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <!-- Packages -->
+    <section class="py-32 px-6 md:px-12 lg:px-24">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-20 reveal-on-scroll">
+                <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">Cennik orientacyjny</span>
+                <h2 class="font-serif text-4xl md:text-6xl text-balance">
+                    Ile to <span class="italic text-muted-foreground">kosztuje?</span>
+                </h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {packages.map((pkg, i) => (
+                    <div class={`border border-border p-8 flex flex-col reveal-on-scroll ${i === 1 ? "bg-card" : ""}`}>
+                        <div class="flex-1">
+                            <p class="text-sm uppercase tracking-widest text-muted-foreground mb-4">{pkg.name}</p>
+                            <p class="font-serif text-4xl mb-1">{pkg.range}</p>
+                            <p class="text-sm text-muted-foreground mb-1">netto</p>
+                            <p class="text-xs uppercase tracking-widest text-muted-foreground mb-2">Czas realizacji: {pkg.time}</p>
+                            <p class="text-sm text-muted-foreground mb-8 border-b border-border pb-8">{pkg.best}</p>
+                            <ul class="space-y-3 mb-8">
+                                {pkg.includes.map((item) => (
+                                    <li class="flex items-start gap-3 text-sm text-muted-foreground">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-foreground shrink-0 mt-1.5"></span>
+                                        {item}
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                        <p class="text-xs text-muted-foreground border-t border-border pt-4 leading-relaxed">{pkg.priceFactors}</p>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <!-- Tools -->
+    <section class="py-32 px-6 md:px-12 lg:px-24 bg-muted">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-16 reveal-on-scroll">
+                <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">Narzędzia</span>
+                <h2 class="font-serif text-4xl md:text-6xl leading-tight text-balance">
+                    Z czego <span class="italic text-muted-foreground">budujemy automatyzacje?</span>
+                </h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
+                {tools.map((tool) => (
+                    <div class="border-t border-border pt-6 reveal-on-scroll">
+                        <h3 class="text-lg font-bold mb-3">{tool.name}</h3>
+                        <p class="text-muted-foreground text-sm leading-relaxed">{tool.description}</p>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <!-- What you get -->
+    <section class="py-32 px-6 md:px-12 lg:px-24">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-20 reveal-on-scroll">
+                <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">Co dostajesz</span>
+                <h2 class="font-serif text-4xl md:text-6xl leading-tight text-balance">
+                    Standard w każdym <span class="italic text-muted-foreground">projekcie</span>
+                </h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
+                {whatYouGet.map((item) => (
+                    <article class="border-t border-border pt-6 reveal-on-scroll">
+                        <h3 class="text-xl font-bold mb-3">{item.title}</h3>
+                        <p class="text-muted-foreground text-sm leading-relaxed">{item.description}</p>
+                    </article>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-32 px-6 md:px-12 lg:px-24 bg-muted">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-16 reveal-on-scroll">
+                <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">Opinie</span>
+                <h2 class="font-serif text-4xl md:text-6xl leading-tight text-balance">
+                    Co mówią <span class="italic text-muted-foreground">nasi klienci?</span>
+                </h2>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                {testimonials.map((item) => (
+                    <blockquote class="border border-border p-8 flex flex-col justify-between reveal-on-scroll">
+                        <p class="text-sm leading-relaxed mb-8">&ldquo;{item.quote}&rdquo;</p>
+                        <footer>
+                            <p class="font-bold text-sm">{item.name}</p>
+                            <p class="text-xs text-muted-foreground">{item.role}, {item.company}</p>
+                        </footer>
+                    </blockquote>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-32 px-6 md:px-12 lg:px-24">
+        <div class="max-w-5xl mx-auto">
+            <div class="mb-16 reveal-on-scroll">
+                <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">FAQ</span>
+                <h2 class="font-serif text-4xl md:text-6xl text-balance">
+                    Pytania, które <span class="italic text-muted-foreground">słyszymy najczęściej</span>
+                </h2>
+            </div>
+            <div class="space-y-0">
+                {faqs.map((faq) => (
+                    <div class="border-t border-border py-8 reveal-on-scroll">
+                        <h3 class="text-lg font-bold mb-4">{faq.question}</h3>
+                        <p class="text-muted-foreground leading-relaxed">{faq.answer}</p>
+                    </div>
+                ))}
+                <div class="border-t border-border"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA with form -->
+    <section class="py-32 px-6 md:px-12 lg:px-24 bg-muted">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+                <div class="reveal-on-scroll">
+                    <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">Bezpłatna konsultacja</span>
+                    <h2 class="font-serif text-4xl md:text-6xl lg:text-7xl mb-8 text-balance">
+                        Powiedz nam co robi Twój zespół, a powiemy ile to trwa niepotrzebnie.
+                    </h2>
+                    <p class="text-lg text-muted-foreground leading-relaxed mb-8">
+                        45-minutowa rozmowa, podczas której mapujemy jeden wybrany proces i szacujemy czas i koszt jego automatyzacji. Bezpłatnie, bez zobowiązań.
+                    </p>
+                    <ul class="space-y-3 text-muted-foreground text-sm">
+                        <li class="flex items-center gap-3">
+                            <span class="w-1.5 h-1.5 rounded-full bg-foreground shrink-0"></span>
+                            Odpowiedź w 24h w dni robocze
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="w-1.5 h-1.5 rounded-full bg-foreground shrink-0"></span>
+                            45 minut analizy procesu — bezpłatnie
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="w-1.5 h-1.5 rounded-full bg-foreground shrink-0"></span>
+                            Szacunek oszczędności przed podjęciem decyzji
+                        </li>
+                    </ul>
+                </div>
+                <div class="bg-card border border-border p-8 md:p-12 rounded-lg reveal-on-scroll">
+                    <FormAutomation />
+                </div>
+            </div>
+        </div>
+    </section>
+</BaseLayout>

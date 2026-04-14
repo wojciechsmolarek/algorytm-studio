@@ -1,0 +1,117 @@
+---
+interface Props {
+    action?: string;
+    method?: "GET" | "POST";
+}
+
+const { action = "#", method = "POST" } = Astro.props;
+
+const companySize = [
+    "1–10 osób",
+    "11–50 osób",
+    "51–200 osób",
+    "powyżej 200 osób",
+];
+
+const budgets = [
+    "do 2 000 zł (jednorazowo)",
+    "2 000 – 5 000 zł (jednorazowo)",
+    "5 000 – 15 000 zł (jednorazowo)",
+    "Interesuje mnie abonament miesięczny",
+    "Nie wiem jeszcze",
+];
+---
+
+<form action={action} method={method} class="space-y-6">
+    <div>
+        <label for="aut-name" class="block text-xs uppercase tracking-widest text-current/50 mb-2">
+            Imię i Nazwisko
+        </label>
+        <input
+            type="text"
+            name="name"
+            id="aut-name"
+            autocomplete="name"
+            required
+            class="w-full bg-transparent border-b border-current/20 focus:border-current outline-none py-2 transition-colors placeholder:text-current/20 text-current"
+            placeholder="Jan Kowalski"
+        />
+    </div>
+    <div>
+        <label for="aut-email" class="block text-xs uppercase tracking-widest text-current/50 mb-2">
+            Email firmowy
+        </label>
+        <input
+            type="email"
+            name="email"
+            id="aut-email"
+            autocomplete="email"
+            required
+            class="w-full bg-transparent border-b border-current/20 focus:border-current outline-none py-2 transition-colors placeholder:text-current/20 text-current"
+            placeholder="jan@firma.pl"
+        />
+    </div>
+    <div>
+        <label for="aut-url" class="block text-xs uppercase tracking-widest text-current/50 mb-2">
+            Adres strony firmowej
+        </label>
+        <input
+            type="url"
+            name="url"
+            id="aut-url"
+            class="w-full bg-transparent border-b border-current/20 focus:border-current outline-none py-2 transition-colors placeholder:text-current/20 text-current"
+            placeholder="https://twojafirma.pl"
+        />
+    </div>
+    <div>
+        <label for="aut-process" class="block text-xs uppercase tracking-widest text-current/50 mb-2">
+            Jaki proces chcesz zautomatyzować?
+        </label>
+        <textarea
+            name="process"
+            id="aut-process"
+            rows="4"
+            required
+            class="w-full bg-transparent border border-current/20 focus:border-current outline-none p-3 transition-colors placeholder:text-current/20 text-current resize-none"
+            placeholder="Opisz co teraz dzieje się ręcznie — np. &quot;co tydzień ręcznie przepisujemy dane z formularzy do CRM i wysyłamy powiadomienia do handlowców&quot;"
+        ></textarea>
+    </div>
+    <div>
+        <label for="aut-size" class="block text-xs uppercase tracking-widest text-current/50 mb-2">
+            Wielkość firmy
+        </label>
+        <select
+            name="company_size"
+            id="aut-size"
+            class="w-full bg-transparent border-b border-current/20 focus:border-current outline-none py-2 transition-colors text-current appearance-none cursor-pointer"
+        >
+            <option value="" disabled selected class="bg-background text-foreground">Wybierz przedział</option>
+            {companySize.map((s) => (
+                <option value={s} class="bg-background text-foreground">{s}</option>
+            ))}
+        </select>
+    </div>
+    <div>
+        <label for="aut-budget" class="block text-xs uppercase tracking-widest text-current/50 mb-2">
+            Budżet na projekt
+        </label>
+        <select
+            name="budget"
+            id="aut-budget"
+            class="w-full bg-transparent border-b border-current/20 focus:border-current outline-none py-2 transition-colors text-current appearance-none cursor-pointer"
+        >
+            <option value="" disabled selected class="bg-background text-foreground">Wybierz przedział</option>
+            {budgets.map((b) => (
+                <option value={b} class="bg-background text-foreground">{b}</option>
+            ))}
+        </select>
+    </div>
+    <div>
+        <button
+            type="submit"
+            class="bg-background text-foreground px-8 py-3 rounded-full font-medium hover:bg-background/80 transition w-full md:w-auto"
+        >
+            Umów bezpłatną konsultację
+        </button>
+    </div>
+</form>
