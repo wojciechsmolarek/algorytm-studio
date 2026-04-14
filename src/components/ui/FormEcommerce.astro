@@ -1,0 +1,120 @@
+---
+interface Props {
+    action?: string;
+    method?: "GET" | "POST";
+}
+
+const { action = "#", method = "POST" } = Astro.props;
+
+const platforms = [
+    "Shopify",
+    "WooCommerce",
+    "Magento / Adobe Commerce",
+    "PrestaShop",
+    "Shoper",
+    "IdoSell",
+    "BaseLinker + headless",
+    "Inne / Custom",
+];
+
+const budgets = [
+    "do 2 000 zł / mies.",
+    "2 000 – 5 000 zł / mies.",
+    "5 000 – 10 000 zł / mies.",
+    "powyżej 10 000 zł / mies.",
+    "Nie wiem jeszcze",
+];
+---
+
+<form action={action} method={method} class="space-y-6">
+    <div>
+        <label for="ec-name" class="block text-xs uppercase tracking-widest text-current/50 mb-2">
+            Imię i Nazwisko
+        </label>
+        <input
+            type="text"
+            name="name"
+            id="ec-name"
+            autocomplete="name"
+            required
+            class="w-full bg-transparent border-b border-current/20 focus:border-current outline-none py-2 transition-colors placeholder:text-current/20 text-current"
+            placeholder="Jan Kowalski"
+        />
+    </div>
+    <div>
+        <label for="ec-email" class="block text-xs uppercase tracking-widest text-current/50 mb-2">
+            Email firmowy
+        </label>
+        <input
+            type="email"
+            name="email"
+            id="ec-email"
+            autocomplete="email"
+            required
+            class="w-full bg-transparent border-b border-current/20 focus:border-current outline-none py-2 transition-colors placeholder:text-current/20 text-current"
+            placeholder="jan@sklep.pl"
+        />
+    </div>
+    <div>
+        <label for="ec-url" class="block text-xs uppercase tracking-widest text-current/50 mb-2">
+            Adres sklepu
+        </label>
+        <input
+            type="url"
+            name="url"
+            id="ec-url"
+            class="w-full bg-transparent border-b border-current/20 focus:border-current outline-none py-2 transition-colors placeholder:text-current/20 text-current"
+            placeholder="https://twojsklep.pl"
+        />
+    </div>
+    <div>
+        <label for="ec-platform" class="block text-xs uppercase tracking-widest text-current/50 mb-2">
+            Platforma e-commerce
+        </label>
+        <select
+            name="platform"
+            id="ec-platform"
+            class="w-full bg-transparent border-b border-current/20 focus:border-current outline-none py-2 transition-colors text-current appearance-none cursor-pointer"
+        >
+            <option value="" disabled selected class="bg-background text-foreground">Wybierz platformę</option>
+            {platforms.map((p) => (
+                <option value={p} class="bg-background text-foreground">{p}</option>
+            ))}
+        </select>
+    </div>
+    <div>
+        <label for="ec-budget" class="block text-xs uppercase tracking-widest text-current/50 mb-2">
+            Miesięczny budżet na SEO
+        </label>
+        <select
+            name="budget"
+            id="ec-budget"
+            class="w-full bg-transparent border-b border-current/20 focus:border-current outline-none py-2 transition-colors text-current appearance-none cursor-pointer"
+        >
+            <option value="" disabled selected class="bg-background text-foreground">Wybierz przedział</option>
+            {budgets.map((b) => (
+                <option value={b} class="bg-background text-foreground">{b}</option>
+            ))}
+        </select>
+    </div>
+    <div>
+        <label for="ec-message" class="block text-xs uppercase tracking-widest text-current/50 mb-2">
+            Informacje dodatkowe
+        </label>
+        <textarea
+            name="message"
+            id="ec-message"
+            rows="4"
+            class="w-full bg-transparent border border-current/20 focus:border-current outline-none p-3 transition-colors placeholder:text-current/20 text-current resize-none"
+            placeholder="Opisz swój sklep, aktualne wyzwania SEO, liczbę produktów lub kategorie, o których chcesz porozmawiać..."
+        ></textarea>
+    </div>
+    <div>
+        <button
+            type="submit"
+            class="bg-background text-foreground px-8 py-3 rounded-full font-medium hover:bg-background/80 transition w-full md:w-auto"
+        >
+            Zamów bezpłatną analizę
+        </button>
+    </div>
+</form>

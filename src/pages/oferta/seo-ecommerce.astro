@@ -1,10 +1,44 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import FormEcommerce from "../../components/ui/FormEcommerce.astro";
 
 const metadata = {
     title: "SEO dla e-commerce",
     description: "Pozycjonowanie sklepów internetowych, które przekładają się na realną sprzedaż. Strategia SEO dostosowana do specyfiki e-commerce B2B.",
 };
+
+const results = [
+    {
+        client: "Sklep z elektroniką RTV/AGD",
+        platform: "WooCommerce",
+        metrics: [
+            { value: "+220%", label: "ruchu organicznego" },
+            { value: "4 200+", label: "fraz w TOP10" },
+            { value: "9 mies.", label: "do osiągnięcia wyników" },
+        ],
+        description: "Sklep z 8 000+ produktów, zduplikowane opisy producenta, nieoptymalna struktura kategorii. Po reorganizacji architektury i wdrożeniu skalowalnych szablonów treści ruch organiczny wzrósł ponad trzykrotnie.",
+    },
+    {
+        client: "Hurtownia artykułów BHP (B2B)",
+        platform: "Magento 2",
+        metrics: [
+            { value: "+310%", label: "przychodów z SEO" },
+            { value: "180 fraz", label: "w TOP3" },
+            { value: "12 mies.", label: "do osiągnięcia wyników" },
+        ],
+        description: "Specyfika B2B: opisy techniczne, katalogi PDF, frazy hurtowe. Dedykowana strategia treści dla kupujących hurtowych — od fraz ogólnych po szczegółowe symbole katalogowe — przełożyła się na 310% wzrost przychodów z organicu.",
+    },
+    {
+        client: "Sklep z odzieżą i akcesoriami",
+        platform: "Shoper",
+        metrics: [
+            { value: "+165%", label: "ruchu organicznego" },
+            { value: "−42%", label: "strat ruchu w martwym sezonie" },
+            { value: "6 mies.", label: "do pierwszych wzrostów" },
+        ],
+        description: "Duża sezonowość asortymentu i chroniczny problem ze spadkami przy wycofywaniu produktów. Strategia zarządzania URL i contentowy kalendarz sezonowy zredukowały typowe letnie spadki o 42%.",
+    },
+];
 
 const challenges = [
     {
@@ -30,31 +64,142 @@ const scope = [
         num: "01",
         title: "Audyt e-commerce SEO",
         description: "Kompleksowa analiza sklepu: architektura, indeksowalność, wydajność, treści produktowe, dane strukturalne i linkowanie wewnętrzne.",
+        details: [
+            "Raport 40–80 stron z priorytetyzowanymi rekomendacjami",
+            "Analiza crawl budget i logów serwera",
+            "Benchmarking top 5 konkurentów w branży",
+            "Mapa szybkich wygranych vs. działań długoterminowych",
+        ],
     },
     {
         num: "02",
         title: "Strategia słów kluczowych",
         description: "Mapowanie fraz na kategorie, produkty i treści blogowe. Identyfikacja fraz z intencją zakupową o najwyższym potencjale konwersji.",
+        details: [
+            "Baza 500–5 000+ fraz zależna od wielkości sklepu",
+            "Segmentacja: transakcyjne, nawigacyjne, informacyjne",
+            "Mapowanie fraz do istniejących i planowanych podstron",
+            "Analiza luki słów kluczowych względem konkurencji",
+        ],
     },
     {
         num: "03",
         title: "Optymalizacja treści",
-        description: "Szablony opisów produktów i kategorii, meta tagi, opisy filtrowane, FAQ produktowe i treści wspierające SEO.",
+        description: "Szablony opisów produktów i kategorii, meta tagi, FAQ produktowe i treści wspierające SEO.",
+        details: [
+            "Szablony opisów skalowalne na tysiące produktów",
+            "Optymalizacja stron kategorii pod frazy ogólne",
+            "Treści eksperckie wspierające długi ogon",
+            "Miesięczny plan contentowy powiązany z sezonowością",
+        ],
     },
     {
         num: "04",
         title: "Technical SEO",
         description: "Optymalizacja paginacji, kanonikalizacji, Schema.org dla produktów (Product, Offer, AggregateRating), feed produktowy.",
+        details: [
+            "Schema.org: Product, Offer, AggregateRating, BreadcrumbList",
+            "Zarządzanie canonicalami i hreflang (jeśli dotyczy)",
+            "Optymalizacja Core Web Vitals i szybkości ładowania",
+            "Integracja z Google Merchant Center, feed produktowy",
+        ],
     },
     {
         num: "05",
         title: "Link building",
-        description: "Budowanie autorytetu sklepu poprzez linkowanie z branżowych źródeł, recenzje, porównywania i treści eksperckie.",
+        description: "Budowanie autorytetu sklepu wyłącznie metodami zgodnymi z wytycznymi Google — bez farm linków i PBN.",
+        details: [
+            "Min. 6–10 linków miesięcznie z serwisów DR40+",
+            "Wyłącznie whitehat: recenzje, artykuły eksperckie, porównywarki",
+            "Zero linków z farm, PBN i sieci spamowych",
+            "Miesięczny raport profilu linków (Ahrefs)",
+        ],
     },
     {
         num: "06",
         title: "Analityka i raportowanie",
         description: "Konfiguracja śledzenia e-commerce w GA4, atrybucja SEO do przychodów, raporty miesięczne z KPI biznesowymi.",
+        details: [
+            "GA4 Enhanced Ecommerce + Search Console",
+            "Dashboard w Looker Studio aktualizowany na bieżąco",
+            "Miesięczny raport: ruch, konwersje, przychody z SEO, pozycje",
+            "Kwartalne spotkanie strategiczne (call lub stacjonarnie)",
+        ],
+    },
+];
+
+const timeline = [
+    {
+        period: "Miesiąc 1",
+        title: "Audyt i strategia",
+        description: "Kompleksowy audyt sklepu, analiza konkurencji, mapa słów kluczowych, priorytetyzacja działań. Otrzymujesz pełny raport z planem na 12 miesięcy.",
+    },
+    {
+        period: "Miesiące 2–3",
+        title: "Fundamenty techniczne",
+        description: "Wdrożenie rekomendacji technicznych, kanonikalizacja, Schema.org, optymalizacja szybkości. Etap niewidoczny jeszcze w ruchu, ale kluczowy dla dalszych wyników.",
+    },
+    {
+        period: "Miesiące 3–5",
+        title: "Pierwsze sygnały wzrostu",
+        description: "Optymalizacja kategorii i kart produktów, start link buildingu. Pierwsze widoczne wzrosty pozycji dla fraz z długiego ogona i mniej konkurencyjnych kategorii.",
+    },
+    {
+        period: "Miesiące 6–12",
+        title: "Skalowalny wzrost",
+        description: "Wzrosty widoczne na głównych frazach kategorii. Ruch organiczny rośnie konsekwentnie miesiąc do miesiąca. Większość mierzalnych wyników pojawia się właśnie w tym oknie.",
+    },
+];
+
+const testimonials = [
+    {
+        quote: "Przez dwa lata wydawaliśmy duże pieniądze na Google Ads i baliśmy się inwestować w SEO, bo nie wiedzieliśmy kiedy zobaczymy efekty. Po 8 miesiącach współpracy ruch organiczny wyprzedził płatny i dziś generuje ponad połowę przychodów sklepu.",
+        name: "Marek Wiśniewski",
+        role: "CEO",
+        company: "Sklep z elektroniką, 12 000 produktów",
+    },
+    {
+        quote: "Inne agencje dawały nam raporty z pozycji. Tutaj po raz pierwszy zobaczyliśmy raport, który pokazywał przychody bezpośrednio z SEO. To zmieniło sposób, w jaki nasz zarząd patrzy na pozycjonowanie.",
+        name: "Anna Kowalczyk",
+        role: "Dyrektor marketingu",
+        company: "Hurtownia B2B, branża przemysłowa",
+    },
+    {
+        quote: "Mieliśmy chroniczny problem z sezonowością — każde lato to były dramatyczne spadki. Po wdrożeniu ich strategii contentowej ten rok był pierwszym, w którym nie zanotowaliśmy typowego letniego dołka.",
+        name: "Tomasz Jabłoński",
+        role: "Właściciel",
+        company: "Sklep z odzieżą outdoorową",
+    },
+];
+
+const faqs = [
+    {
+        question: "Czy gwarantujecie konkretne pozycje w Google?",
+        answer: "Nie — i żadna rzetelna agencja tego nie robi. Google nie umożliwia gwarantowania pozycji, a obietnice TOP3 w 30 dni to sygnał ostrzegawczy. Zobowiązujemy się do konkretnych działań, mierzalnych KPI (ruch, przychody z SEO, liczba fraz w TOP10) i transparentnego raportowania postępów.",
+    },
+    {
+        question: "Jak długo trwa umowa i co jeśli chcę zrezygnować?",
+        answer: "Standardowa umowa to 12 miesięcy — SEO to inwestycja długoterminowa i krótsze kontrakty nie pozwalają osiągnąć mierzalnych wyników. Po tym okresie współpraca przechodzi na tryb miesięczny z 30-dniowym wypowiedzeniem. Nie stosujemy kar umownych za rezygnację po zakończeniu okresu podstawowego.",
+    },
+    {
+        question: "Co się dzieje, gdy Google zmieni algorytm?",
+        answer: "Pracujemy wyłącznie metodami zgodnymi z wytycznymi Google (whitehat SEO), co znacząco redukuje ryzyko kar algorytmicznych. Przy każdej aktualizacji core update analizujemy jej wpływ na Twój sklep i aktualizujemy strategię. Sklepy z solidnymi fundamentami technicznymi i wartościowymi treściami po aktualizacjach zazwyczaj zyskują, nie tracą.",
+    },
+    {
+        question: "Jak wygląda onboarding?",
+        answer: "Tydzień 1: kick-off call, dostępy do GSC, GA4, CMS i panelu sklepu. Tydzień 2–3: audyt techniczny i analiza słów kluczowych. Tydzień 4: prezentacja wyników audytu i planu działań. Od miesiąca 2 startuje pełna realizacja według uzgodnionego harmonogramu.",
+    },
+    {
+        question: "Kto będzie obsługiwał moje konto?",
+        answer: "Każdy sklep ma dedykowanego senior SEO specjalistę jako główny punkt kontaktu, wspieranego przez specjalistę ds. treści i tech SEO. Nie przenosimy klientów między juniorami — Twoje konto obsługuje osoba z min. 4-letnim doświadczeniem w e-commerce SEO.",
+    },
+    {
+        question: "Ile kosztuje pozycjonowanie sklepu?",
+        answer: "Wycena jest indywidualna i zależy od wielkości sklepu, liczby kategorii, obecnego stanu technicznego i intensywności działań. Standardowe zaangażowanie dla sklepów z 500–5 000 produktów zaczyna się od 3 500 zł netto miesięcznie. Dokładną wycenę przygotowujemy po bezpłatnej analizie.",
+    },
+    {
+        question: "Co dokładnie zawiera bezpłatna analiza?",
+        answer: "Bezpłatna analiza to 45-minutowe spotkanie (call lub stacjonarnie), na którym analizujemy: obecną widoczność Twojego sklepu w Google, największe błędy techniczne blokujące wzrost, 3–5 konkretnych obszarów z największym potencjałem, szacunkowy zakres i harmonogram działań. Bez zobowiązań.",
     },
 ];
 
@@ -82,9 +227,40 @@ const platforms = [
                 <div class="flex items-center gap-4">
                     <div class="w-16 h-px bg-foreground shrink-0"></div>
                     <p class="text-lg max-w-xl text-muted-foreground leading-relaxed">
-                        Sklep internetowy to nie blog - wymaga specjalistycznego podejścia do SEO. Optymalizujemy każdy element, od kart produktów po nawigację fasetową.
+                        Sklep internetowy to nie blog — wymaga specjalistycznego podejścia do SEO. Optymalizujemy każdy element, od kart produktów po nawigację fasetową.
                     </p>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results -->
+    <section class="py-32 px-6 md:px-12 lg:px-24 border-b border-border">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-16 reveal-on-scroll">
+                <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">Wyniki</span>
+                <h2 class="font-serif text-4xl md:text-6xl leading-tight text-balance">
+                    Efekty, które <span class="italic text-muted-foreground">możesz zmierzyć</span>
+                </h2>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                {results.map((item) => (
+                    <article class="border border-border p-8 reveal-on-scroll">
+                        <div class="mb-6 pb-6 border-b border-border">
+                            <p class="text-sm font-medium mb-1">{item.client}</p>
+                            <p class="text-xs text-muted-foreground uppercase tracking-widest">{item.platform}</p>
+                        </div>
+                        <div class="grid grid-cols-3 gap-4 mb-6">
+                            {item.metrics.map((m) => (
+                                <div>
+                                    <p class="font-serif text-2xl font-bold mb-1">{m.value}</p>
+                                    <p class="text-xs text-muted-foreground leading-tight">{m.label}</p>
+                                </div>
+                            ))}
+                        </div>
+                        <p class="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
+                    </article>
+                ))}
             </div>
         </div>
     </section>
@@ -123,8 +299,63 @@ const platforms = [
                     <article class="group border-t border-border pt-6 reveal-on-scroll">
                         <span class="block text-4xl font-serif text-border mb-4 group-hover:text-foreground transition-colors duration-500">{item.num}</span>
                         <h3 class="text-xl font-bold mb-3">{item.title}</h3>
-                        <p class="text-muted-foreground text-sm leading-relaxed">{item.description}</p>
+                        <p class="text-muted-foreground text-sm leading-relaxed mb-5">{item.description}</p>
+                        <ul class="space-y-2">
+                            {item.details.map((detail) => (
+                                <li class="flex items-start gap-2 text-xs text-muted-foreground">
+                                    <span class="mt-1 w-3 h-px bg-muted-foreground shrink-0 inline-block"></span>
+                                    {detail}
+                                </li>
+                            ))}
+                        </ul>
                     </article>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline -->
+    <section class="py-32 px-6 md:px-12 lg:px-24 bg-muted">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-16 reveal-on-scroll">
+                <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">Harmonogram</span>
+                <h2 class="font-serif text-4xl md:text-6xl leading-tight text-balance">
+                    Kiedy zobaczysz <span class="italic text-muted-foreground">pierwsze efekty?</span>
+                </h2>
+                <p class="mt-6 text-muted-foreground max-w-2xl leading-relaxed">
+                    SEO to inwestycja, nie wydatek. Poniżej realistyczny harmonogram — bez obietnic, które trudno dotrzymać.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                {timeline.map((item, i) => (
+                    <div class="border-t-2 border-border pt-6 reveal-on-scroll">
+                        <span class="text-xs uppercase tracking-widest text-muted-foreground mb-3 block">{item.period}</span>
+                        <h3 class="text-lg font-bold mb-3">{item.title}</h3>
+                        <p class="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-32 px-6 md:px-12 lg:px-24 border-b border-border">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-16 reveal-on-scroll">
+                <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">Opinie</span>
+                <h2 class="font-serif text-4xl md:text-6xl leading-tight text-balance">
+                    Co mówią <span class="italic text-muted-foreground">nasi klienci?</span>
+                </h2>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                {testimonials.map((item) => (
+                    <blockquote class="border border-border p-8 flex flex-col justify-between reveal-on-scroll">
+                        <p class="text-sm leading-relaxed mb-8">&ldquo;{item.quote}&rdquo;</p>
+                        <footer>
+                            <p class="font-bold text-sm">{item.name}</p>
+                            <p class="text-xs text-muted-foreground">{item.role}, {item.company}</p>
+                        </footer>
+                    </blockquote>
                 ))}
             </div>
         </div>
@@ -149,18 +380,58 @@ const platforms = [
         </div>
     </section>
 
-    <!-- CTA -->
+    <!-- FAQ -->
     <section class="py-32 px-6 md:px-12 lg:px-24">
-        <div class="max-w-5xl mx-auto text-center reveal-on-scroll">
-            <h2 class="font-serif text-4xl md:text-6xl lg:text-7xl mb-8 text-balance">
-                Twój sklep zasługuje na więcej ruchu.
-            </h2>
-            <p class="text-lg text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed">
-                Bezpłatna analiza potencjału SEO Twojego sklepu internetowego. Pokaż nam swój asortyment, a powiemy Ci, jak zwiększać sprzedaż organicznie.
-            </p>
-            <a class="inline-block bg-foreground text-background px-8 py-4 rounded-full font-medium hover:scale-105 transition-transform" href="/#contact">
-                Zamów bezpłatną analizę
-            </a>
+        <div class="max-w-5xl mx-auto">
+            <div class="mb-16 reveal-on-scroll">
+                <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">FAQ</span>
+                <h2 class="font-serif text-4xl md:text-6xl text-balance">
+                    Pytania, które <span class="italic text-muted-foreground">słyszymy najczęściej</span>
+                </h2>
+            </div>
+            <div class="space-y-0">
+                {faqs.map((faq) => (
+                    <div class="border-t border-border py-8 reveal-on-scroll">
+                        <h3 class="text-lg font-bold mb-4">{faq.question}</h3>
+                        <p class="text-muted-foreground leading-relaxed">{faq.answer}</p>
+                    </div>
+                ))}
+                <div class="border-t border-border"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA with form -->
+    <section class="py-32 px-6 md:px-12 lg:px-24 bg-muted">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+                <div class="reveal-on-scroll">
+                    <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">Bezpłatna analiza</span>
+                    <h2 class="font-serif text-4xl md:text-6xl lg:text-7xl mb-8 text-balance">
+                        Twój sklep zasługuje na więcej ruchu.
+                    </h2>
+                    <p class="text-lg text-muted-foreground leading-relaxed mb-8">
+                        45-minutowe spotkanie, na którym analizujemy obecną widoczność sklepu, wskazujemy największe blokery wzrostu i przedstawiamy konkretne kroki do podjęcia.
+                    </p>
+                    <ul class="space-y-3 text-muted-foreground text-sm">
+                        <li class="flex items-center gap-3">
+                            <span class="w-1.5 h-1.5 rounded-full bg-foreground shrink-0"></span>
+                            Odpowiedź w 24h w dni robocze
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="w-1.5 h-1.5 rounded-full bg-foreground shrink-0"></span>
+                            45 minut analizy Twojego sklepu — bezpłatnie
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="w-1.5 h-1.5 rounded-full bg-foreground shrink-0"></span>
+                            Bez zobowiązań. Bez slajdów sprzedażowych.
+                        </li>
+                    </ul>
+                </div>
+                <div class="bg-card border border-border p-8 md:p-12 rounded-lg reveal-on-scroll">
+                    <FormEcommerce />
+                </div>
+            </div>
         </div>
     </section>
 </BaseLayout>

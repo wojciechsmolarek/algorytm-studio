@@ -1,0 +1,128 @@
+---
+interface Props {
+    action?: string;
+    method?: "GET" | "POST";
+}
+
+const { action = "#", method = "POST" } = Astro.props;
+
+const budgets = [
+    "do 2 000 zł / mies.",
+    "2 000 – 4 000 zł / mies.",
+    "4 000 – 8 000 zł / mies.",
+    "powyżej 8 000 zł / mies.",
+    "Nie wiem jeszcze",
+];
+
+const seoStatus = [
+    "Tak, aktywnie prowadzimy SEO",
+    "Mamy podstawowe SEO, ale nie rozwijamy",
+    "Nie prowadzimy działań SEO",
+    "Nie wiem",
+];
+---
+
+<form action={action} method={method} class="space-y-6">
+    <div>
+        <label for="ai-name" class="block text-xs uppercase tracking-widest text-current/50 mb-2">
+            Imię i Nazwisko
+        </label>
+        <input
+            type="text"
+            name="name"
+            id="ai-name"
+            autocomplete="name"
+            required
+            class="w-full bg-transparent border-b border-current/20 focus:border-current outline-none py-2 transition-colors placeholder:text-current/20 text-current"
+            placeholder="Jan Kowalski"
+        />
+    </div>
+    <div>
+        <label for="ai-email" class="block text-xs uppercase tracking-widest text-current/50 mb-2">
+            Email firmowy
+        </label>
+        <input
+            type="email"
+            name="email"
+            id="ai-email"
+            autocomplete="email"
+            required
+            class="w-full bg-transparent border-b border-current/20 focus:border-current outline-none py-2 transition-colors placeholder:text-current/20 text-current"
+            placeholder="jan@firma.pl"
+        />
+    </div>
+    <div>
+        <label for="ai-url" class="block text-xs uppercase tracking-widest text-current/50 mb-2">
+            Adres strony / marki
+        </label>
+        <input
+            type="url"
+            name="url"
+            id="ai-url"
+            class="w-full bg-transparent border-b border-current/20 focus:border-current outline-none py-2 transition-colors placeholder:text-current/20 text-current"
+            placeholder="https://twojafirma.pl"
+        />
+    </div>
+    <div>
+        <label for="ai-queries" class="block text-xs uppercase tracking-widest text-current/50 mb-2">
+            Przykładowe pytania, przy których chcesz być wymieniany przez AI
+        </label>
+        <textarea
+            name="queries"
+            id="ai-queries"
+            rows="3"
+            class="w-full bg-transparent border border-current/20 focus:border-current outline-none p-3 transition-colors placeholder:text-current/20 text-current resize-none"
+            placeholder="np. &quot;jakie oprogramowanie do fakturowania polecasz?&quot;, &quot;najlepsze agencje SEO w Polsce&quot;, &quot;dostawcy stali nierdzewnej B2B&quot;"
+        ></textarea>
+    </div>
+    <div>
+        <label for="ai-seo" class="block text-xs uppercase tracking-widest text-current/50 mb-2">
+            Czy prowadzisz działania SEO?
+        </label>
+        <select
+            name="seo_status"
+            id="ai-seo"
+            class="w-full bg-transparent border-b border-current/20 focus:border-current outline-none py-2 transition-colors text-current appearance-none cursor-pointer"
+        >
+            <option value="" disabled selected class="bg-background text-foreground">Wybierz opcję</option>
+            {seoStatus.map((s) => (
+                <option value={s} class="bg-background text-foreground">{s}</option>
+            ))}
+        </select>
+    </div>
+    <div>
+        <label for="ai-budget" class="block text-xs uppercase tracking-widest text-current/50 mb-2">
+            Miesięczny budżet
+        </label>
+        <select
+            name="budget"
+            id="ai-budget"
+            class="w-full bg-transparent border-b border-current/20 focus:border-current outline-none py-2 transition-colors text-current appearance-none cursor-pointer"
+        >
+            <option value="" disabled selected class="bg-background text-foreground">Wybierz przedział</option>
+            {budgets.map((b) => (
+                <option value={b} class="bg-background text-foreground">{b}</option>
+            ))}
+        </select>
+    </div>
+    <div>
+        <label for="ai-message" class="block text-xs uppercase tracking-widest text-current/50 mb-2">
+            Informacje dodatkowe
+        </label>
+        <textarea
+            name="message"
+            id="ai-message"
+            rows="3"
+            class="w-full bg-transparent border border-current/20 focus:border-current outline-none p-3 transition-colors placeholder:text-current/20 text-current resize-none"
+            placeholder="Branża, główni konkurenci, co chcesz osiągnąć..."
+        ></textarea>
+    </div>
+    <div>
+        <button
+            type="submit"
+            class="bg-background text-foreground px-8 py-3 rounded-full font-medium hover:bg-background/80 transition w-full md:w-auto"
+        >
+            Sprawdź widoczność w AI
+        </button>
+    </div>
+</form>

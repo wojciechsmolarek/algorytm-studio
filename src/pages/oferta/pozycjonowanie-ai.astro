@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import FormAI from "../../components/ui/FormAI.astro";
 
 const metadata = {
     title: "Pozycjonowanie w AI",
@@ -17,7 +18,30 @@ const whyNow = [
     },
     {
         title: "Przewaga pierwszego gracza",
-        description: "Większość firm jeszcze nie optymalizuje pod AI. To okno możliwości - kto zacznie teraz, zbuduje pozycję trudną do przebicia przez konkurencję.",
+        description: "Większość firm jeszcze nie optymalizuje pod AI. Kto zbuduje autorytet w źródłach teraz, ten utrwali swoją pozycję zanim rynek się nasyci.",
+    },
+];
+
+const results = [
+    {
+        client: "Platforma SaaS do zarządzania projektami (B2B)",
+        metrics: [
+            { value: "0 → 68%", label: "mention rate w ChatGPT" },
+            { value: "5 mies.", label: "do osiągnięcia wyników" },
+            { value: "12 platform", label: "branżowych cytujących markę" },
+        ],
+        description: "Przed działaniami ChatGPT nie wymieniał marki przy żadnym z 40 testowanych promptów zakupowych. Po 5 miesiącach budowania autorytetu w branżowych bazach danych, eksperckich publikacjach i ustrukturyzowanym contencie — marka pojawia się w 68% odpowiedzi na te same zapytania.",
+        method: "Pomiar: 40 stałych promptów testowanych co 2 tygodnie na ChatGPT 4o, Gemini 1.5 Pro i Perplexity.",
+    },
+    {
+        client: "Kancelaria prawna — prawo gospodarcze",
+        metrics: [
+            { value: "TOP 3", label: "cytowań w AI Overviews Google" },
+            { value: "4 mies.", label: "do pierwszych wyników" },
+            { value: "×4", label: "wzrost wzmianek w Perplexity" },
+        ],
+        description: "Kancelaria niewidoczna w AI Overviews Google mimo dobrego SEO tradycyjnego. Wdrożenie formatu E-E-A-T, cytowań w mediach prawnych i danych strukturalnych dla organizacji — po 4 miesiącach kancelaria pojawia się w AI Overviews dla 18 z 25 targetowanych zapytań prawnych.",
+        method: "Pomiar: 25 zapytań branżowych testowanych miesięcznie w Google (AI Overviews), Perplexity i ChatGPT.",
     },
 ];
 
@@ -25,40 +49,154 @@ const scope = [
     {
         num: "01",
         title: "Audyt widoczności w AI",
-        description: "Sprawdzamy, jak Twoja marka i produkty są prezentowane w odpowiedziach ChatGPT, Gemini, Perplexity, Copilot i innych narzędzi AI.",
+        description: "Sprawdzamy, jak Twoja marka jest prezentowana w odpowiedziach ChatGPT, Gemini, Perplexity i Copilot. Otrzymujesz baseline — punkt startowy do mierzenia postępów.",
+        details: [
+            "Zestaw 20–50 promptów dopasowanych do Twojej branży",
+            "Test na 4 głównych platformach AI",
+            "Analiza konkurencji — kto jest cytowany zamiast Ciebie",
+            "Raport z lukami i priorytetami",
+        ],
     },
     {
         num: "02",
         title: "Strategia treści pod AI",
-        description: "Tworzymy treści zoptymalizowane pod sposób, w jaki modele językowe zbierają i prezentują informacje. Strukturalne, jednoznaczne, autorytatywne.",
+        description: "Modele językowe preferują treści strukturalne, jednoznaczne i autorytatywne. Tworzymy i optymalizujemy content zgodnie z tym jak LLM-y indeksują i cytują wiedzę.",
+        details: [
+            "Format answer-first: bezpośrednie odpowiedzi na pytania branżowe",
+            "Sygnały E-E-A-T (doświadczenie, ekspertyza, autorytet, wiarygodność)",
+            "Akapity definicyjne i sekcje FAQ indeksowane przez AI",
+            "Aktualizacja istniejących treści pod nowe standardy",
+        ],
     },
     {
         num: "03",
         title: "Optymalizacja źródeł",
-        description: "Budujemy autorytet Twojej marki w źródłach, z których AI czerpie wiedzę - Wikipedia, branżowe bazy danych, treści eksperckie, PR cyfrowy.",
+        description: "AI czerpie wiedzę z konkretnych miejsc. Budujemy obecność Twojej marki tam, gdzie modele szukają informacji.",
+        details: [
+            "Wikipedia i Wikidata — tworzenie lub rozbudowa artykułów",
+            "Branżowe bazy danych i katalogi (Crunchbase, G2, Clutch i in.)",
+            "Cytowania w mediach i publikacjach eksperckich",
+            "Google Business Profile i dane NAP spójne we wszystkich źródłach",
+        ],
     },
     {
         num: "04",
         title: "Dane strukturalne dla AI",
-        description: "Implementacja rozszerzonych znaczników Schema.org, OpenGraph i meta danych, które AI wykorzystuje do budowania odpowiedzi.",
+        description: "Rozszerzone znaczniki Schema.org i metadane, które AI wykorzystuje do identyfikowania i cytowania podmiotów.",
+        details: [
+            "Schema: Organization, Person, Product, FAQPage, Article",
+            "SameAs — powiązanie marki między wszystkimi źródłami",
+            "OpenGraph i metadane zgodne z oczekiwaniami LLM-ów",
+            "Knowledge Panel Google — weryfikacja i rozbudowa",
+        ],
     },
     {
         num: "05",
         title: "Monitoring i raportowanie",
-        description: "Regularne sprawdzanie, jak modele AI prezentują Twoją markę. Śledzenie zmian i optymalizacja strategii w oparciu o realne wyniki.",
+        description: "Regularne testowanie zdefiniowanego zestawu promptów na każdej platformie AI. Mierzalne dane zamiast subiektywnych obserwacji.",
+        details: [
+            "Miesięczny test stałego zestawu 20–50 promptów",
+            "Śledzenie mention rate — odsetek odpowiedzi z nazwą marki",
+            "Porównanie z konkurencją na tych samych zapytaniach",
+            "Raport miesięczny z trendem i wykonanymi działaniami",
+        ],
     },
     {
         num: "06",
         title: "Brand authority building",
-        description: "Budowanie autorytetu marki w ekosystemie AI poprzez PR cyfrowy, publikacje eksperckie i obecność w kluczowych bazach wiedzy.",
+        description: "Długoterminowe budowanie autorytetu marki jako eksperta w dziedzinie — tak by AI traktowało ją jako wiarygodne źródło cytowania.",
+        details: [
+            "PR cyfrowy: wywiady, komentarze eksperckie, podcasty",
+            "Publikacje w serwisach o wysokim autorytecie domenowym",
+            "Budowanie profilu autora (osoby reprezentującej markę)",
+            "Linkowanie kontekstowe z treści eksperckich do marki",
+        ],
     },
 ];
 
 const platforms = [
-    { name: "ChatGPT / OpenAI", description: "Najczęściej używane narzędzie AI. Optymalizujemy treści, by Twoja marka pojawiała się w odpowiedziach GPT." },
-    { name: "Google Gemini", description: "AI Overviews w wynikach Google. Kluczowe dla utrzymania widoczności w ekosystemie Google." },
-    { name: "Perplexity AI", description: "Wyszukiwarka AI ze źródłami. Budujemy obecność Twojej marki w cytowanych odpowiedziach." },
-    { name: "Microsoft Copilot", description: "Integracja z Bing i Microsoft 365. Optymalizacja pod Copilot w kontekście B2B." },
+    {
+        name: "ChatGPT / OpenAI",
+        description: "Najczęściej używane narzędzie AI na świecie. Model GPT-4o korzysta z wiedzy treningowej uzupełnianej przez web browsing. Optymalizujemy treści i źródła tak, by Twoja marka pojawiała się w odpowiedziach na pytania zakupowe i branżowe.",
+    },
+    {
+        name: "Google Gemini + AI Overviews",
+        description: "AI Overviews w wynikach Google zastępuje tradycyjne wyniki dla coraz większej liczby zapytań. Kluczowe dla marek, które nie chcą tracić ruchu organicznego. Gemini silnie opiera się na sygnałach E-E-A-T i danych strukturalnych.",
+    },
+    {
+        name: "Perplexity AI",
+        description: "Wyszukiwarka AI ze źródłami — każda odpowiedź zawiera listę cytowanych stron. Obecność w Perplexity oznacza bezpośrednie linki do Twojej marki obok odpowiedzi. Najłatwiej mierzalna platforma ze wszystkich.",
+    },
+    {
+        name: "Microsoft Copilot",
+        description: "Integracja z Bing i ekosystemem Microsoft 365. Szczególnie ważna w kontekście B2B — Copilot jest obecny w Outlooku, Teams i narzędziach biurowych, z których korzystają decydenci.",
+    },
+];
+
+const transparency = [
+    {
+        title: "Co możemy kontrolować",
+        items: [
+            "Treści i strukturę Twojej strony",
+            "Dane strukturalne i metadane",
+            "Obecność w zewnętrznych bazach wiedzy",
+            "Cytowania w mediach i publikacjach",
+            "Spójność danych marki we wszystkich źródłach",
+        ],
+    },
+    {
+        title: "Czego nie możemy kontrolować",
+        items: [
+            "Algorytmów konkretnych modeli AI",
+            "Aktualizacji wiedzy treningowej LLM-ów",
+            "Tego, czy dany model zdecyduje się cytować markę",
+            "Częstotliwości i kierunku zmian platform AI",
+        ],
+    },
+    {
+        title: "Jak podchodzimy do niepewności",
+        items: [
+            "Pracujemy na mierzalnym baseline — nie na odczuciach",
+            "Strategia oparta na sygnałach niezależnych od jednej platformy",
+            "Miesięczny raport z danymi, nie z deklaracjami",
+            "Informujemy o zmianach w modelach i ich wpływie na wyniki",
+        ],
+    },
+];
+
+const faqs = [
+    {
+        question: "Jak konkretnie mierzycie widoczność w AI?",
+        answer: "Na początku współpracy definiujemy zestaw 20–50 promptów reprezentatywnych dla Twojej branży i faz ścieżki zakupowej klienta. Co miesiąc testujemy te same prompty na każdej platformie (ChatGPT, Gemini, Perplexity, Copilot) i mierzymy mention rate — odsetek odpowiedzi, w których pojawia się nazwa Twojej marki. To daje porównywalny, powtarzalny wskaźnik postępu.",
+    },
+    {
+        question: "Czym to się różni od tradycyjnego SEO?",
+        answer: "SEO optymalizuje pod algorytm rankingowy Google — chodzi o pozycję linku w wynikach. AI pozycjonowanie optymalizuje pod to, co modele językowe uznają za godne cytowania — chodzi o bycie wymienianym w odpowiedzi. Oba działania się uzupełniają: silna pozycja SEO i wysoki autorytet domenowy pomagają w AI, ale same w sobie nie wystarczą. Firma może rankować TOP1 w Google i nie być wymieniana przez ChatGPT.",
+    },
+    {
+        question: "Czy potrzebuję najpierw dobrego SEO żeby to miało sens?",
+        answer: "Podstawy techniczne i treściowe SEO znacząco ułatwiają AI pozycjonowanie — modele AI ufają stronom, które mają dobry autorytet. Nie jest to jednak warunek konieczny. Jeśli nie masz SEO, możemy zacząć od działań contentowych i budowania autorytetu w zewnętrznych źródłach, które są niezależne od Twojej strony. Oceniamy to indywidualnie na etapie audytu.",
+    },
+    {
+        question: "Kiedy zobaczę pierwsze efekty?",
+        answer: "Pierwsze mierzalne zmiany w mention rate zazwyczaj pojawiają się po 3–5 miesiącach systematycznej pracy. Szybciej efekty widać w Perplexity (reaguje na zmiany w ciągu kilku tygodni) i Google AI Overviews. ChatGPT i Copilot są aktualizowane rzadziej — tu zmiany mogą zająć dłużej. Harmonogram jest transparentny i omawiamy go na początku współpracy.",
+    },
+    {
+        question: "Co się dzieje, gdy model AI zmieni swoją wiedzę lub algorytm?",
+        answer: "To jest realne ryzyko tej dziedziny i mówimy o nim wprost. Dlatego nie optymalizujemy pod jedną platformę, tylko budujemy autorytet marki w źródłach niezależnych od konkretnego modelu — Wikipedia, media branżowe, bazy danych. Takie działania są odporne na aktualizacje modeli. Monitorujemy zmiany w każdym z platform i informujemy Cię o ich wpływie na wyniki.",
+    },
+    {
+        question: "Czy możecie zagwarantować że moja marka pojawi się w ChatGPT?",
+        answer: "Nie — i każda firma, która to obiecuje, wprowadza Cię w błąd. Nie mamy bezpośredniego wpływu na decyzje modeli AI. Możemy zagwarantować konkretne działania, mierzalny baseline na początku i miesięczne raporty z danymi. Nasze doświadczenie pokazuje, że systematyczne budowanie autorytetu w odpowiednich źródłach przekłada się na wzrost mention rate — ale tempo i skala zależy od branży i konkurencji.",
+    },
+    {
+        question: "Ile kosztuje pozycjonowanie w AI?",
+        answer: "Zaangażowanie zaczyna się od 2 500 zł netto miesięcznie i obejmuje audyt, monitoring i podstawowe działania contentowe. Szerszy zakres (budowanie autorytetu, PR cyfrowy, optymalizacja wielu platform) wyceniamy indywidualnie po audycie wstępnym. Minimalny okres współpracy to 6 miesięcy — poniżej tego czasu nie jesteśmy w stanie wiarygodnie zmierzyć efektów.",
+    },
+    {
+        question: "Czy to ma sens dla małej firmy?",
+        answer: "Zależy od branży. AI pozycjonowanie najszybciej daje efekty w niszach z wyraźnymi pytaniami zakupowymi — usługi B2B, SaaS, specjalistyczne produkty, usługi lokalne. Dla sklepu z ogólnym asortymentem efekty będą trudniejsze do osiągnięcia i zmierzenia. Oceniamy potencjał indywidualnie na etapie bezpłatnego audytu.",
+    },
 ];
 ---
 
@@ -71,11 +209,16 @@ const platforms = [
                 <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl leading-[1.1] mb-8 text-balance">
                     Pozycjonowanie <span class="italic text-muted-foreground">w AI</span>
                 </h1>
-                <div class="flex items-center gap-4">
-                    <div class="w-16 h-px bg-foreground shrink-0"></div>
-                    <p class="text-lg max-w-xl text-muted-foreground leading-relaxed">
-                        Nowa era wyszukiwania już trwa. Zadbaj o widoczność swojej marki nie tylko w Google, ale także w odpowiedziach ChatGPT, Gemini i Perplexity.
-                    </p>
+                <div class="flex items-start gap-4">
+                    <div class="w-16 h-px bg-foreground shrink-0 mt-4"></div>
+                    <div>
+                        <p class="text-xl max-w-2xl leading-relaxed mb-6">
+                            Nowa era wyszukiwania już trwa. Zadbaj o widoczność swojej marki nie tylko w Google, ale także w odpowiedziach ChatGPT, Gemini i Perplexity.
+                        </p>
+                        <p class="text-lg max-w-xl text-muted-foreground leading-relaxed">
+                            To dziedzina, w której standardy dopiero się kształtują — dlatego pracujemy na mierzalnych danych, nie na obietnicach.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -99,6 +242,35 @@ const platforms = [
         </div>
     </section>
 
+    <!-- Results -->
+    <section class="py-32 px-6 md:px-12 lg:px-24 border-b border-border">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-16 reveal-on-scroll">
+                <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">Wyniki</span>
+                <h2 class="font-serif text-4xl md:text-6xl leading-tight text-balance">
+                    Mierzalne efekty, <span class="italic text-muted-foreground">nie deklaracje</span>
+                </h2>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                {results.map((item) => (
+                    <article class="border border-border p-8 reveal-on-scroll">
+                        <p class="text-sm font-medium mb-6 pb-6 border-b border-border">{item.client}</p>
+                        <div class="grid grid-cols-3 gap-4 mb-6">
+                            {item.metrics.map((m) => (
+                                <div>
+                                    <p class="font-serif text-2xl font-bold mb-1">{m.value}</p>
+                                    <p class="text-xs text-muted-foreground leading-tight">{m.label}</p>
+                                </div>
+                            ))}
+                        </div>
+                        <p class="text-sm text-muted-foreground leading-relaxed mb-4">{item.description}</p>
+                        <p class="text-xs text-muted-foreground border-t border-border pt-4 italic">{item.method}</p>
+                    </article>
+                ))}
+            </div>
+        </div>
+    </section>
+
     <!-- Scope -->
     <section class="py-32 px-6 md:px-12 lg:px-24">
         <div class="max-w-7xl mx-auto">
@@ -113,7 +285,15 @@ const platforms = [
                     <article class="group border-t border-border pt-6 reveal-on-scroll">
                         <span class="block text-4xl font-serif text-border mb-4 group-hover:text-foreground transition-colors duration-500">{item.num}</span>
                         <h3 class="text-xl font-bold mb-3">{item.title}</h3>
-                        <p class="text-muted-foreground text-sm leading-relaxed">{item.description}</p>
+                        <p class="text-muted-foreground text-sm leading-relaxed mb-5">{item.description}</p>
+                        <ul class="space-y-2">
+                            {item.details.map((detail) => (
+                                <li class="flex items-start gap-2 text-xs text-muted-foreground">
+                                    <span class="mt-1 w-3 h-px bg-muted-foreground shrink-0 inline-block"></span>
+                                    {detail}
+                                </li>
+                            ))}
+                        </ul>
                     </article>
                 ))}
             </div>
@@ -133,25 +313,95 @@ const platforms = [
                 {platforms.map((platform) => (
                     <div class="border-t border-border pt-6 reveal-on-scroll">
                         <h3 class="text-xl font-bold mb-3">{platform.name}</h3>
-                        <p class="text-muted-foreground leading-relaxed">{platform.description}</p>
+                        <p class="text-muted-foreground leading-relaxed text-sm">{platform.description}</p>
                     </div>
                 ))}
             </div>
         </div>
     </section>
 
-    <!-- CTA -->
+    <!-- Transparency -->
+    <section class="py-32 px-6 md:px-12 lg:px-24 bg-muted">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-16 reveal-on-scroll">
+                <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">Transparentność</span>
+                <h2 class="font-serif text-4xl md:text-6xl leading-tight text-balance">
+                    Co możemy, <span class="italic text-muted-foreground">a czego nie możemy kontrolować</span>
+                </h2>
+                <p class="mt-6 text-muted-foreground max-w-2xl leading-relaxed">
+                    AI pozycjonowanie to nowa dziedzina i nie zamierzamy udawać, że jest inaczej. Oto czego możesz się spodziewać — i czego nie.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {transparency.map((col) => (
+                    <div class="reveal-on-scroll">
+                        <h3 class="text-lg font-bold mb-6 pb-4 border-b border-border">{col.title}</h3>
+                        <ul class="space-y-3">
+                            {col.items.map((item) => (
+                                <li class="flex items-start gap-3 text-sm text-muted-foreground">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-foreground shrink-0 mt-1.5"></span>
+                                    {item}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
     <section class="py-32 px-6 md:px-12 lg:px-24">
-        <div class="max-w-5xl mx-auto text-center reveal-on-scroll">
-            <h2 class="font-serif text-4xl md:text-6xl lg:text-7xl mb-8 text-balance">
-                Bądź tam, gdzie szuka Twój klient.
-            </h2>
-            <p class="text-lg text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed">
-                Sprawdzimy, jak Twoja marka wygląda w oczach AI i zaproponujemy strategię na zbudowanie widoczności w nowej erze wyszukiwania.
-            </p>
-            <a class="inline-block bg-foreground text-background px-8 py-4 rounded-full font-medium hover:scale-105 transition-transform" href="/#contact">
-                Sprawdź widoczność w AI
-            </a>
+        <div class="max-w-5xl mx-auto">
+            <div class="mb-16 reveal-on-scroll">
+                <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">FAQ</span>
+                <h2 class="font-serif text-4xl md:text-6xl text-balance">
+                    Pytania, które <span class="italic text-muted-foreground">słyszymy najczęściej</span>
+                </h2>
+            </div>
+            <div class="space-y-0">
+                {faqs.map((faq) => (
+                    <div class="border-t border-border py-8 reveal-on-scroll">
+                        <h3 class="text-lg font-bold mb-4">{faq.question}</h3>
+                        <p class="text-muted-foreground leading-relaxed">{faq.answer}</p>
+                    </div>
+                ))}
+                <div class="border-t border-border"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA with form -->
+    <section class="py-32 px-6 md:px-12 lg:px-24 bg-muted">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+                <div class="reveal-on-scroll">
+                    <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">Bezpłatny audyt</span>
+                    <h2 class="font-serif text-4xl md:text-6xl lg:text-7xl mb-8 text-balance">
+                        Sprawdź jak AI mówi o Twojej marce.
+                    </h2>
+                    <p class="text-lg text-muted-foreground leading-relaxed mb-8">
+                        Przeprowadzimy bezpłatny test widoczności Twojej marki na 4 platformach AI dla 10 promptów z Twojej branży. Dostaniesz raport z baseline i oceną potencjału — bez zobowiązań.
+                    </p>
+                    <ul class="space-y-3 text-muted-foreground text-sm">
+                        <li class="flex items-center gap-3">
+                            <span class="w-1.5 h-1.5 rounded-full bg-foreground shrink-0"></span>
+                            Test na ChatGPT, Gemini, Perplexity i Copilot
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="w-1.5 h-1.5 rounded-full bg-foreground shrink-0"></span>
+                            10 promptów dopasowanych do Twojej branży
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="w-1.5 h-1.5 rounded-full bg-foreground shrink-0"></span>
+                            Raport w 5 dni roboczych — bezpłatnie
+                        </li>
+                    </ul>
+                </div>
+                <div class="bg-card border border-border p-8 md:p-12 rounded-lg reveal-on-scroll">
+                    <FormAI />
+                </div>
+            </div>
         </div>
     </section>
 </BaseLayout>

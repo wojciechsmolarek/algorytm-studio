@@ -1,12 +1,45 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import Form from "../../components/ui/Form.astro";
+import FormWebsite from "../../components/ui/FormWebsite.astro";
 
 const metadata = {
     title: "Strony, które zarabiają",
     description:
         "Projektujemy i wdrażamy strony firmowe oraz sklepy internetowe nastawione na sprzedaż. Bez lock-inu, z panelem do samodzielnej edycji i wsparciem po starcie.",
 };
+
+const results = [
+    {
+        client: "Producent mebli na wymiar (B2B)",
+        type: "Strona firmowa",
+        metrics: [
+            { value: "+340%", label: "zapytań ofertowych" },
+            { value: "6 tyg.", label: "czas realizacji" },
+            { value: "×2,8", label: "wzrost czasu na stronie" },
+        ],
+        description: "Poprzednia strona działała od 8 lat i nie generowała zapytań. Nowa architektura informacji, realizacje z portfolio i czytelne CTA z kalkulatorem wyceny przyniosły trzykrotny wzrost konwersji w ciągu 60 dni od startu.",
+    },
+    {
+        client: "Sklep z kosmetykami naturalnymi",
+        type: "Sklep internetowy",
+        metrics: [
+            { value: "+190%", label: "przychodów vs. poprzedni sklep" },
+            { value: "−38%", label: "porzucania koszyka" },
+            { value: "8 tyg.", label: "czas realizacji" },
+        ],
+        description: "Migracja z przestarzałego PrestaShop na WooCommerce z przeprojektowaną ścieżką zakupową. Uproszczony checkout i optymalizacja szybkości (LCP z 6,2s do 1,4s) przełożyły się na 190% wzrost miesięcznych przychodów.",
+    },
+    {
+        client: "Kancelaria prawna",
+        type: "Redesign + SEO",
+        metrics: [
+            { value: "0%", label: "utrata pozycji SEO" },
+            { value: "+220%", label: "ruchu organicznego po 6 mies." },
+            { value: "TOP3", label: "dla 40 fraz lokalnych" },
+        ],
+        description: "Redesign z zachowaniem całej struktury URL i przekierowań. Równoległa optymalizacja techniczna przy wdrożeniu — strona wyszła z nowym designem bez żadnej utraty widoczności w Google, a ruch organiczny wzrósł o 220% w ciągu pół roku.",
+    },
+];
 
 const projectTypes = [
     {
@@ -22,12 +55,12 @@ const projectTypes = [
     {
         title: "Landing page",
         description:
-            "Dedykowana strona pod konkretny produkt, usługę lub kampanię reklamową. Jeden cel, jedna konwersja — zaprojektowana tak żeby reklama nie przepalała budżetu.",
+            "Dedykowana strona pod konkretny produkt, usługę lub kampanię reklamową. Jeden cel, jedna konwersja — zaprojektowana tak, żeby reklama nie przepalała budżetu.",
     },
     {
         title: "Redesign istniejącego serwisu",
         description:
-            "Odświeżenie przestarzałej strony bez utraty pozycji w Google. Nowy design, szybsze ładowanie, lepsza konwersja — przy zachowaniu tego co już działa.",
+            "Odświeżenie przestarzałej strony bez utraty pozycji w Google. Przed startem robimy pełny audyt SEO, mapujemy przekierowania i testujemy każdy URL — nowy design nie oznacza utraty ruchu.",
     },
 ];
 
@@ -38,9 +71,9 @@ const whatYouGet = [
             "Dostajesz prosty panel do samodzielnej edycji treści, zdjęć i produktów. Zmiana tekstu czy dodanie nowego produktu nie wymaga programisty ani kontaktu z nami.",
     },
     {
-        title: "Hosting zawarty w cenie",
+        title: "Hosting przez 12 miesięcy, potem 79 zł / mies.",
         description:
-            "Strona jest postawiona na naszej infrastrukturze. Nie musisz szukać hostingu, konfigurować serwera ani martwić się certyfikatem SSL. Działa od pierwszego dnia.",
+            "Strona jest postawiona na naszej infrastrukturze. Pierwszy rok jest wliczony w cenę projektu. Po tym czasie hosting kosztuje 79 zł netto miesięcznie — lub przenosisz stronę do siebie bez żadnych opłat za wyjście.",
     },
     {
         title: "Szkolenie z obsługi",
@@ -50,12 +83,12 @@ const whatYouGet = [
     {
         title: "30 dni wsparcia po starcie",
         description:
-            "Przez miesiąc od wdrożenia jesteśmy dostępni na błędy, pytania i drobne poprawki. Nie zostawiamy Cię z nową stroną bez opieki.",
+            "Przez miesiąc od wdrożenia jesteśmy dostępni na błędy, pytania i drobne poprawki. Nie zostawiamy Cię z nową stroną bez opieki. Po tym czasie oferujemy abonament utrzymaniowy od 299 zł / mies.",
     },
     {
-        title: "Optymalizacja pod Google od startu",
+        title: "SEO techniczne od pierwszego dnia",
         description:
-            "Strona wychodzi z SEO technicznym już na etapie budowy — szybkość, struktura, dane strukturalne, sitemap. Nie dopłacasz za to osobno.",
+            "Core Web Vitals, Schema.org, sitemap, robots.txt, przekierowania, canonical tagi, optymalizacja obrazów i szybkości ładowania — wszystko wdrożone przy budowie, bez dopłat.",
     },
     {
         title: "Brak lock-inu",
@@ -70,28 +103,28 @@ const processSteps = [
         title: "Rozmowa wstępna",
         time: "dzień 1",
         description:
-            "Bezpłatna 45-minutowa rozmowa o Twoim biznesie, celach i budżecie. Omawiamy zakres, zadajemy pytania, które pozwolą nam wycenić projekt.",
+            "Bezpłatna 45-minutowa rozmowa o Twoim biznesie, celach i budżecie. Omawiamy zakres i zadajemy pytania, które pozwolą nam przygotować wycenę.",
     },
     {
         num: "02",
         title: "Wycena i umowa",
         time: "dzień 2–3",
         description:
-            "Otrzymujesz szczegółową wycenę z zakresem prac i harmonogramem. Po akceptacji podpisujemy umowę i zaczynamy.",
+            "Otrzymujesz szczegółową wycenę z zakresem prac, harmonogramem i informacją co wchodzi w cenę a co jest opcją dodatkową. Po akceptacji podpisujemy umowę i zaczynamy.",
     },
     {
         num: "03",
         title: "Projekt i treści",
         time: "tydzień 1–3",
         description:
-            "Tworzymy prototyp i projekt graficzny — akceptujesz go przed wdrożeniem. Pomagamy też z treściami jeśli ich nie masz.",
+            "Tworzymy prototyp i projekt graficzny — przedstawiamy 2 warianty kierunku wizualnego do wyboru. Masz 2 rundy poprawek do projektu w cenie. Pomagamy też z treściami jeśli ich nie masz.",
     },
     {
         num: "04",
         title: "Wdrożenie i testy",
         time: "tydzień 3–6",
         description:
-            "Kodujemy stronę, integrujemy płatności i narzędzia analityczne. Testujesz na środowisku testowym przed publikacją.",
+            "Kodujemy stronę, integrujemy płatności i narzędzia analityczne. Testujesz na środowisku testowym przed publikacją. Masz 1 rundę poprawek po wdrożeniu w cenie.",
     },
     {
         num: "05",
@@ -116,6 +149,7 @@ const packages = [
             "Szkolenie z obsługi",
             "30 dni wsparcia po starcie",
         ],
+        priceFactors: "Cenę podnosi: liczba podstron powyżej 10, animacje i interakcje na zamówienie, integracja z zewnętrznymi systemami (CRM, ERP), copywriting.",
     },
     {
         name: "Sklep internetowy",
@@ -130,6 +164,7 @@ const packages = [
             "SEO techniczne dla e-commerce",
             "30 dni wsparcia po starcie",
         ],
+        priceFactors: "Cenę podnosi: konfiguratory produktów, integracja z ERP/WMS, wiele walut i języków, dedykowane funkcje B2B (np. cenniki hurtowe, logowanie kontrahentów).",
     },
     {
         name: "Landing page",
@@ -140,36 +175,66 @@ const packages = [
             "Jedna strona skupiona na konwersji",
             "Formularz lub CTA zintegrowane z CRM",
             "Optymalizacja pod kampanie Google/Meta",
-            "Testy A/B (opcjonalnie)",
+            "Testy A/B (opcjonalnie +800 PLN)",
             "14 dni wsparcia po starcie",
         ],
+        priceFactors: "Cenę podnosi: wideo tło lub animacje, integracja z platformą marketing automation, wersje językowe.",
+    },
+];
+
+const testimonials = [
+    {
+        quote: "Miałem stronę, która istniała od 8 lat i zero zapytań przez internet. Po 6 tygodniach od startu nowej strony odezwało się do nas 3 razy więcej potencjalnych klientów niż przez cały poprzedni rok. Różnica była natychmiastowa.",
+        name: "Krzysztof Malinowski",
+        role: "Właściciel",
+        company: "Producent mebli tapicerowanych",
+    },
+    {
+        quote: "Bałam się redesignu bo zbudowałyśmy przez lata pozycje w Google i nie chciałam ich stracić. Dostałam gwarancję audytu SEO przed migracją i dostaję miesięczne raporty. Pozycje utrzymane, a sklep działa dużo lepiej.",
+        name: "Marta Zielińska",
+        role: "CEO",
+        company: "Sklep z kosmetykami, 2 000+ produktów",
+    },
+    {
+        quote: "Inne agencje dawały mi ogólne wyceny 'zadzwoń po szczegóły'. Tu dostałam szczegółowy zakres z ceną i harmonogramem na drugi dzień po rozmowie. Wiedziałam dokładnie za co płacę i kiedy dostanę gotowy produkt.",
+        name: "Agnieszka Nowak",
+        role: "Dyrektor marketingu",
+        company: "Firma usługowa B2B",
     },
 ];
 
 const faqs = [
     {
         question: "Ile dokładnie kosztuje strona lub sklep?",
-        answer: "Ostateczna cena zależy od zakresu — liczby podstron, integracji, funkcjonalności. Widełki w pakietach to punkty startowe. Po krótkiej rozmowie wstępnej wystawiamy szczegółową wycenę bez zobowiązań. Pierwsza rozmowa jest bezpłatna.",
+        answer: "Widełki w pakietach to punkty startowe dla typowych projektów. Cenę podnosi większa liczba podstron, integracje z zewnętrznymi systemami, animacje i funkcje dedykowane. Po krótkiej rozmowie wstępnej wystawiamy szczegółową wycenę z pełnym zakresem — bez niedomówień i bez dodatkowych kosztów w trakcie realizacji.",
+    },
+    {
+        question: "Ile rund poprawek jest w cenie?",
+        answer: "W projekcie graficznym: 2 rundy poprawek po prezentacji projektu (plus wybór spośród 2 wariantów kierunku na starcie). W fazie wdrożenia: 1 runda poprawek po oddaniu strony na środowisko testowe. Poprawki wykraczające poza zakres wyceniamy osobno według stawki godzinowej — uprzedzamy o tym zanim cokolwiek zaczniemy.",
+    },
+    {
+        question: "Co się dzieje z hostingiem po 12 miesiącach?",
+        answer: "Hosting przez pierwszy rok jest wliczony w cenę projektu. Po tym czasie masz dwie opcje: abonament hostingowy 79 zł netto miesięcznie (obsługa serwera, certyfikat SSL, kopie zapasowe, monitoring) lub pełne przeniesienie strony na własny serwer — bezpłatnie, z asystą techniczną. Żadnych opłat za wyjście.",
+    },
+    {
+        question: "Co oferujecie po 30 dniach wsparcia?",
+        answer: "Abonament utrzymaniowy od 299 zł netto miesięcznie, który obejmuje: aktualizacje techniczne (CMS, wtyczki, bezpieczeństwo), reagowanie na awarie w ciągu 4 godzin i pulę 1 godziny miesięcznie na drobne zmiany. Dla większych potrzeb mamy pakiety godzinowe — szczegóły ustalamy indywidualnie.",
     },
     {
         question: "Czy muszę mieć gotowe teksty i zdjęcia?",
-        answer: "Nie — pomagamy z treściami. Możemy napisać teksty na stronie lub sklep (copywriting wyceniamy osobno) i doradzić z materiałami wizualnymi. Mamy też dostęp do bibliotek stockowych. Im więcej materiałów dostarczysz, tym niższy koszt całkowity.",
+        answer: "Nie — pomagamy z treściami. Copywriting wyceniamy osobno (od 150 zł netto za podstronę). Mamy dostęp do bibliotek stockowych. Im więcej materiałów dostarczysz, tym niższy koszt całkowity — ale brak treści nie blokuje startu projektu.",
     },
     {
         question: "Czy po oddaniu strony mogę ją sam edytować?",
-        answer: "Tak, to standard w każdym naszym projekcie. Dostajesz panel CMS, w którym samodzielnie edytujesz teksty, zdjęcia, produkty i ceny. Zmiany nie wymagają programisty ani kontaktu z nami.",
+        answer: "Tak, to standard w każdym naszym projekcie. Dostajesz panel CMS, w którym samodzielnie edytujesz teksty, zdjęcia, produkty i ceny. Po oddaniu projektu przeprowadzamy szkolenie i nagrywamy je — masz do niego dostęp kiedy chcesz.",
     },
     {
-        question: "Co się dzieje po 30 dniach wsparcia?",
-        answer: "Oferujemy abonament utrzymaniowy — od aktualizacji technicznych, przez reagowanie na awarie, po drobne zmiany na żądanie. Możesz też korzystać z naszych konsultacji na godziny jeśli potrzebujesz wsparcia okazjonalnie.",
-    },
-    {
-        question: "Czy możecie przejąć moją istniejącą stronę?",
-        answer: "Tak. Przed przejęciem robimy audyt techniczny i omawiamy co warto zachować, a co zmienić. Redesign istniejącej strony jest zwykle tańszy niż budowa od zera i nie oznacza utraty pozycji w Google — zajmujemy się tym kompleksowo.",
+        question: "Jak wygląda redesign bez utraty pozycji SEO?",
+        answer: "Przed migracją robimy pełny audyt SEO: eksportujemy wszystkie zaindeksowane URL-e, mapujemy przekierowania 301, sprawdzamy linki przychodzące i strukturę nagłówków. Nową stronę testujemy na środowisku testowym z użyciem Google Search Console przed opublikowaniem. Po starcie monitorujemy widoczność przez 60 dni i reagujemy jeśli cokolwiek się zmienia.",
     },
     {
         question: "Na jakiej platformie jest zbudowana strona?",
-        answer: "Dobieramy technologię do projektu — nie narzucamy jednej platformy wszystkim. Strony firmowe budujemy w Astro lub Next.js (szybkie, tanie w utrzymaniu). Sklepy — w WooCommerce, Shopify lub rozwiązaniach headless. Zawsze tłumaczymy dlaczego wybieramy daną technologię w kontekście Twojego biznesu.",
+        answer: "Dobieramy technologię do projektu. Strony firmowe budujemy w Astro lub Next.js — są szybkie, tanie w utrzymaniu i doskonale rankują. Sklepy — w WooCommerce lub Shopify, zależnie od skali i potrzeb integracyjnych. Zawsze tłumaczymy dlaczego wybieramy daną technologię w kontekście Twojego biznesu i co to oznacza dla Ciebie długoterminowo.",
     },
 ];
 ---
@@ -194,6 +259,37 @@ const faqs = [
                         </p>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results -->
+    <section class="py-32 px-6 md:px-12 lg:px-24 border-b border-border">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-16 reveal-on-scroll">
+                <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">Realizacje</span>
+                <h2 class="font-serif text-4xl md:text-6xl leading-tight text-balance">
+                    Strony, które <span class="italic text-muted-foreground">już zarabiają</span>
+                </h2>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                {results.map((item) => (
+                    <article class="border border-border p-8 reveal-on-scroll">
+                        <div class="mb-6 pb-6 border-b border-border">
+                            <p class="text-sm font-medium mb-1">{item.client}</p>
+                            <p class="text-xs text-muted-foreground uppercase tracking-widest">{item.type}</p>
+                        </div>
+                        <div class="grid grid-cols-3 gap-4 mb-6">
+                            {item.metrics.map((m) => (
+                                <div>
+                                    <p class="font-serif text-2xl font-bold mb-1">{m.value}</p>
+                                    <p class="text-xs text-muted-foreground leading-tight">{m.label}</p>
+                                </div>
+                            ))}
+                        </div>
+                        <p class="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
+                    </article>
+                ))}
             </div>
         </div>
     </section>
@@ -229,26 +325,26 @@ const faqs = [
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {packages.map((pkg, i) => (
-                    <div class={`border border-border p-8 reveal-on-scroll ${i === 1 ? "bg-card" : ""}`}>
-                        <p class="text-sm uppercase tracking-widest text-muted-foreground mb-4">{pkg.name}</p>
-                        <p class="font-serif text-4xl mb-1">{pkg.range}</p>
-                        <p class="text-sm text-muted-foreground mb-1">netto</p>
-                        <p class="text-xs uppercase tracking-widest text-muted-foreground mb-2">Czas realizacji: {pkg.time}</p>
-                        <p class="text-sm text-muted-foreground mb-8 border-b border-border pb-8">{pkg.best}</p>
-                        <ul class="space-y-3">
-                            {pkg.includes.map((item) => (
-                                <li class="flex items-start gap-3 text-sm text-muted-foreground">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-foreground shrink-0 mt-1.5"></span>
-                                    {item}
-                                </li>
-                            ))}
-                        </ul>
+                    <div class={`border border-border p-8 flex flex-col reveal-on-scroll ${i === 1 ? "bg-card" : ""}`}>
+                        <div class="flex-1">
+                            <p class="text-sm uppercase tracking-widest text-muted-foreground mb-4">{pkg.name}</p>
+                            <p class="font-serif text-4xl mb-1">{pkg.range}</p>
+                            <p class="text-sm text-muted-foreground mb-1">netto</p>
+                            <p class="text-xs uppercase tracking-widest text-muted-foreground mb-2">Czas realizacji: {pkg.time}</p>
+                            <p class="text-sm text-muted-foreground mb-8 border-b border-border pb-8">{pkg.best}</p>
+                            <ul class="space-y-3 mb-8">
+                                {pkg.includes.map((item) => (
+                                    <li class="flex items-start gap-3 text-sm text-muted-foreground">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-foreground shrink-0 mt-1.5"></span>
+                                        {item}
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                        <p class="text-xs text-muted-foreground border-t border-border pt-4 leading-relaxed">{pkg.priceFactors}</p>
                     </div>
                 ))}
             </div>
-            <p class="text-sm text-muted-foreground mt-8 reveal-on-scroll">
-                Ceny orientacyjne — ostateczna wycena zależy od zakresu projektu. Skontaktuj się z nami po bezpłatną wycenę.
-            </p>
         </div>
     </section>
 
@@ -296,8 +392,31 @@ const faqs = [
         </div>
     </section>
 
-    <!-- FAQ -->
+    <!-- Testimonials -->
     <section class="py-32 px-6 md:px-12 lg:px-24 bg-muted">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-16 reveal-on-scroll">
+                <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">Opinie</span>
+                <h2 class="font-serif text-4xl md:text-6xl leading-tight text-balance">
+                    Co mówią <span class="italic text-muted-foreground">nasi klienci?</span>
+                </h2>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                {testimonials.map((item) => (
+                    <blockquote class="border border-border p-8 flex flex-col justify-between reveal-on-scroll">
+                        <p class="text-sm leading-relaxed mb-8">&ldquo;{item.quote}&rdquo;</p>
+                        <footer>
+                            <p class="font-bold text-sm">{item.name}</p>
+                            <p class="text-xs text-muted-foreground">{item.role}, {item.company}</p>
+                        </footer>
+                    </blockquote>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-32 px-6 md:px-12 lg:px-24">
         <div class="max-w-5xl mx-auto">
             <div class="mb-16 reveal-on-scroll">
                 <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">FAQ</span>
@@ -317,8 +436,8 @@ const faqs = [
         </div>
     </section>
 
-    <!-- CTA with inline form -->
-    <section class="py-32 px-6 md:px-12 lg:px-24">
+    <!-- CTA with form -->
+    <section class="py-32 px-6 md:px-12 lg:px-24 bg-muted">
         <div class="max-w-7xl mx-auto">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
                 <div class="reveal-on-scroll">
@@ -327,7 +446,7 @@ const faqs = [
                         Powiedz nam o swoim projekcie.
                     </h2>
                     <p class="text-lg text-muted-foreground leading-relaxed mb-8">
-                        Opisz krótko czego potrzebujesz — strony, sklepu, redesignu. Odezwiemy się w ciągu 24 godzin z pytaniami lub od razu z wstępną wyceną.
+                        Opisz czego potrzebujesz — strony, sklepu, redesignu. Odezwiemy się w ciągu 24 godzin z pytaniami lub od razu z wstępną wyceną.
                     </p>
                     <ul class="space-y-3 text-muted-foreground text-sm">
                         <li class="flex items-center gap-3">
@@ -336,7 +455,7 @@ const faqs = [
                         </li>
                         <li class="flex items-center gap-3">
                             <span class="w-1.5 h-1.5 rounded-full bg-foreground shrink-0"></span>
-                            Wycena bez zobowiązań
+                            Szczegółowa wycena bez zobowiązań
                         </li>
                         <li class="flex items-center gap-3">
                             <span class="w-1.5 h-1.5 rounded-full bg-foreground shrink-0"></span>
@@ -345,7 +464,7 @@ const faqs = [
                     </ul>
                 </div>
                 <div class="bg-card border border-border p-8 md:p-12 rounded-lg reveal-on-scroll">
-                    <Form />
+                    <FormWebsite />
                 </div>
             </div>
         </div>

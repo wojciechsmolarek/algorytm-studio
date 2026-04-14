@@ -1,0 +1,139 @@
+---
+interface Props {
+    action?: string;
+    method?: "GET" | "POST";
+}
+
+const { action = "#", method = "POST" } = Astro.props;
+
+const projectTypes = [
+    "Strona firmowa",
+    "Sklep internetowy",
+    "Landing page",
+    "Redesign istniejącej strony",
+    "Nie wiem jeszcze",
+];
+
+const budgets = [
+    "do 5 000 zł",
+    "5 000 – 10 000 zł",
+    "10 000 – 20 000 zł",
+    "powyżej 20 000 zł",
+    "Nie wiem jeszcze",
+];
+
+const timelines = [
+    "Jak najszybciej (do 4 tygodni)",
+    "1–2 miesiące",
+    "2–4 miesiące",
+    "Bez konkretnego terminu",
+];
+---
+
+<form action={action} method={method} class="space-y-6">
+    <div>
+        <label for="w-name" class="block text-xs uppercase tracking-widest text-current/50 mb-2">
+            Imię i Nazwisko
+        </label>
+        <input
+            type="text"
+            name="name"
+            id="w-name"
+            autocomplete="name"
+            required
+            class="w-full bg-transparent border-b border-current/20 focus:border-current outline-none py-2 transition-colors placeholder:text-current/20 text-current"
+            placeholder="Jan Kowalski"
+        />
+    </div>
+    <div>
+        <label for="w-email" class="block text-xs uppercase tracking-widest text-current/50 mb-2">
+            Email firmowy
+        </label>
+        <input
+            type="email"
+            name="email"
+            id="w-email"
+            autocomplete="email"
+            required
+            class="w-full bg-transparent border-b border-current/20 focus:border-current outline-none py-2 transition-colors placeholder:text-current/20 text-current"
+            placeholder="jan@firma.pl"
+        />
+    </div>
+    <div>
+        <label for="w-project-type" class="block text-xs uppercase tracking-widest text-current/50 mb-2">
+            Rodzaj projektu
+        </label>
+        <select
+            name="project_type"
+            id="w-project-type"
+            class="w-full bg-transparent border-b border-current/20 focus:border-current outline-none py-2 transition-colors text-current appearance-none cursor-pointer"
+        >
+            <option value="" disabled selected class="bg-background text-foreground">Wybierz rodzaj projektu</option>
+            {projectTypes.map((t) => (
+                <option value={t} class="bg-background text-foreground">{t}</option>
+            ))}
+        </select>
+    </div>
+    <div>
+        <label for="w-url" class="block text-xs uppercase tracking-widest text-current/50 mb-2">
+            Adres obecnej strony <span class="normal-case">(jeśli masz)</span>
+        </label>
+        <input
+            type="url"
+            name="url"
+            id="w-url"
+            class="w-full bg-transparent border-b border-current/20 focus:border-current outline-none py-2 transition-colors placeholder:text-current/20 text-current"
+            placeholder="https://twojafirma.pl"
+        />
+    </div>
+    <div>
+        <label for="w-budget" class="block text-xs uppercase tracking-widest text-current/50 mb-2">
+            Budżet na projekt
+        </label>
+        <select
+            name="budget"
+            id="w-budget"
+            class="w-full bg-transparent border-b border-current/20 focus:border-current outline-none py-2 transition-colors text-current appearance-none cursor-pointer"
+        >
+            <option value="" disabled selected class="bg-background text-foreground">Wybierz przedział</option>
+            {budgets.map((b) => (
+                <option value={b} class="bg-background text-foreground">{b}</option>
+            ))}
+        </select>
+    </div>
+    <div>
+        <label for="w-timeline" class="block text-xs uppercase tracking-widest text-current/50 mb-2">
+            Preferowany termin realizacji
+        </label>
+        <select
+            name="timeline"
+            id="w-timeline"
+            class="w-full bg-transparent border-b border-current/20 focus:border-current outline-none py-2 transition-colors text-current appearance-none cursor-pointer"
+        >
+            <option value="" disabled selected class="bg-background text-foreground">Wybierz termin</option>
+            {timelines.map((t) => (
+                <option value={t} class="bg-background text-foreground">{t}</option>
+            ))}
+        </select>
+    </div>
+    <div>
+        <label for="w-message" class="block text-xs uppercase tracking-widest text-current/50 mb-2">
+            Opisz projekt
+        </label>
+        <textarea
+            name="message"
+            id="w-message"
+            rows="4"
+            class="w-full bg-transparent border border-current/20 focus:border-current outline-none p-3 transition-colors placeholder:text-current/20 text-current resize-none"
+            placeholder="Czym zajmuje się Twoja firma, co ma robić strona, kto jest odbiorcą, co Ci się podoba w stronach konkurencji..."
+        ></textarea>
+    </div>
+    <div>
+        <button
+            type="submit"
+            class="bg-background text-foreground px-8 py-3 rounded-full font-medium hover:bg-background/80 transition w-full md:w-auto"
+        >
+            Wyślij zapytanie
+        </button>
+    </div>
+</form>
