@@ -1,13 +1,13 @@
 import ogImage from "../assets/og-image.png";
 
 export const siteConfig = {
-  name: "B2B Collective",
+  name: "Studio Algorytm",
   description: "Kolektyw 3 ekspertów B2B: SEO, Web Development, Strategia. Wspólnie budujemy widoczność Twojej firmy.",
   url: "https://b2bcollective.pl",
   lang: "pl",
   locale: "pl_PL",
-  author: "B2B Collective",
-  email: "[EMAIL_ADDRESS]",
+  author: "Studio Algorytm",
+  email: "jakub@algorytm.studio",
   tel: "+48 123 456 789",
   twitter: "@b2bcollective",
   ogImage: ogImage,
@@ -18,7 +18,7 @@ export const siteConfig = {
     linkedin: "https://linkedin.com",
   },
   navLinks: [
-    { text: "O nas", href: "/o-nas" },
+    // { text: "O nas", href: "/o-nas" },
     {
       text: "Oferta",
       href: "/oferta",
@@ -31,7 +31,7 @@ export const siteConfig = {
         { text: "Automatyzacje AI", href: "/oferta/automatyzacje-ai" },
       ],
     },
-    { text: "Baza Wiedzy", href: "/blog" },
+    // { text: "Baza Wiedzy", href: "/blog" },
     { text: "Kontakt", href: "/kontakt" },
   ],
 };
