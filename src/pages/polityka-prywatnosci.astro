@@ -1,0 +1,169 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { siteConfig } from "../config/site";
+
+const metadata = {
+    title: "Polityka Prywatności",
+    description: "Polityka prywatności i ochrony danych osobowych Studio Algorytm zgodna z RODO.",
+};
+---
+
+<BaseLayout {metadata}>
+    <article class="pt-40 pb-32 px-6 md:px-12 lg:px-24 text-foreground">
+        <div class="max-w-4xl mx-auto">
+            <span class="text-sm uppercase tracking-widest text-foreground/60 mb-4 block">Polityka Prywatności</span>
+            <h1 class="font-serif text-5xl md:text-7xl leading-tight mb-8 text-foreground">
+                Polityka Prywatności
+            </h1>
+
+            <p class="text-foreground/70 text-lg mb-12">
+                Ostatnia aktualizacja: {new Date().toLocaleDateString('pl-PL')}
+            </p>
+
+            <section class="mb-12">
+                <h2 class="font-serif text-3xl mb-6 text-foreground">1. Administrator danych osobowych</h2>
+                <p class="text-foreground/80 leading-relaxed mb-4">
+                    Administratorem Twoich danych osobowych jest <strong class="text-foreground">{siteConfig.name}</strong>, z siedzibą w Bydgoszczy, Polska.
+                </p>
+                <p class="text-foreground/80 leading-relaxed">
+                    Kontakt z administratorem:<br/>
+                    Email: <a href={`mailto:${siteConfig.email}`} class="text-foreground underline hover:opacity-80 transition">{siteConfig.email}</a><br/>
+                    Telefon: {siteConfig.tel}
+                </p>
+            </section>
+
+            <section class="mb-12">
+                <h2 class="font-serif text-3xl mb-6 text-foreground">2. Jakie dane zbieramy i w jakim celu</h2>
+
+                <h3 class="font-serif text-2xl mb-4 mt-8 text-foreground">Formularze kontaktowe</h3>
+                <p class="text-foreground/80 leading-relaxed mb-4">
+                    Gdy wypełniasz formularz kontaktowy na naszej stronie, zbieramy:
+                </p>
+                <ul class="text-foreground/80 leading-relaxed mb-4 list-disc list-inside space-y-2">
+                    <li>Imię i nazwisko</li>
+                    <li>Adres email firmowy</li>
+                    <li>Numer telefonu (jeśli podany)</li>
+                    <li>Adres strony internetowej (jeśli podany)</li>
+                    <li>Treść wiadomości i dodatkowe informacje podane w formularzu</li>
+                </ul>
+                <p class="text-foreground/80 leading-relaxed mb-4">
+                    <strong class="text-foreground">Cel przetwarzania:</strong> Odpowiedź na Twoje zapytanie, przeprowadzenie konsultacji, przygotowanie oferty i obsługa potencjalnej współpracy biznesowej.
+                </p>
+                <p class="text-foreground/80 leading-relaxed">
+                    <strong class="text-foreground">Podstawa prawna:</strong> Art. 6 ust. 1 lit. a RODO (zgoda) oraz art. 6 ust. 1 lit. f RODO (prawnie uzasadniony interes administratora polegający na prowadzeniu działalności gospodarczej i obsłudze zapytań).
+                </p>
+
+                <h3 class="font-serif text-2xl mb-4 mt-8 text-foreground">Dane analityczne i techniczne</h3>
+                <p class="text-foreground/80 leading-relaxed mb-4">
+                    Nasza strona wykorzystuje narzędzia analityczne (Vercel Analytics), które zbierają anonimowe dane o ruchu na stronie w celu poprawy jakości usług.
+                </p>
+                <p class="text-foreground/80 leading-relaxed">
+                    <strong class="text-foreground">Cel przetwarzania:</strong> Analiza ruchu na stronie, optymalizacja wydajności i poprawa doświadczenia użytkowników.
+                </p>
+            </section>
+
+            <section class="mb-12">
+                <h2 class="font-serif text-3xl mb-6 text-foreground">3. Odbiorcy danych</h2>
+                <p class="text-foreground/80 leading-relaxed mb-4">
+                    Twoje dane osobowe mogą być udostępniane następującym odbiorcom:
+                </p>
+                <ul class="text-foreground/80 leading-relaxed mb-4 list-disc list-inside space-y-2">
+                    <li><strong class="text-foreground">Web3Forms</strong> – dostawca usługi obsługi formularzy kontaktowych</li>
+                    <li><strong class="text-foreground">Vercel</strong> – dostawca usług hostingowych i analitycznych</li>
+                    <li>Dostawcy usług IT wspierających infrastrukturę strony</li>
+                </ul>
+                <p class="text-foreground/80 leading-relaxed">
+                    Wszyscy nasi partnerzy działają wyłącznie na podstawie zawartych umów powierzenia przetwarzania danych zgodnych z RODO.
+                </p>
+            </section>
+
+            <section class="mb-12">
+                <h2 class="font-serif text-3xl mb-6 text-foreground">4. Okres przechowywania danych</h2>
+                <p class="text-foreground/80 leading-relaxed mb-4">
+                    Twoje dane osobowe będą przechowywane:
+                </p>
+                <ul class="text-foreground/80 leading-relaxed mb-4 list-disc list-inside space-y-2">
+                    <li>Dane z formularzy kontaktowych – przez okres niezbędny do realizacji zapytania oraz przez 3 lata od ostatniej korespondencji (dla celów archiwizacyjnych i ewentualnych roszczeń)</li>
+                    <li>Dane analityczne – przez okres 24 miesięcy</li>
+                </ul>
+            </section>
+
+            <section class="mb-12">
+                <h2 class="font-serif text-3xl mb-6 text-foreground">5. Twoje prawa</h2>
+                <p class="text-foreground/80 leading-relaxed mb-4">
+                    Zgodnie z RODO masz prawo do:
+                </p>
+                <ul class="text-foreground/80 leading-relaxed mb-4 list-disc list-inside space-y-2">
+                    <li><strong class="text-foreground">Dostępu do danych</strong> – możesz uzyskać informację o tym, jakie dane przetwarzamy</li>
+                    <li><strong class="text-foreground">Sprostowania danych</strong> – możesz poprawić nieprawidłowe lub niekompletne dane</li>
+                    <li><strong class="text-foreground">Usunięcia danych</strong> – możesz zażądać usunięcia Twoich danych ("prawo do bycia zapomnianym")</li>
+                    <li><strong class="text-foreground">Ograniczenia przetwarzania</strong> – możesz zażądać ograniczenia przetwarzania w określonych przypadkach</li>
+                    <li><strong class="text-foreground">Przenoszenia danych</strong> – możesz otrzymać dane w ustrukturyzowanym formacie</li>
+                    <li><strong class="text-foreground">Sprzeciwu wobec przetwarzania</strong> – możesz wnieść sprzeciw wobec przetwarzania Twoich danych</li>
+                    <li><strong class="text-foreground">Cofnięcia zgody</strong> – w każdej chwili możesz wycofać zgodę na przetwarzanie danych</li>
+                </ul>
+                <p class="text-foreground/80 leading-relaxed mb-4">
+                    Aby skorzystać z tych praw, skontaktuj się z nami przez email: <a href={`mailto:${siteConfig.email}`} class="text-foreground underline hover:opacity-80 transition">{siteConfig.email}</a>
+                </p>
+                <p class="text-foreground/80 leading-relaxed">
+                    Masz również prawo wniesienia skargi do organu nadzorczego – Prezesa Urzędu Ochrony Danych Osobowych (PUODO).
+                </p>
+            </section>
+
+            <section class="mb-12">
+                <h2 class="font-serif text-3xl mb-6 text-foreground">6. Pliki cookies</h2>
+                <p class="text-foreground/80 leading-relaxed mb-4">
+                    Nasza strona wykorzystuje pliki cookies (ciasteczka) w celach:
+                </p>
+                <ul class="text-foreground/80 leading-relaxed mb-4 list-disc list-inside space-y-2">
+                    <li>Zapewnienia prawidłowego działania strony</li>
+                    <li>Analizy ruchu i statystyk odwiedzin (cookies analityczne)</li>
+                    <li>Poprawy wydajności strony</li>
+                </ul>
+                <p class="text-foreground/80 leading-relaxed mb-4">
+                    Możesz w każdej chwili zmienić ustawienia cookies w swojej przeglądarce. Wyłączenie cookies może wpłynąć na funkcjonalność strony.
+                </p>
+            </section>
+
+            <section class="mb-12">
+                <h2 class="font-serif text-3xl mb-6 text-foreground">7. Bezpieczeństwo danych</h2>
+                <p class="text-foreground/80 leading-relaxed mb-4">
+                    Stosujemy odpowiednie środki techniczne i organizacyjne zapewniające bezpieczeństwo przetwarzanych danych osobowych, w tym:
+                </p>
+                <ul class="text-foreground/80 leading-relaxed mb-4 list-disc list-inside space-y-2">
+                    <li>Szyfrowanie połączenia SSL/TLS</li>
+                    <li>Bezpieczne przechowywanie danych u zaufanych dostawców</li>
+                    <li>Ograniczenie dostępu do danych wyłącznie dla upoważnionych osób</li>
+                    <li>Regularne aktualizacje systemów bezpieczeństwa</li>
+                </ul>
+            </section>
+
+            <section class="mb-12">
+                <h2 class="font-serif text-3xl mb-6 text-foreground">8. Zmiany w polityce prywatności</h2>
+                <p class="text-foreground/80 leading-relaxed mb-4">
+                    Zastrzegamy sobie prawo do aktualizacji niniejszej polityki prywatności. O wszelkich zmianach poinformujemy poprzez umieszczenie nowej wersji na tej stronie z zaktualizowaną datą.
+                </p>
+            </section>
+
+            <section class="mb-12">
+                <h2 class="font-serif text-3xl mb-6 text-foreground">9. Kontakt w sprawie danych osobowych</h2>
+                <p class="text-foreground/80 leading-relaxed mb-4">
+                    W przypadku pytań dotyczących przetwarzania danych osobowych lub realizacji swoich praw, skontaktuj się z nami:
+                </p>
+                <div class="bg-foreground/5 border border-foreground/10 p-6 rounded-lg">
+                    <p class="mb-2 text-foreground"><strong>{siteConfig.name}</strong></p>
+                    <p class="text-foreground/80 mb-1">Email: <a href={`mailto:${siteConfig.email}`} class="text-foreground underline hover:opacity-80 transition">{siteConfig.email}</a></p>
+                    <p class="text-foreground/80">Telefon: {siteConfig.tel}</p>
+                </div>
+            </section>
+
+            <div class="mt-16 pt-8 border-t border-foreground/10">
+                <a href="/" class="inline-flex items-center text-foreground/70 hover:text-foreground transition">
+                    <span aria-hidden="true">&larr;</span>
+                    <span class="ml-2">Powrót do strony głównej</span>
+                </a>
+            </div>
+        </div>
+    </article>
+</BaseLayout>
+
