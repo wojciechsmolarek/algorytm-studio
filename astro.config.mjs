@@ -5,7 +5,7 @@ import icon from "astro-icon";
 import remarkReadingTime from "remark-reading-time";
 
 export default defineConfig({
-  site: "https://b2bcollective.pl/",
+  site: "https://algorytm.studio/",
   image: {
     service: {
       entrypoint: "astro/assets/services/noop",

@@ -3,13 +3,12 @@ import ogImage from "../assets/og-image.png";
 export const siteConfig = {
   name: "Studio Algorytm",
   description: "Kolektyw 3 ekspertów B2B: SEO, Web Development, Strategia. Wspólnie budujemy widoczność Twojej firmy.",
-  url: "https://b2bcollective.pl",
+  url: "https://algorytm.studio/",
   lang: "pl",
   locale: "pl_PL",
   author: "Studio Algorytm",
-  email: "jakub@algorytm.studio",
-  tel: "+48 123 456 789",
-  twitter: "@b2bcollective",
+  email: "kontakt@algorytm.studio",
+  tel: "+48 697 225 901",
   ogImage: ogImage,
   socialLinks: {
     twitter: "https://twitter.com",
