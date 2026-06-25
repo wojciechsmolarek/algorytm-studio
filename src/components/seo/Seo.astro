@@ -31,7 +31,9 @@ const canonicalURL =
 <!-- Global Metadata -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="icon" type="image/svg+xml" href="/images/logo/logo-mark.svg" />
+<link rel="icon" type="image/x-icon" href="/images/logo/favicon.ico" sizes="any" />
+<link rel="apple-touch-icon" href="/images/logo/apple-touch-icon-180x180.png" />
 <link rel="canonical" href={canonicalURL} />
 <meta name="generator" content={Astro.generator} />
 
@@ -56,7 +58,7 @@ const canonicalURL =
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={new URL(ogImageSrc, siteConfig.url)} />
 {
-    siteConfig.twitter && (
-        <meta name="twitter:creator" content={siteConfig.twitter} />
+    siteConfig.socialLinks.twitter && (
+        <meta name="twitter:creator" content={siteConfig.socialLinks.twitter} />
     )
 }

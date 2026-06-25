@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 320" width="320" height="320">
+  <title>Studio Algorytm — znak logo</title>
+  <desc>Litera A złożona z trzech niezależnych bloków o narastającej intensywności zieleni, z negatywną przestrzenią tworzącą poprzeczkę litery.</desc>
+  <g>
+    <polygon points="95,270 142,55 165,55 130,270" fill="#085041"/>
+    <polygon points="181,55 204,55 204,270 181,270" fill="#0F6E56"/>
+    <polygon points="220,55 243,55 277,270 243,270" fill="#1D9E75"/>
+    <rect x="150" y="208" width="78" height="13" fill="#FAFAF8"/>
+  </g>
+</svg>
