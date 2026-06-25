@@ -47,7 +47,7 @@ const { expert } = Astro.props;
 		<div class="mb-14 reveal-on-scroll">
 			<span class="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm uppercase tracking-widest font-medium mb-6">O mnie</span>
 			<h2 class="font-serif text-3xl md:text-4xl mb-4 text-balance max-w-3xl">
-				Poznaj <span class="text-primary">{expert.name.split(" ")[0]}</span>
+				Poznaj <span class="text-primary">{expert.name.split(" ")[0]}a</span>
 			</h2>
 		</div>
 		<div class="bg-card rounded-3xl p-8 md:p-12 border border-border reveal-on-scroll">
@@ -164,17 +164,17 @@ const { expert } = Astro.props;
 	<div class="max-w-6xl mx-auto">
 		<div class="bg-primary rounded-3xl p-8 md:p-12 lg:p-16 text-white text-center reveal-on-scroll">
 			<h2 class="font-serif text-3xl md:text-5xl mb-6 text-balance max-w-3xl mx-auto">
-				Porozmawiajmy z {expert.name.split(" ")[0]}em
+				Porozmawiaj z {expert.name.split(" ")[0]}em
 			</h2>
 			<p class="text-white/80 text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
-				Masz pytania w obszarze {expert.role.toLowerCase()}? Napisz bezpośrednio — odpowiemy w ciągu 24h w dni robocze.
+				Masz pytania w danej dziedzinie? Napisz bezpośrednio — odpowiemy w ciągu 24h w dni robocze.
 			</p>
 			<div class="flex flex-col sm:flex-row items-center justify-center gap-4">
 				<a
 					href={`mailto:${expert.email}`}
 					class="inline-block bg-white text-primary px-8 py-4 rounded-full font-medium hover:scale-105 transition-transform shadow-lg"
 				>
-					Napisz do {expert.name.split(" ")[0]}
+					Napisz do {expert.name.split(" ")[0]}a
 				</a>
 				<a
 					href="/kontakt"
