@@ -1,0 +1,37 @@
+---
+interface Props {
+	tagline: string;
+	title: string;
+	description: string;
+	buttonText: string;
+	buttonHref: string;
+	benefits?: string[];
+}
+
+const { tagline, title, description, buttonText, buttonHref, benefits } = Astro.props;
+---
+
+<section class="py-20 px-6 md:px-12 lg:px-24 bg-muted">
+	<div class="max-w-6xl mx-auto">
+		<div class="bg-primary rounded-3xl p-8 md:p-12 lg:p-16 text-white reveal-on-scroll">
+			<div class="max-w-3xl">
+				<span class="inline-block bg-white/10 px-4 py-2 rounded-full text-sm uppercase tracking-widest font-medium mb-6">{tagline}</span>
+				<h2 class="font-serif text-3xl md:text-5xl mb-6 text-balance">{title}</h2>
+				<p class="text-white/80 text-lg leading-relaxed mb-8">{description}</p>
+				{benefits && (
+					<ul class="space-y-3 text-white/80 mb-10">
+						{benefits.map((benefit) => (
+							<li class="flex items-center gap-3">
+								<span class="w-1.5 h-1.5 rounded-full bg-accent shrink-0"></span>
+								{benefit}
+							</li>
+						))}
+					</ul>
+				)}
+				<a class="inline-block bg-white text-primary px-8 py-4 rounded-full font-medium hover:scale-105 transition-transform shadow-lg" href={buttonHref}>
+					{buttonText}
+				</a>
+			</div>
+		</div>
+	</div>
+</section>

@@ -110,41 +110,38 @@ const faqs = [
 
 <BaseLayout {metadata}>
     <!-- Hero -->
-    <section class="relative pt-40 pb-24 px-6 md:px-12 lg:px-24 border-b border-border">
-        <div class="max-w-5xl mx-auto">
+    <section class="pt-36 pb-20 px-6 md:px-12 lg:px-24 bg-muted">
+        <div class="max-w-6xl mx-auto">
             <div class="reveal-on-scroll">
-                <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">Oferta</span>
-                <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl leading-[1.1] mb-8 text-balance">
-                    SEO <span class="italic text-muted-foreground">Techniczne</span>
+                <span class="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm uppercase tracking-widest font-medium mb-6">Oferta</span>
+                <h1 class="font-serif text-4xl md:text-6xl leading-tight mb-6 text-balance max-w-3xl">
+                    SEO <span class="text-primary">Techniczne</span>
                 </h1>
-                <div class="flex items-start gap-4">
-                    <div class="w-16 h-px bg-foreground shrink-0 mt-4"></div>
-                    <div>
-                        <p class="text-xl max-w-2xl leading-relaxed mb-6">
-                            Google może nie widzieć połowy Twojej strony — i Ty możesz o tym nie wiedzieć.
-                        </p>
-                        <p class="text-lg max-w-xl text-muted-foreground leading-relaxed">
-                            Audytujemy fundamenty techniczne, które decydują o tym czy Twoje treści w ogóle trafiają do indeksu. Bez sprawnej techniki każda złotówka wydana na content i linki jest częściowo zmarnowana.
-                        </p>
-                    </div>
+                <div class="max-w-2xl">
+                    <p class="text-xl leading-relaxed mb-4">
+                        Google może nie widzieć połowy Twojej strony — i Ty możesz o tym nie wiedzieć.
+                    </p>
+                    <p class="text-muted-foreground leading-relaxed">
+                        Audytujemy fundamenty techniczne, które decydują o tym czy Twoje treści w ogóle trafiają do indeksu. Bez sprawnej techniki każda złotówka wydana na content i linki jest częściowo zmarnowana.
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Pain Points -->
-    <section class="py-32 px-6 md:px-12 lg:px-24 bg-muted">
-        <div class="max-w-7xl mx-auto">
-            <div class="mb-16 reveal-on-scroll">
-                <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">Rozpoznajesz to?</span>
-                <h2 class="font-serif text-4xl md:text-6xl leading-tight text-balance">
-                    Objawy, które widzimy <span class="italic text-muted-foreground">najczęściej</span>
+    <section class="py-20 px-6 md:px-12 lg:px-24 bg-muted">
+        <div class="max-w-6xl mx-auto">
+            <div class="mb-14 reveal-on-scroll">
+                <span class="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm uppercase tracking-widest font-medium mb-6">Rozpoznajesz to?</span>
+                <h2 class="font-serif text-3xl md:text-4xl mb-4 text-balance max-w-3xl">
+                    Objawy, które widzimy <span class="text-primary">najczęściej</span>
                 </h2>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {painPoints.map((item) => (
-                    <div class="border-t border-border pt-6 reveal-on-scroll">
-                        <p class="text-lg font-bold mb-3">{item.symptom}</p>
+                    <div class="bg-card rounded-3xl p-8 border border-border reveal-on-scroll">
+                        <p class="text-lg font-medium text-foreground mb-3">{item.symptom}</p>
                         <p class="text-muted-foreground leading-relaxed text-sm">{item.cause}</p>
                     </div>
                 ))}
@@ -153,22 +150,22 @@ const faqs = [
     </section>
 
     <!-- Deliverables / Process -->
-    <section class="py-32 px-6 md:px-12 lg:px-24">
-        <div class="max-w-7xl mx-auto">
-            <div class="mb-20 reveal-on-scroll">
-                <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">Proces</span>
-                <h2 class="font-serif text-4xl md:text-6xl text-balance">
-                    Co dostajesz <span class="italic text-muted-foreground">i kiedy?</span>
+    <section class="py-20 px-6 md:px-12 lg:px-24">
+        <div class="max-w-6xl mx-auto">
+            <div class="mb-14 reveal-on-scroll">
+                <span class="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm uppercase tracking-widest font-medium mb-6">Proces</span>
+                <h2 class="font-serif text-3xl md:text-4xl mb-4 text-balance max-w-3xl">
+                    Co dostajesz <span class="text-primary">i kiedy?</span>
                 </h2>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {deliverables.map((step) => (
-                    <div class="reveal-on-scroll">
-                        <div class="flex items-center justify-between mb-6">
-                            <span class="text-6xl font-serif text-border">{step.num}</span>
-                            <span class="text-xs uppercase tracking-widest text-muted-foreground border border-border px-3 py-1">{step.time}</span>
+                    <div class="bg-card rounded-3xl p-8 border border-border reveal-on-scroll">
+                        <div class="flex items-center justify-between mb-5">
+                            <span class="text-4xl font-serif text-muted-foreground/40">{step.num}</span>
+                            <span class="text-xs uppercase tracking-widest text-primary bg-primary/10 px-3 py-1 rounded-full">{step.time}</span>
                         </div>
-                        <h3 class="text-xl font-bold mb-4">{step.title}</h3>
+                        <h3 class="text-xl font-medium mb-3">{step.title}</h3>
                         <p class="text-muted-foreground leading-relaxed text-sm">{step.description}</p>
                     </div>
                 ))}
@@ -177,18 +174,18 @@ const faqs = [
     </section>
 
     <!-- Features Grid -->
-    <section class="py-32 px-6 md:px-12 lg:px-24 bg-muted">
-        <div class="max-w-7xl mx-auto">
-            <div class="mb-20 reveal-on-scroll">
-                <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">Zakres</span>
-                <h2 class="font-serif text-4xl md:text-6xl leading-tight text-balance">
-                    Co obejmuje <span class="italic text-muted-foreground">audyt techniczny?</span>
+    <section class="py-20 px-6 md:px-12 lg:px-24 bg-muted">
+        <div class="max-w-6xl mx-auto">
+            <div class="mb-14 reveal-on-scroll">
+                <span class="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm uppercase tracking-widest font-medium mb-6">Zakres</span>
+                <h2 class="font-serif text-3xl md:text-4xl mb-4 text-balance max-w-3xl">
+                    Co obejmuje <span class="text-primary">audyt techniczny?</span>
                 </h2>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {features.map((feature) => (
-                    <article class="group border-t border-border pt-6 reveal-on-scroll">
-                        <h3 class="text-xl font-bold mb-3">{feature.title}</h3>
+                    <article class="bg-card rounded-3xl p-8 border border-border reveal-on-scroll hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+                        <h3 class="text-xl font-medium mb-3">{feature.title}</h3>
                         <p class="text-muted-foreground text-sm leading-relaxed">{feature.description}</p>
                     </article>
                 ))}
@@ -197,32 +194,32 @@ const faqs = [
     </section>
 
     <!-- Social Proof placeholder -->
-    <section class="py-32 px-6 md:px-12 lg:px-24">
-        <div class="max-w-7xl mx-auto">
-            <div class="mb-16 reveal-on-scroll">
-                <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">Efekty</span>
-                <h2 class="font-serif text-4xl md:text-6xl text-balance">
-                    Liczby, <span class="italic text-muted-foreground">które mówią same za siebie</span>
+    <section class="py-20 px-6 md:px-12 lg:px-24">
+        <div class="max-w-6xl mx-auto">
+            <div class="mb-14 reveal-on-scroll">
+                <span class="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm uppercase tracking-widest font-medium mb-6">Efekty</span>
+                <h2 class="font-serif text-3xl md:text-4xl mb-4 text-balance max-w-3xl">
+                    Liczby, <span class="text-primary">które mówią same za siebie</span>
                 </h2>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-20">
-                <div class="border-t border-border pt-8 reveal-on-scroll">
-                    <p class="font-serif text-6xl md:text-7xl mb-4">+187%</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+                <div class="bg-card rounded-3xl p-8 border border-border reveal-on-scroll">
+                    <p class="font-serif text-5xl md:text-6xl text-primary mb-3">+187%</p>
                     <p class="text-muted-foreground text-sm leading-relaxed">wzrost widoczności organicznej w 4 miesiące po audycie dla sklepu B2B z branży przemysłowej</p>
                 </div>
-                <div class="border-t border-border pt-8 reveal-on-scroll">
-                    <p class="font-serif text-6xl md:text-7xl mb-4">12 dni</p>
+                <div class="bg-card rounded-3xl p-8 border border-border reveal-on-scroll">
+                    <p class="font-serif text-5xl md:text-6xl text-primary mb-3">12 dni</p>
                     <p class="text-muted-foreground text-sm leading-relaxed">średni czas realizacji pełnego audytu technicznego z priorytetyzowaną listą zadań</p>
                 </div>
-                <div class="border-t border-border pt-8 reveal-on-scroll">
-                    <p class="font-serif text-6xl md:text-7xl mb-4">40+</p>
+                <div class="bg-card rounded-3xl p-8 border border-border reveal-on-scroll">
+                    <p class="font-serif text-5xl md:text-6xl text-primary mb-3">40+</p>
                     <p class="text-muted-foreground text-sm leading-relaxed">przeprowadzonych audytów dla firm produkcyjnych, dystrybutorów i sklepów e-commerce</p>
                 </div>
             </div>
 
             <!-- Testimonial -->
-            <blockquote class="border-l-2 border-foreground pl-8 max-w-3xl reveal-on-scroll">
-                <p class="text-xl md:text-2xl font-serif leading-relaxed mb-6">
+            <blockquote class="bg-card rounded-3xl p-8 md:p-10 border border-border max-w-3xl reveal-on-scroll">
+                <p class="text-xl md:text-2xl font-serif leading-relaxed mb-6 text-balance">
                     "Po audycie okazało się, że Google indeksowało tylko 30% naszego katalogu produktów. W ciągu 3 miesięcy od wdrożenia zmian ruch organiczny wzrósł o ponad 150%."
                 </p>
                 <footer class="text-sm text-muted-foreground">
@@ -233,56 +230,55 @@ const faqs = [
     </section>
 
     <!-- FAQ -->
-    <section class="py-32 px-6 md:px-12 lg:px-24 bg-muted">
-        <div class="max-w-5xl mx-auto">
-            <div class="mb-16 reveal-on-scroll">
-                <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">FAQ</span>
-                <h2 class="font-serif text-4xl md:text-6xl text-balance">
-                    Pytania, które <span class="italic text-muted-foreground">słyszymy najczęściej</span>
+    <section class="py-20 px-6 md:px-12 lg:px-24 bg-muted">
+        <div class="max-w-6xl mx-auto">
+            <div class="mb-14 reveal-on-scroll">
+                <span class="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm uppercase tracking-widest font-medium mb-6">FAQ</span>
+                <h2 class="font-serif text-3xl md:text-4xl mb-4 text-balance max-w-3xl">
+                    Pytania, które <span class="text-primary">słyszymy najczęściej</span>
                 </h2>
             </div>
-            <div class="space-y-0">
+            <div class="space-y-4">
                 {faqs.map((faq) => (
-                    <div class="border-t border-border py-8 reveal-on-scroll">
-                        <h3 class="text-lg font-bold mb-4">{faq.question}</h3>
+                    <div class="bg-card rounded-2xl p-6 border border-border reveal-on-scroll">
+                        <h3 class="text-lg font-medium text-foreground mb-3">{faq.question}</h3>
                         <p class="text-muted-foreground leading-relaxed">{faq.answer}</p>
                     </div>
                 ))}
-                <div class="border-t border-border"></div>
             </div>
         </div>
     </section>
 
     <!-- CTA with inline form -->
-    <section class="py-32 px-6 md:px-12 lg:px-24">
-        <div class="max-w-7xl mx-auto">
-            <div class="items-start">
-                <div class="reveal-on-scroll">
-                    <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">Bezpłatna konsultacja</span>
-                    <h2 class="font-serif text-4xl md:text-6xl lg:text-7xl mb-8 text-balance">
+    <section class="py-20 px-6 md:px-12 lg:px-24 bg-muted">
+        <div class="max-w-6xl mx-auto">
+            <div class="bg-primary rounded-3xl p-8 md:p-12 lg:p-16 text-white reveal-on-scroll">
+                <div class="max-w-3xl">
+                    <span class="inline-block bg-white/10 px-4 py-2 rounded-full text-sm uppercase tracking-widest font-medium mb-6">Bezpłatna konsultacja</span>
+                    <h2 class="font-serif text-3xl md:text-5xl mb-6 text-balance">
                         Sprawdźmy czy Google widzi Twoją stronę w całości.
                     </h2>
-                    <p class="text-lg text-muted-foreground leading-relaxed mb-8">
+                    <p class="text-white/80 text-lg leading-relaxed mb-8">
                         Napisz do nas, a w ciągu 24 godzin odezwiemy się z wstępną oceną Twojej strony. Bez zobowiązań — tylko konkretna informacja co blokuje Twój wzrost organiczny.
                     </p>
-                    <ul class="space-y-3 text-muted-foreground text-sm">
+                    <ul class="space-y-3 text-white/80 mb-10">
                         <li class="flex items-center gap-3">
-                            <span class="w-1.5 h-1.5 rounded-full bg-foreground shrink-0"></span>
+                            <span class="w-1.5 h-1.5 rounded-full bg-accent shrink-0"></span>
                             Odpowiedź w 24h w dni robocze
                         </li>
                         <li class="flex items-center gap-3">
-                            <span class="w-1.5 h-1.5 rounded-full bg-foreground shrink-0"></span>
+                            <span class="w-1.5 h-1.5 rounded-full bg-accent shrink-0"></span>
                             Wstępna analiza bez kosztów
                         </li>
                         <li class="flex items-center gap-3">
-                            <span class="w-1.5 h-1.5 rounded-full bg-foreground shrink-0"></span>
+                            <span class="w-1.5 h-1.5 rounded-full bg-accent shrink-0"></span>
                             Bez automatycznych maili i cold-callingów
                         </li>
                     </ul>
+                    <a class="inline-block bg-white text-primary px-8 py-4 rounded-full font-medium hover:scale-105 transition-transform shadow-lg" href="/kontakt">
+                        Napisz do nas
+                    </a>
                 </div>
-                <!-- <div class="bg-card border border-border p-8 md:p-12 rounded-lg reveal-on-scroll">
-                    <Form />
-                </div> -->
             </div>
         </div>
     </section>

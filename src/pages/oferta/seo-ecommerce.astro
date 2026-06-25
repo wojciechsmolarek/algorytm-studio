@@ -217,12 +217,12 @@ const platforms = [
 
 <BaseLayout {metadata}>
     <!-- Hero -->
-    <section class="relative pt-40 pb-24 px-6 md:px-12 lg:px-24 border-b border-border">
-        <div class="max-w-5xl mx-auto">
+    <section class="pt-36 pb-20 px-6 md:px-12 lg:px-24 bg-muted">
+        <div class="max-w-6xl mx-auto">
             <div class="reveal-on-scroll">
-                <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">Oferta</span>
-                <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl leading-[1.1] mb-8 text-balance">
-                    SEO dla <span class="italic text-muted-foreground">e-commerce</span>
+                <span class="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm uppercase tracking-widest font-medium mb-6">Oferta</span>
+                <h1 class="font-serif text-4xl md:text-6xl leading-tight mb-6 text-balance max-w-3xl">
+                    SEO dla <span class="text-primary">e-commerce</span>
                 </h1>
                 <div class="flex items-center gap-4">
                     <div class="w-16 h-px bg-foreground shrink-0"></div>
@@ -235,17 +235,17 @@ const platforms = [
     </section>
 
     <!-- Results -->
-    <section class="py-32 px-6 md:px-12 lg:px-24 border-b border-border">
-        <div class="max-w-7xl mx-auto">
-            <div class="mb-16 reveal-on-scroll">
-                <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">Wyniki</span>
-                <h2 class="font-serif text-4xl md:text-6xl leading-tight text-balance">
-                    Efekty, które <span class="italic text-muted-foreground">możesz zmierzyć</span>
+    <section class="py-20 px-6 md:px-12 lg:px-24">
+        <div class="max-w-6xl mx-auto">
+            <div class="mb-14 reveal-on-scroll">
+                <span class="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm uppercase tracking-widest font-medium mb-6">Wyniki</span>
+                <h2 class="font-serif text-3xl md:text-4xl mb-4 text-balance max-w-3xl">
+                    Efekty, które <span class="text-primary">możesz zmierzyć</span>
                 </h2>
             </div>
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 {results.map((item) => (
-                    <article class="border border-border p-8 reveal-on-scroll">
+                    <article class="bg-card rounded-3xl p-8 border border-border reveal-on-scroll hover:shadow-lg transition-all duration-300">
                         <div class="mb-6 pb-6 border-b border-border">
                             <p class="text-sm font-medium mb-1">{item.client}</p>
                             <p class="text-xs text-muted-foreground uppercase tracking-widest">{item.platform}</p>
@@ -253,7 +253,7 @@ const platforms = [
                         <div class="grid grid-cols-3 gap-4 mb-6">
                             {item.metrics.map((m) => (
                                 <div>
-                                    <p class="font-serif text-2xl font-bold mb-1">{m.value}</p>
+                                    <p class="font-serif text-2xl font-bold text-primary mb-1">{m.value}</p>
                                     <p class="text-xs text-muted-foreground leading-tight">{m.label}</p>
                                 </div>
                             ))}
@@ -266,18 +266,18 @@ const platforms = [
     </section>
 
     <!-- Challenges -->
-    <section class="py-32 px-6 md:px-12 lg:px-24 bg-muted">
-        <div class="max-w-7xl mx-auto">
-            <div class="mb-16 reveal-on-scroll">
-                <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">Wyzwania</span>
-                <h2 class="font-serif text-4xl md:text-6xl leading-tight text-balance">
-                    Specyfika SEO <span class="italic text-muted-foreground">w e-commerce</span>
+    <section class="py-20 px-6 md:px-12 lg:px-24 bg-muted">
+        <div class="max-w-6xl mx-auto">
+            <div class="mb-14 reveal-on-scroll">
+                <span class="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm uppercase tracking-widest font-medium mb-6">Wyzwania</span>
+                <h2 class="font-serif text-3xl md:text-4xl mb-4 text-balance max-w-3xl">
+                    Specyfika SEO <span class="text-primary">w e-commerce</span>
                 </h2>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {challenges.map((item) => (
-                    <div class="border-t border-border pt-6 reveal-on-scroll">
-                        <h3 class="text-xl font-bold mb-3">{item.title}</h3>
+                    <div class="bg-card rounded-3xl p-8 border border-border reveal-on-scroll hover:shadow-lg transition-all duration-300">
+                        <h3 class="text-xl font-medium mb-3">{item.title}</h3>
                         <p class="text-muted-foreground leading-relaxed">{item.description}</p>
                     </div>
                 ))}
@@ -286,24 +286,24 @@ const platforms = [
     </section>
 
     <!-- Scope -->
-    <section class="py-32 px-6 md:px-12 lg:px-24">
-        <div class="max-w-7xl mx-auto">
-            <div class="mb-20 reveal-on-scroll">
-                <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">Zakres</span>
-                <h2 class="font-serif text-4xl md:text-6xl leading-tight text-balance">
-                    Co robimy <span class="italic text-muted-foreground">dla Twojego sklepu?</span>
+    <section class="py-20 px-6 md:px-12 lg:px-24">
+        <div class="max-w-6xl mx-auto">
+            <div class="mb-14 reveal-on-scroll">
+                <span class="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm uppercase tracking-widest font-medium mb-6">Zakres</span>
+                <h2 class="font-serif text-3xl md:text-4xl mb-4 text-balance max-w-3xl">
+                    Co robimy <span class="text-primary">dla Twojego sklepu?</span>
                 </h2>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {scope.map((item) => (
-                    <article class="group border-t border-border pt-6 reveal-on-scroll">
-                        <span class="block text-4xl font-serif text-border mb-4 group-hover:text-foreground transition-colors duration-500">{item.num}</span>
-                        <h3 class="text-xl font-bold mb-3">{item.title}</h3>
+                    <article class="bg-card rounded-3xl p-8 border border-border reveal-on-scroll hover:shadow-lg transition-all duration-300">
+                        <span class="block text-4xl font-serif text-muted-foreground/40 mb-4">{item.num}</span>
+                        <h3 class="text-xl font-medium mb-3">{item.title}</h3>
                         <p class="text-muted-foreground text-sm leading-relaxed mb-5">{item.description}</p>
                         <ul class="space-y-2">
                             {item.details.map((detail) => (
-                                <li class="flex items-start gap-2 text-xs text-muted-foreground">
-                                    <span class="mt-1 w-3 h-px bg-muted-foreground shrink-0 inline-block"></span>
+                                <li class="flex items-start gap-2 text-sm text-muted-foreground">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-accent mt-1.5 shrink-0"></span>
                                     {detail}
                                 </li>
                             ))}
@@ -315,22 +315,22 @@ const platforms = [
     </section>
 
     <!-- Timeline -->
-    <section class="py-32 px-6 md:px-12 lg:px-24 bg-muted">
-        <div class="max-w-7xl mx-auto">
-            <div class="mb-16 reveal-on-scroll">
-                <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">Harmonogram</span>
-                <h2 class="font-serif text-4xl md:text-6xl leading-tight text-balance">
-                    Kiedy zobaczysz <span class="italic text-muted-foreground">pierwsze efekty?</span>
+    <section class="py-20 px-6 md:px-12 lg:px-24 bg-muted">
+        <div class="max-w-6xl mx-auto">
+            <div class="mb-14 reveal-on-scroll">
+                <span class="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm uppercase tracking-widest font-medium mb-6">Harmonogram</span>
+                <h2 class="font-serif text-3xl md:text-4xl mb-4 text-balance max-w-3xl">
+                    Kiedy zobaczysz <span class="text-primary">pierwsze efekty?</span>
                 </h2>
                 <p class="mt-6 text-muted-foreground max-w-2xl leading-relaxed">
                     SEO to inwestycja, nie wydatek. Poniżej realistyczny harmonogram — bez obietnic, które trudno dotrzymać.
                 </p>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {timeline.map((item, i) => (
-                    <div class="border-t-2 border-border pt-6 reveal-on-scroll">
-                        <span class="text-xs uppercase tracking-widest text-muted-foreground mb-3 block">{item.period}</span>
-                        <h3 class="text-lg font-bold mb-3">{item.title}</h3>
+                    <div class="bg-card rounded-3xl p-8 border border-border reveal-on-scroll">
+                        <span class="text-xs uppercase tracking-widest text-primary font-medium mb-3 block">{item.period}</span>
+                        <h3 class="text-lg font-medium mb-3">{item.title}</h3>
                         <p class="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
                     </div>
                 ))}
@@ -339,18 +339,18 @@ const platforms = [
     </section>
 
     <!-- Testimonials -->
-    <section class="py-32 px-6 md:px-12 lg:px-24 border-b border-border">
-        <div class="max-w-7xl mx-auto">
-            <div class="mb-16 reveal-on-scroll">
-                <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">Opinie</span>
-                <h2 class="font-serif text-4xl md:text-6xl leading-tight text-balance">
-                    Co mówią <span class="italic text-muted-foreground">nasi klienci?</span>
+    <section class="py-20 px-6 md:px-12 lg:px-24">
+        <div class="max-w-6xl mx-auto">
+            <div class="mb-14 reveal-on-scroll">
+                <span class="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm uppercase tracking-widest font-medium mb-6">Opinie</span>
+                <h2 class="font-serif text-3xl md:text-4xl mb-4 text-balance max-w-3xl">
+                    Co mówią <span class="text-primary">nasi klienci?</span>
                 </h2>
             </div>
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 {testimonials.map((item) => (
-                    <blockquote class="border border-border p-8 flex flex-col justify-between reveal-on-scroll">
-                        <p class="text-sm leading-relaxed mb-8">&ldquo;{item.quote}&rdquo;</p>
+                    <blockquote class="bg-card rounded-3xl p-8 border border-border flex flex-col justify-between reveal-on-scroll">
+                        <p class="text-sm leading-relaxed mb-8 text-muted-foreground">&ldquo;{item.quote}&rdquo;</p>
                         <footer>
                             <p class="font-bold text-sm">{item.name}</p>
                             <p class="text-xs text-muted-foreground">{item.role}, {item.company}</p>
@@ -362,17 +362,17 @@ const platforms = [
     </section>
 
     <!-- Platforms -->
-    <section class="py-32 px-6 md:px-12 lg:px-24 bg-card">
-        <div class="max-w-7xl mx-auto">
-            <div class="mb-16 reveal-on-scroll">
-                <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">Platformy</span>
-                <h2 class="font-serif text-4xl md:text-6xl leading-tight text-balance">
-                    Pracujemy z <span class="italic text-muted-foreground">każdą platformą</span>
+    <section class="py-20 px-6 md:px-12 lg:px-24 bg-muted">
+        <div class="max-w-6xl mx-auto">
+            <div class="mb-14 reveal-on-scroll">
+                <span class="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm uppercase tracking-widest font-medium mb-6">Platformy</span>
+                <h2 class="font-serif text-3xl md:text-4xl mb-4 text-balance max-w-3xl">
+                    Pracujemy z <span class="text-primary">każdą platformą</span>
                 </h2>
             </div>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 reveal-on-scroll">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 reveal-on-scroll">
                 {platforms.map((platform) => (
-                    <div class="border border-border px-5 py-4 text-sm text-muted-foreground hover:text-foreground hover:border-foreground transition-colors">
+                    <div class="bg-card border border-border rounded-2xl px-5 py-4 text-sm text-muted-foreground hover:text-primary hover:border-primary transition-colors text-center">
                         {platform}
                     </div>
                 ))}
@@ -381,56 +381,55 @@ const platforms = [
     </section>
 
     <!-- FAQ -->
-    <section class="py-32 px-6 md:px-12 lg:px-24">
-        <div class="max-w-5xl mx-auto">
-            <div class="mb-16 reveal-on-scroll">
-                <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">FAQ</span>
-                <h2 class="font-serif text-4xl md:text-6xl text-balance">
-                    Pytania, które <span class="italic text-muted-foreground">słyszymy najczęściej</span>
+    <section class="py-20 px-6 md:px-12 lg:px-24 bg-muted">
+        <div class="max-w-6xl mx-auto">
+            <div class="mb-14 reveal-on-scroll">
+                <span class="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm uppercase tracking-widest font-medium mb-6">FAQ</span>
+                <h2 class="font-serif text-3xl md:text-4xl mb-4 text-balance max-w-3xl">
+                    Pytania, które <span class="text-primary">słyszymy najczęściej</span>
                 </h2>
             </div>
-            <div class="space-y-0">
+            <div class="space-y-4">
                 {faqs.map((faq) => (
-                    <div class="border-t border-border py-8 reveal-on-scroll">
-                        <h3 class="text-lg font-bold mb-4">{faq.question}</h3>
+                    <div class="bg-card rounded-2xl p-6 border border-border reveal-on-scroll">
+                        <h3 class="text-lg font-medium text-foreground mb-3">{faq.question}</h3>
                         <p class="text-muted-foreground leading-relaxed">{faq.answer}</p>
                     </div>
                 ))}
-                <div class="border-t border-border"></div>
             </div>
         </div>
     </section>
 
     <!-- CTA with form -->
-    <section class="py-32 px-6 md:px-12 lg:px-24 bg-muted">
-        <div class="max-w-7xl mx-auto">
-            <div class="items-start">
-                <div class="reveal-on-scroll">
-                    <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">Bezpłatna analiza</span>
-                    <h2 class="font-serif text-4xl md:text-6xl lg:text-7xl mb-8 text-balance">
+    <section class="py-20 px-6 md:px-12 lg:px-24 bg-muted">
+        <div class="max-w-6xl mx-auto">
+            <div class="bg-primary rounded-3xl p-8 md:p-12 lg:p-16 text-white reveal-on-scroll">
+                <div class="max-w-3xl">
+                    <span class="inline-block bg-white/10 px-4 py-2 rounded-full text-sm uppercase tracking-widest font-medium mb-6">Bezpłatna analiza</span>
+                    <h2 class="font-serif text-3xl md:text-5xl mb-6 text-balance">
                         Twój sklep zasługuje na więcej ruchu.
                     </h2>
-                    <p class="text-lg text-muted-foreground leading-relaxed mb-8">
+                    <p class="text-white/80 text-lg leading-relaxed mb-8">
                         45-minutowe spotkanie, na którym analizujemy obecną widoczność sklepu, wskazujemy największe blokery wzrostu i przedstawiamy konkretne kroki do podjęcia.
                     </p>
-                    <ul class="space-y-3 text-muted-foreground text-sm">
+                    <ul class="space-y-3 text-white/80 mb-10">
                         <li class="flex items-center gap-3">
-                            <span class="w-1.5 h-1.5 rounded-full bg-foreground shrink-0"></span>
+                            <span class="w-1.5 h-1.5 rounded-full bg-accent shrink-0"></span>
                             Odpowiedź w 24h w dni robocze
                         </li>
                         <li class="flex items-center gap-3">
-                            <span class="w-1.5 h-1.5 rounded-full bg-foreground shrink-0"></span>
+                            <span class="w-1.5 h-1.5 rounded-full bg-accent shrink-0"></span>
                             45 minut analizy Twojego sklepu — bezpłatnie
                         </li>
                         <li class="flex items-center gap-3">
-                            <span class="w-1.5 h-1.5 rounded-full bg-foreground shrink-0"></span>
+                            <span class="w-1.5 h-1.5 rounded-full bg-accent shrink-0"></span>
                             Bez zobowiązań. Bez slajdów sprzedażowych.
                         </li>
                     </ul>
+                    <a class="inline-block bg-white text-primary px-8 py-4 rounded-full font-medium hover:scale-105 transition-transform shadow-lg" href="/kontakt">
+                        Napisz do nas
+                    </a>
                 </div>
-                <!-- <div class="bg-card border border-border p-8 md:p-12 rounded-lg reveal-on-scroll">
-                    <FormEcommerce />
-                </div> -->
             </div>
         </div>
     </section>

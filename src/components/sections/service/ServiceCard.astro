@@ -1,0 +1,31 @@
+---
+interface Props {
+	num?: string;
+	title: string;
+	description: string;
+	details?: string[];
+	time?: string;
+	compact?: boolean;
+}
+
+const { num, title, description, details, time, compact = false } = Astro.props;
+---
+
+<article class={`bg-card rounded-3xl border border-border reveal-on-scroll hover:shadow-lg hover:-translate-y-1 transition-all duration-300 ${compact ? 'p-6' : 'p-8'}`}>
+	<div class="flex items-start justify-between mb-4">
+		{num && <span class="text-3xl font-serif text-muted-foreground/40">{num}</span>}
+		{time && <span class="text-xs uppercase tracking-widest text-primary bg-primary/10 px-3 py-1 rounded-full">{time}</span>}
+	</div>
+	<h3 class={`font-medium text-foreground mb-3 ${compact ? 'text-lg' : 'text-xl'}`}>{title}</h3>
+	<p class="text-muted-foreground leading-relaxed text-sm mb-4">{description}</p>
+	{details && (
+		<ul class="text-sm text-muted-foreground flex flex-col gap-2">
+			{details.map((detail) => (
+				<li class="flex items-start gap-2">
+					<span class="w-1.5 h-1.5 rounded-full bg-accent mt-1.5 shrink-0"></span>
+					{detail}
+				</li>
+			))}
+		</ul>
+	)}
+</article>

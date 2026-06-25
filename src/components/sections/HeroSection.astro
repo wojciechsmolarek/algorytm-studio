@@ -10,38 +10,28 @@ interface Props {
 const { title, subtitle, primaryCta, secondaryCta, image } = Astro.props;
 ---
 
-<header class="relative min-h-screen flex flex-col justify-center pt-32 pb-20 px-6 md:px-12 lg:px-24 border-b border-border">
-	<div class="max-w-7xl mx-auto w-full items-end">
-		<div class="reveal-on-scroll">
+<header class="relative min-h-[80vh] flex flex-col justify-center pt-32 pb-20 px-6 md:px-12 lg:px-24 bg-muted">
+	<div class="max-w-6xl mx-auto w-full">
+		<div class="reveal-on-scroll max-w-3xl">
 			<h1
-				class="font-serif text-5xl md:text-7xl lg:text-8xl leading-[1.1] mb-8 text-balance"
+				class="font-serif text-4xl md:text-6xl lg:text-7xl leading-[1.15] mb-6 text-balance"
 				set:html={title}
 			/>
-			<p class="text-lg md:text-xl text-muted-foreground mb-10 leading-relaxed" set:html={subtitle} />
+			<p class="text-lg md:text-xl text-muted-foreground mb-10 leading-relaxed max-w-2xl" set:html={subtitle} />
 			<div class="flex flex-wrap gap-4">
 				<a
-					class="bg-foreground text-background px-8 py-4 rounded-full font-medium hover:scale-105 transition-transform"
+					class="bg-primary text-white px-8 py-4 rounded-full font-medium hover:scale-105 transition-transform shadow-lg shadow-primary/20"
 					href={primaryCta.href}
 				>
 					{primaryCta.text}
 				</a>
 				<a
-					class="border border-muted-foreground px-8 py-4 rounded-full font-medium hover:bg-muted transition"
+					class="bg-white text-foreground border border-border px-8 py-4 rounded-full font-medium hover:bg-muted transition"
 					href={secondaryCta.href}
 				>
 					{secondaryCta.text}
 				</a>
 			</div>
 		</div>
-		<!-- <div class="relative h-[500px] lg:h-[700px] w-full reveal-on-scroll">
-			<div class="absolute inset-0 bg-muted overflow-hidden rounded-t-[10rem]">
-				<img
-					alt={image.alt}
-					class="w-full h-full object-cover opacity-90 grayscale hover:grayscale-0 transition-all duration-700"
-					src={image.src}
-					loading="eager"
-				/>
-			</div>
-		</div> -->
 	</div>
 </header>

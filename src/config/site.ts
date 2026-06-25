@@ -7,7 +7,7 @@ export const siteConfig = {
   lang: "pl",
   locale: "pl_PL",
   author: "Studio Algorytm",
-  email: "kontakt@algorytm.studio",
+  email: "wojciech@algorytm.studio",
   tel: "+48 697 225 901",
   ogImage: ogImage,
   socialLinks: {
@@ -17,7 +17,7 @@ export const siteConfig = {
     linkedin: "https://linkedin.com",
   },
   navLinks: [
-    // { text: "O nas", href: "/o-nas" },
+     { text: "O nas", href: "/o-nas" },
     {
       text: "Oferta",
       href: "/oferta",
@@ -28,9 +28,11 @@ export const siteConfig = {
         { text: "Pozycjonowanie w AI", href: "/oferta/pozycjonowanie-ai" },
         { text: "Strony, które zarabiają", href: "/oferta/strony-ktore-zarabiaja" },
         { text: "Automatyzacje AI", href: "/oferta/automatyzacje-ai" },
+        { text: "Migracje stron i sklepów", href: "/oferta/migracje-stron" },
+        { text: "SEO w modelu pre-paid", href: "/oferta/seo-pre-paid" },
       ],
     },
     // { text: "Baza Wiedzy", href: "/blog" },
-    { text: "Kontakt", href: "/kontakt" },
+    //{ text: "Kontakt", href: "/kontakt" },
   ],
 };

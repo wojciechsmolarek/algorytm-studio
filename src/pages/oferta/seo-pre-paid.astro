@@ -71,12 +71,12 @@ const processSteps = [
 
 <BaseLayout {metadata}>
     <!-- Hero -->
-    <section class="relative pt-40 pb-24 px-6 md:px-12 lg:px-24 border-b border-border">
-        <div class="max-w-5xl mx-auto">
+    <section class="pt-36 pb-20 px-6 md:px-12 lg:px-24 bg-muted">
+        <div class="max-w-6xl mx-auto">
             <div class="reveal-on-scroll">
-                <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">Oferta</span>
-                <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl leading-[1.1] mb-8 text-balance">
-                    SEO w modelu <span class="italic text-muted-foreground">"pre-paid"</span>
+                <span class="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm uppercase tracking-widest font-medium mb-6">Oferta</span>
+                <h1 class="font-serif text-4xl md:text-6xl leading-tight mb-6 text-balance max-w-3xl">
+                    SEO w modelu <span class="text-primary">"pre-paid"</span>
                 </h1>
                 <div class="flex items-center gap-4">
                     <div class="w-16 h-px bg-foreground shrink-0"></div>
@@ -89,21 +89,22 @@ const processSteps = [
     </section>
 
     <!-- Comparison -->
-    <section class="py-32 px-6 md:px-12 lg:px-24 bg-muted">
-        <div class="max-w-7xl mx-auto">
-            <div class="mb-16 reveal-on-scroll">
-                <h2 class="font-serif text-4xl md:text-6xl leading-tight text-balance">
-                    Dlaczego <span class="italic text-muted-foreground">pre-paid?</span>
+    <section class="py-20 px-6 md:px-12 lg:px-24 bg-muted">
+        <div class="max-w-6xl mx-auto">
+            <div class="mb-14 reveal-on-scroll">
+                <span class="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm uppercase tracking-widest font-medium mb-6">Pre-paid vs abonament</span>
+                <h2 class="font-serif text-3xl md:text-4xl mb-4 text-balance max-w-3xl">
+                    Dlaczego <span class="text-primary">pre-paid?</span>
                 </h2>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {howItDiffers.map((model) => (
-                    <div class={`p-8 md:p-12 rounded-lg reveal-on-scroll ${model.isHighlighted ? 'bg-foreground text-background' : 'bg-card border border-border'}`}>
-                        <h3 class={`text-2xl font-bold mb-8 ${model.isHighlighted ? 'text-background' : 'text-foreground'}`}>{model.title}</h3>
-                        <ul class="flex flex-col gap-4">
+                    <div class={`rounded-3xl p-8 md:p-10 reveal-on-scroll hover:shadow-lg transition-all duration-300 ${model.isHighlighted ? 'bg-primary text-white' : 'bg-card border border-border'}`}>
+                        <h3 class={`text-xl font-medium mb-6 ${model.isHighlighted ? 'text-white' : 'text-foreground'}`}>{model.title}</h3>
+                        <ul class="flex flex-col gap-3">
                             {model.items.map((item) => (
-                                <li class={`flex items-start gap-3 ${model.isHighlighted ? 'text-background/80' : 'text-muted-foreground'}`}>
-                                    <span class={`mt-1.5 w-1.5 h-1.5 rounded-full shrink-0 ${model.isHighlighted ? 'bg-background' : 'bg-foreground'}`}></span>
+                                <li class={`flex items-start gap-3 text-sm ${model.isHighlighted ? 'text-white/80' : 'text-muted-foreground'}`}>
+                                    <span class={`mt-1.5 w-1.5 h-1.5 rounded-full shrink-0 ${model.isHighlighted ? 'bg-white' : 'bg-accent'}`}></span>
                                     {item}
                                 </li>
                             ))}
@@ -115,18 +116,18 @@ const processSteps = [
     </section>
 
     <!-- Advantages -->
-    <section class="py-32 px-6 md:px-12 lg:px-24">
-        <div class="max-w-7xl mx-auto">
-            <div class="mb-20 reveal-on-scroll">
-                <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">Korzyści</span>
-                <h2 class="font-serif text-4xl md:text-6xl leading-tight text-balance">
-                    Co zyskujesz <span class="italic text-muted-foreground">w modelu pre-paid?</span>
+    <section class="py-20 px-6 md:px-12 lg:px-24">
+        <div class="max-w-6xl mx-auto">
+            <div class="mb-14 reveal-on-scroll">
+                <span class="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm uppercase tracking-widest font-medium mb-6">Korzyści</span>
+                <h2 class="font-serif text-3xl md:text-4xl mb-4 text-balance max-w-3xl">
+                    Co zyskujesz <span class="text-primary">w modelu pre-paid?</span>
                 </h2>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {advantages.map((item) => (
-                    <div class="border-t border-border pt-6 reveal-on-scroll">
-                        <h3 class="text-xl font-bold mb-3">{item.title}</h3>
+                    <div class="bg-card rounded-3xl p-8 border border-border reveal-on-scroll hover:shadow-lg transition-all duration-300">
+                        <h3 class="text-xl font-medium mb-3">{item.title}</h3>
                         <p class="text-muted-foreground leading-relaxed">{item.description}</p>
                     </div>
                 ))}
@@ -135,15 +136,18 @@ const processSteps = [
     </section>
 
     <!-- Process -->
-    <section class="py-32 px-6 md:px-12 lg:px-24 bg-card">
-        <div class="max-w-7xl mx-auto">
-            <h2 class="font-serif text-4xl md:text-6xl mb-16 reveal-on-scroll text-balance">Jak zaczynamy?</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+    <section class="py-20 px-6 md:px-12 lg:px-24 bg-muted">
+        <div class="max-w-6xl mx-auto">
+            <div class="mb-14 reveal-on-scroll">
+                <span class="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm uppercase tracking-widest font-medium mb-6">Proces</span>
+                <h2 class="font-serif text-3xl md:text-4xl mb-4 text-balance max-w-3xl">Jak <span class="text-primary">zaczynamy?</span></h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {processSteps.map((step) => (
-                    <div class="reveal-on-scroll">
-                        <span class="block text-6xl font-serif text-border mb-6">{step.num}</span>
-                        <h3 class="text-xl font-bold mb-4">{step.title}</h3>
-                        <p class="text-muted-foreground leading-relaxed">{step.description}</p>
+                    <div class="bg-card rounded-3xl p-8 border border-border reveal-on-scroll hover:shadow-lg transition-all duration-300">
+                        <span class="block text-4xl font-serif text-muted-foreground/40 mb-6">{step.num}</span>
+                        <h3 class="text-xl font-medium mb-4">{step.title}</h3>
+                        <p class="text-muted-foreground leading-relaxed text-sm">{step.description}</p>
                     </div>
                 ))}
             </div>
@@ -151,17 +155,19 @@ const processSteps = [
     </section>
 
     <!-- CTA -->
-    <section class="py-32 px-6 md:px-12 lg:px-24">
-        <div class="max-w-5xl mx-auto text-center reveal-on-scroll">
-            <h2 class="font-serif text-4xl md:text-6xl lg:text-7xl mb-8 text-balance">
-                Zacznij od pierwszego pakietu.
-            </h2>
-            <p class="text-lg text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed">
-                Nie musisz decydować się na wszystko od razu. Zacznij od małego pakietu, przetestuj nasz model współpracy i skaluj dalej.
-            </p>
-            <a class="inline-block bg-foreground text-background px-8 py-4 rounded-full font-medium hover:scale-105 transition-transform" href="/#contact">
-                Zapytaj o cennik
-            </a>
+    <section class="py-20 px-6 md:px-12 lg:px-24 bg-muted">
+        <div class="max-w-6xl mx-auto">
+            <div class="bg-primary rounded-3xl p-8 md:p-12 lg:p-16 text-white text-center reveal-on-scroll">
+                <h2 class="font-serif text-3xl md:text-5xl mb-6 text-balance max-w-3xl mx-auto">
+                    Zacznij od pierwszego pakietu.
+                </h2>
+                <p class="text-white/80 text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
+                    Nie musisz decydować się na wszystko od razu. Zacznij od małego pakietu, przetestuj nasz model współpracy i skaluj dalej.
+                </p>
+                <a class="inline-block bg-white text-primary px-8 py-4 rounded-full font-medium hover:scale-105 transition-transform shadow-lg" href="/kontakt">
+                    Zapytaj o cennik
+                </a>
+            </div>
         </div>
     </section>
 </BaseLayout>

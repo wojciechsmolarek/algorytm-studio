@@ -5,7 +5,6 @@ import { experts } from "../config/experts";
 import { services } from "../config/services";
 
 import HeroSection from "../components/sections/HeroSection.astro";
-import MarqueeStrip from "../components/sections/MarqueeStrip.astro";
 import ExpertsSection from "../components/sections/ExpertsSection.astro";
 import WhyUsSection from "../components/sections/WhyUsSection.astro";
 import ServicesSection from "../components/sections/ServicesSection.astro";
@@ -89,8 +88,8 @@ const articles = [
 
 <BaseLayout {metadata}>
 	<HeroSection
-		title='Wprowadzamy <span class="italic text-muted-foreground">logikę</span> tam, gdzie inni widzą chaos'
-		subtitle="Jesteśmy kolektywem trzech niezależnych ekspertów specjalizujących się w różnych dziedzinach. Taki układ pozwala na kompleksową opiekę nad klientem i zapewnieniem mu optymalnej strategii wzrostu."
+		title='Kolektyw 3 ekspertów SEO i web dev. <span class="italic text-muted-foreground">Bez agencyjnego szumu.</span>'
+		subtitle="Jesteśmy kolektywem, nie agencją. Trzech specjalistów: SEO, web development i UX. Żadnych pośredników, żadnych project managerów — tylko ludzie, którzy realnie wykonują pracę."
 		primaryCta={{ text: "Porozmawiajmy", href: "#contact" }}
 		secondaryCta={{ text: "Nasze usługi", href: "#services" }}
 		image={{
@@ -100,7 +99,7 @@ const articles = [
 	/>
 
 
-	<!-- <ExpertsSection experts={experts} /> -->
+	<ExpertsSection experts={experts} />
 
 	<WhyUsSection
 		tagline="Dlaczego My?"

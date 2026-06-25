@@ -1,0 +1,27 @@
+---
+interface Props {
+	tagline: string;
+	title: string;
+	highlight?: string;
+	description: string;
+	secondaryText?: string;
+}
+
+const { tagline, title, highlight, description, secondaryText } = Astro.props;
+---
+
+<section class="pt-36 pb-20 px-6 md:px-12 lg:px-24 bg-muted">
+	<div class="max-w-6xl mx-auto">
+		<div class="reveal-on-scroll">
+			<span class="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm uppercase tracking-widest font-medium mb-6">{tagline}</span>
+			<h1 class="font-serif text-4xl md:text-6xl leading-tight mb-6 text-balance max-w-3xl">
+				{title}
+				{highlight && <span class="text-primary">{highlight}</span>}
+			</h1>
+			<div class="max-w-2xl">
+				<p class="text-lg md:text-xl leading-relaxed mb-4">{description}</p>
+				{secondaryText && <p class="text-muted-foreground leading-relaxed">{secondaryText}</p>}
+			</div>
+		</div>
+	</div>
+</section>

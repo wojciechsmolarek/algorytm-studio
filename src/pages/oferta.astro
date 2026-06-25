@@ -9,31 +9,44 @@ const metadata = {
 ---
 
 <BaseLayout {metadata}>
-    <section class="pt-40 pb-24 px-6 md:px-12 lg:px-24">
-        <div class="max-w-7xl mx-auto">
-            <div class="mb-20 reveal-on-scroll">
-                <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">Usługi</span>
-                <h1 class="font-serif text-5xl md:text-7xl leading-tight text-balance">
-                    Kompleksowe rozwiązania <br/>
-                    <span class="text-muted-foreground italic">dla sektora B2B</span>
+    <section class="pt-36 pb-20 px-6 md:px-12 lg:px-24 bg-muted">
+        <div class="max-w-6xl mx-auto">
+            <div class="mb-16 reveal-on-scroll">
+                <span class="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm uppercase tracking-widest font-medium mb-6">Usługi</span>
+                <h1 class="font-serif text-4xl md:text-6xl leading-tight text-balance max-w-3xl">
+                    Kompleksowe rozwiązania <span class="text-primary">dla sektora B2B</span>
                 </h1>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
+        </div>
+    </section>
+
+    <section class="py-20 px-6 md:px-12 lg:px-24">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {services.map((service) => (
-                    <article class="group border-t border-border pt-6 reveal-on-scroll">
-                        <span class="block text-4xl font-serif text-border mb-4 group-hover:text-foreground transition-colors duration-500">{service.num}</span>
-                        <h2 class="text-2xl font-bold mb-3">{service.title}</h2>
-                        <p class="text-muted-foreground text-sm leading-relaxed mb-4">{service.description}</p>
-                        <ul class="text-xs text-muted-foreground/70 flex flex-col gap-1 uppercase tracking-wide">
+                    <article class="group bg-card rounded-3xl p-8 border border-border reveal-on-scroll hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                        <div class="w-12 h-12 rounded-2xl bg-muted flex items-center justify-center mb-6 text-primary font-serif text-2xl">
+                            {service.num}
+                        </div>
+                        <h2 class="text-2xl font-serif mb-3">{service.title}</h2>
+                        <p class="text-muted-foreground leading-relaxed mb-6">{service.description}</p>
+                        <ul class="text-sm text-muted-foreground flex flex-col gap-2 mb-6">
                             {service.tags.map((tag) => (
-                                <li>&mdash; {tag}</li>
+                                <li class="flex items-center gap-2">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-accent"></span>
+                                    {tag}
+                                </li>
                             ))}
                         </ul>
+                        <a class="inline-flex items-center gap-2 text-primary font-medium group/link" href="/kontakt">
+                            Dowiedz się więcej
+                            <span class="group-hover/link:translate-x-1 transition-transform">→</span>
+                        </a>
                     </article>
                 ))}
             </div>
-            <div class="mt-20 text-center reveal-on-scroll">
-                <a class="inline-block bg-foreground text-background px-8 py-4 rounded-full font-medium hover:scale-105 transition-transform" href="/#contact">
+            <div class="mt-16 text-center reveal-on-scroll">
+                <a class="inline-block bg-primary text-white px-8 py-4 rounded-full font-medium hover:scale-105 transition-transform shadow-lg shadow-primary/20" href="/#contact">
                     Porozmawiajmy o Twoim projekcie
                 </a>
             </div>

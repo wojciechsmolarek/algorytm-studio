@@ -4,6 +4,7 @@ interface ServiceItem {
 	title: string;
 	description: string;
 	tags: string[];
+	href: string;
 }
 
 interface Props {
@@ -13,32 +14,41 @@ interface Props {
 const { services } = Astro.props;
 ---
 
-<section class="py-24 px-6 md:px-12 lg:px-24 border-b border-border" id="services">
-	<div class="max-w-7xl mx-auto">
-		<div class="mb-20 flex justify-between items-end reveal-on-scroll">
-			<h2 class="font-serif text-5xl md:text-6xl">Nasza oferta dla twojego biznesu</h2>
-			<a class="group flex items-center gap-2 text-sm uppercase tracking-widest hover:text-muted-foreground transition" href="/services">
-				Pełna oferta
-				<span class="group-hover:translate-x-1 transition-transform">&rarr;</span>
-			</a>
+<section class="py-32 px-6 md:px-12 lg:px-24" id="services">
+	<div class="max-w-6xl mx-auto">
+		<div class="text-center mb-20 reveal-on-scroll">
+			<span class="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm uppercase tracking-widest font-medium mb-6">Co robimy</span>
+			<h2 class="font-serif text-4xl md:text-5xl mb-5">W czym możemy Ci pomóc?</h2>
+			<p class="text-muted-foreground text-lg max-w-2xl mx-auto leading-relaxed">
+				Osiem usług, które realnie wpływają na wzrost Twojego biznesu online.
+			</p>
 		</div>
-		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
-			{services.map((service) => (
-				<article class="group border-t border-border pt-6 reveal-on-scroll">
-					<span class="block text-4xl font-serif text-border mb-4 group-hover:text-foreground transition-colors duration-500">{service.num}</span>
-					<h3 class="text-2xl font-bold mb-3">{service.title}</h3>
-					<p class="text-muted-foreground text-sm leading-relaxed mb-4">{service.description}</p>
-					<ul class="text-xs text-muted-foreground/70 flex flex-col gap-1 uppercase tracking-wide">
+		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+			{services.map((service, i) => (
+				<article class="group bg-card rounded-3xl p-10 border border-border reveal-on-scroll hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col">
+					<div class="w-12 h-12 rounded-2xl bg-muted flex items-center justify-center mb-8 text-primary font-serif text-2xl">
+						{service.num}
+					</div>
+					<h3 class="text-2xl font-serif mb-4">{service.title}</h3>
+					<p class="text-muted-foreground leading-relaxed mb-8 flex-grow">{service.description}</p>
+					<ul class="text-sm text-muted-foreground flex flex-col gap-2 mb-8">
 						{service.tags.map((tag) => (
-							<li>&mdash; {tag}</li>
+							<li class="flex items-center gap-2">
+								<span class="w-1.5 h-1.5 rounded-full bg-accent"></span>
+								{tag}
+							</li>
 						))}
 					</ul>
+					<a class="inline-flex items-center gap-2 text-primary font-medium group/link" href={service.href}>
+						Zobacz więcej
+						<span class="group-hover/link:translate-x-1 transition-transform">→</span>
+					</a>
 				</article>
 			))}
 		</div>
 		<div class="mt-20 text-center reveal-on-scroll">
-			<a class="inline-block border-b border-foreground pb-1 text-lg hover:opacity-70 transition" href="#contact">
-				Dowiedz się więcej o procesie
+			<a class="inline-block bg-primary text-white px-8 py-4 rounded-full font-medium hover:scale-105 transition-transform shadow-lg shadow-primary/20" href="#contact">
+				Porozmawiajmy o Twoim projekcie
 			</a>
 		</div>
 	</div>

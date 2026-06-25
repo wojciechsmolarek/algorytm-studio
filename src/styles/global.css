@@ -2,24 +2,24 @@
 @plugin "@tailwindcss/typography";
 
 @font-face {
-  font-family: 'Instrument Serif';
+  font-family: 'Lora';
   font-style: normal;
-  font-weight: 400;
+  font-weight: 400 700;
   font-display: swap;
-  src: url('https://fonts.gstatic.com/s/instrumentserif/v4/jizBRFtNs2ka5fXjeivQ4LroWlx-2zIZhOcg.woff2') format('woff2');
+  src: url('https://fonts.gstatic.com/s/lora/v32/0QI6MX1D_JOuGQbTPlTBgwA.woff2') format('woff2');
 }
 
 @font-face {
-  font-family: 'Instrument Serif';
+  font-family: 'Lora';
   font-style: italic;
-  font-weight: 400;
+  font-weight: 400 700;
   font-display: swap;
-  src: url('https://fonts.gstatic.com/s/instrumentserif/v4/jizHRFtNs2ka5fXjeivQ4LroWlx-6zASBOcg.woff2') format('woff2');
+  src: url('https://fonts.gstatic.com/s/lora/v32/0QI8MX1D_JOuMw_hLdO6Hw2k.woff2') format('woff2');
 }
 
 @theme {
   --font-sans: 'Inter', system-ui, sans-serif;
-  --font-serif: 'Instrument Serif', Georgia, serif;
+  --font-serif: 'Lora', Georgia, serif;
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -30,20 +30,22 @@
   --color-card: var(--card);
   --color-surface: var(--surface);
   --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
 
   --animate-marquee: marquee 30s linear infinite;
 }
 
 :root {
-  --background: #F9F9F9;
-  --foreground: #111111;
-  --primary: #111111;
-  --border: #E5E5E5;
-  --muted: #F0F0F0;
-  --muted-foreground: #666666;
+  --background: #FDFBF7;
+  --foreground: #1F1F1F;
+  --primary: #2A5D4E;
+  --border: #E8E2D9;
+  --muted: #F5F1EA;
+  --muted-foreground: #6B6560;
   --card: #FFFFFF;
   --surface: #FFFFFF;
-  --accent: #555555;
+  --accent: #E8A87C;
+  --accent-foreground: #1F1F1F;
 }
 
 /* Base styles */

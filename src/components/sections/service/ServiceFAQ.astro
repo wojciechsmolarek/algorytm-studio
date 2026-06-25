@@ -1,0 +1,21 @@
+---
+interface FAQ {
+	question: string;
+	answer: string;
+}
+
+interface Props {
+	faqs: FAQ[];
+}
+
+const { faqs } = Astro.props;
+---
+
+<div class="space-y-4">
+	{faqs.map((faq) => (
+		<div class="bg-card rounded-2xl p-6 border border-border reveal-on-scroll">
+			<h3 class="text-lg font-medium text-foreground mb-3">{faq.question}</h3>
+			<p class="text-muted-foreground leading-relaxed">{faq.answer}</p>
+		</div>
+	))}
+</div>

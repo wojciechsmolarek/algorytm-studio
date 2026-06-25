@@ -3,31 +3,22 @@ import { siteConfig } from "../../config/site";
 ---
 
 <nav
-    class="fixed top-0 w-full z-50 px-6 py-5 flex justify-between items-center text-black bg-white"
+    class="fixed top-0 w-full z-50 px-6 py-4 flex justify-between items-center text-foreground bg-background/80 backdrop-blur-md border-b border-border"
 >
     <!-- Logo -->
     <div class="z-50">
         <a
             href="/"
-            aria-label="B2B Collective Home"
+            aria-label="Studio Algorytm Home"
             class="pointer-events-auto block"
         >
-            <svg
-                class="text-black"
-                fill="currentColor"
-                height="32"
-                viewBox="0 0 24 24"
-                width="32"
-                aria-hidden="true"
-            >
-                <circle cx="12" cy="12" r="10"></circle>
-            </svg>
+            <span class="font-serif text-2xl font-medium text-foreground">Studio Algorytm</span>
         </a>
     </div>
 
     <!-- Desktop Menu -->
     <div
-        class="hidden md:flex gap-8 text-sm uppercase tracking-widest font-medium pointer-events-auto items-center"
+        class="hidden md:flex gap-8 text-sm font-medium pointer-events-auto items-center"
     >
         {
             siteConfig.navLinks.map((link) =>
@@ -35,19 +26,19 @@ import { siteConfig } from "../../config/site";
                     <div class="relative group">
                         <a
                             href={link.href}
-                            class="hover:underline underline-offset-4 transition-all flex items-center gap-1 peer"
+                            class="text-foreground/80 hover:text-primary transition-colors flex items-center gap-1 peer"
                         >
                             {link.text}
-                            <svg class="w-3.5 h-3.5 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                             </svg>
                         </a>
                         <div class="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
-                            <div class="bg-white border border-border rounded-lg shadow-lg py-3 min-w-[280px]">
+                            <div class="bg-card border border-border rounded-2xl shadow-xl py-3 min-w-[260px]">
                                 {link.children.map((child) => (
                                     <a
                                         href={child.href}
-                                        class="block px-5 py-2.5 text-xs uppercase tracking-widest text-foreground/80 hover:text-foreground hover:bg-muted transition-colors normal-case text-sm tracking-normal font-normal"
+                                        class="block px-5 py-2.5 text-sm text-foreground/80 hover:text-primary hover:bg-muted transition-colors rounded-xl mx-1"
                                     >
                                         {child.text}
                                     </a>
@@ -58,13 +49,19 @@ import { siteConfig } from "../../config/site";
                 ) : (
                     <a
                         href={link.href}
-                        class="hover:underline underline-offset-4 transition-all"
+                        class="text-foreground/80 hover:text-primary transition-colors"
                     >
                         {link.text}
                     </a>
                 )
             )
         }
+        <a
+            href="/kontakt"
+            class="bg-primary text-white px-5 py-2.5 rounded-full text-sm font-medium hover:scale-105 transition-transform"
+        >
+            Darmowa wycena
+        </a>
     </div>
 
     <!-- Hamburger / Mobile Menu Button -->
@@ -79,13 +76,13 @@ import { siteConfig } from "../../config/site";
         >
             <div class="w-6 h-5 flex flex-col justify-between items-end">
                 <span
-                    class="w-full h-0.5 bg-black transition-all group-[[aria-expanded='true']]:rotate-45 group-[[aria-expanded='true']]:translate-y-[9px]"
+                    class="w-full h-0.5 bg-foreground transition-all group-[[aria-expanded='true']]:rotate-45 group-[[aria-expanded='true']]:translate-y-[9px]"
                 ></span>
                 <span
-                    class="w-4/5 h-0.5 bg-black transition-all group-[[aria-expanded='true']]:opacity-0"
+                    class="w-4/5 h-0.5 bg-foreground transition-all group-[[aria-expanded='true']]:opacity-0"
                 ></span>
                 <span
-                    class="w-full h-0.5 bg-black transition-all group-[[aria-expanded='true']]:-rotate-45 group-[[aria-expanded='true']]:-translate-y-[9px]"
+                    class="w-full h-0.5 bg-foreground transition-all group-[[aria-expanded='true']]:-rotate-45 group-[[aria-expanded='true']]:-translate-y-[9px]"
                 ></span>
             </div>
         </button>
@@ -95,24 +92,21 @@ import { siteConfig } from "../../config/site";
 <!-- Mobile Full-Screen Menu -->
 <div
     id="mobile-menu"
-    class="fixed inset-0 z-[45] bg-white text-black hidden flex-col items-center justify-center translate-x-full transition-transform duration-300"
+    class="fixed inset-0 z-[45] bg-background text-foreground hidden flex-col items-center justify-center translate-x-full transition-transform duration-300"
 >
     <div class="flex flex-col items-center gap-6 max-h-[80vh] overflow-y-auto px-6">
         {
             siteConfig.navLinks.map((link) =>
                 link.children ? (
                     <div class="flex flex-col items-center gap-3">
-                        <a
-                            href={link.href}
-                            class="text-4xl font-serif hover:opacity-70 transition mobile-menu-link"
-                        >
+                        <span class="text-3xl font-serif text-primary">
                             {link.text}
-                        </a>
+                        </span>
                         <div class="flex flex-col items-center gap-2">
                             {link.children.map((child) => (
                                 <a
                                     href={child.href}
-                                    class="text-base text-muted-foreground hover:text-foreground transition mobile-menu-link"
+                                    class="text-lg text-muted-foreground hover:text-primary transition mobile-menu-link"
                                 >
                                     {child.text}
                                 </a>
@@ -122,13 +116,19 @@ import { siteConfig } from "../../config/site";
                 ) : (
                     <a
                         href={link.href}
-                        class="text-4xl font-serif hover:opacity-70 transition mobile-menu-link"
+                        class="text-3xl font-serif hover:text-primary transition mobile-menu-link"
                     >
                         {link.text}
                     </a>
                 )
             )
         }
+        <a
+            href="/kontakt"
+            class="mt-4 bg-primary text-white px-8 py-3 rounded-full text-lg font-medium mobile-menu-link"
+        >
+            Kontakt
+        </a>
     </div>
 </div>
 
