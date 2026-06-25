@@ -31,6 +31,9 @@
     "tailwindcss": "^4.1.18",
     "typescript": "^6.0.2"
   },
+  "overrides": {
+    "vite": "^7"
+  },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@tailwindcss/typography": "^0.5.19",

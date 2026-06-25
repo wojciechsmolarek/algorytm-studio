@@ -1,5 +1,10 @@
 import ogImage from "../assets/og-image.png";
 
+export type NavChild = { text: string; href: string };
+export type NavLink =
+  | { text: string; href: string; children?: undefined }
+  | { text: string; href?: string; children: NavChild[] };
+
 export const siteConfig = {
   name: "Studio Algorytm",
   description: "Kolektyw 3 ekspertów B2B: SEO, Web Development, Strategia. Wspólnie budujemy widoczność Twojej firmy.",
@@ -17,7 +22,6 @@ export const siteConfig = {
     linkedin: "https://linkedin.com",
   },
   navLinks: [
-     { text: "O nas", href: "/o-nas" },
     {
       text: "Oferta",
       children: [
@@ -41,5 +45,5 @@ export const siteConfig = {
     },
     // { text: "Baza Wiedzy", href: "/blog" },
     //{ text: "Kontakt", href: "/kontakt" },
-  ],
+  ] as NavLink[],
 };

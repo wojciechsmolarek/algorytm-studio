@@ -1,10 +1,15 @@
+import type { ImageMetadata } from "astro";
+import wojciechImage from "../images/experts/wojciech-smolarek.jpg";
+import piotrImage from "../images/experts/piotr-firyn.jpg";
+import jakubImage from "../images/experts/jakub-witkowski.jpg";
+
 export interface Expert {
   name: string;
   slug: string;
   role: string;
   description: string;
   fullBio: string;
-  image: string;
+  image: ImageMetadata;
   email: string;
   linkedin: string;
   technologies: string[];
@@ -26,7 +31,7 @@ export const experts: Expert[] = [
       "Technical SEO Specialist w OPONEO PL S.A. — jednym z największych graczy e-commerce w branży opon. Łączy SEO, UX i web development.",
     fullBio:
       "Wojciech pracuje jako Technical SEO Specialist w OPONEO PL S.A., jednym z największych polskich e-commerce'ów. Odpowiada tam za strategię SEO, audyty techniczne, automatyzacje oparte na n8n i AI oraz migrację platformy na Next.js. Wcześniej zdobywał doświadczenie w Sunrise System, gdzie obsługiwał klientów VIP, prowadził szkolenia i publikował felietony branżowe. W Studio Algorytm odpowiada za web development, operacje i relacje biznesowe. Realizuje strony w Next.js, Astro, WordPressie oraz architekturach headless — m.in. wusp-jarocin.pl, deni.com.pl i projekty dla klientów korporacyjnych objętych NDA.",
-    image: "/images/wojciech-smolarek.jpg",
+    image: wojciechImage,
     email: "wojciech@algorytm.studio",
     linkedin: "https://www.linkedin.com/in/wojciech-smolarek/",
     technologies: ["Next.js", "Astro", "WordPress", "Headless CMS", "n8n", "AI"],
@@ -77,7 +82,7 @@ export const experts: Expert[] = [
       "Technical SEO Specialist w OPONEO.PL z 8-letnim doświadczeniem w branży. Prelegent SEO Poland Conference, specjalista od technicznego SEO i platform SaaS.",
     fullBio:
       "Piotr pracuje jako Technical SEO Specialist w OPONEO.PL, jednym z największych polskich e-commerce'ów. Wcześniej zdobywał doświadczenie w Talem Technologies oraz Grupie ZAKI, rozwijając kompetencje w technicznym SEO, HTML/CSS i optymalizacji platform e-commerce. Występuje jako prelegent — m.in. na SEO Poland Conference w Bydgoszczy, gdzie mówił o technicznym SEO na platformach e-commerce opartych o SaaS. W Studio Algorytm odpowiada za strategię SEO, audyty techniczne i automatyzacje.",
-    image: "/images/piotr-firyn.jpg",
+    image: piotrImage,
     email: "piotr@algorytm.studio",
     linkedin: "https://www.linkedin.com/in/piotr-firyn/",
     technologies: ["Technical SEO", "HTML", "CSS", "SaaS", "E-commerce SEO", "Automatyzacje AI"],
@@ -129,7 +134,7 @@ export const experts: Expert[] = [
       "SEO Specialist w Talem Technologies. Specjalizuje się w SEO dla e-commerce, optymalizacji technicznej i projektowaniu ścieżek konwersji.",
     fullBio:
       "Jakub pracuje jako SEO Specialist w Talem Technologies, gdzie zajmuje się SEO dla e-commerce, audytami technicznymi i wsparciem klientów. Karierę zaczynał od stażu jako Junior SEO Specialist, szybko rozwijając kompetencje w technicznym SEO i optymalizacji ścieżek użytkownika. W Studio Algorytm odpowiada za SXO, marketing B2B i projektowanie ścieżek konwersji.",
-    image: "/images/jakub-witkowski.jpg",
+    image: jakubImage,
     email: "jakub@algorytm.studio",
     linkedin: "https://www.linkedin.com/in/jakub-witkowski-76ab5a24b/",
     technologies: ["SEO", "E-commerce SEO", "Technical SEO", "SXO", "Analityka", "UX"],

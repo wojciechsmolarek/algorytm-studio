@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import type { Expert } from "../../config/experts";
 
 interface Props {
@@ -30,9 +31,11 @@ const { expert } = Astro.props;
 			</div>
 			<div class="reveal-on-scroll order-1 lg:order-2">
 				<div class="relative aspect-[4/5] max-w-md mx-auto lg:max-w-none rounded-3xl overflow-hidden border-4 border-card shadow-xl">
-					<img
+					<Image
 						src={expert.image}
 						alt={expert.name}
+						width={800}
+						height={1000}
 						class="w-full h-full object-cover"
 						loading="eager"
 					/>
