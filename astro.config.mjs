@@ -6,6 +6,7 @@ import remarkReadingTime from "remark-reading-time";
 
 export default defineConfig({
   site: "https://algorytm.studio/",
+  trailingSlash: "never",
   image: {
     service: {
       entrypoint: "astro/assets/services/noop",

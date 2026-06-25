@@ -24,8 +24,15 @@ const fullTitle =
     title && !ignoreTitleTemplate
         ? `${title} | ${siteConfig.name}`
         : title || siteConfig.name;
+
+const normalizeTrailingSlash = (pathname: string) => {
+    if (pathname === "/") return pathname;
+    return pathname.endsWith("/") ? pathname.slice(0, -1) : pathname;
+};
+
+const canonicalPath = normalizeTrailingSlash(Astro.url.pathname);
 const canonicalURL =
-    canonical ?? new URL(Astro.url.pathname, siteConfig.url).toString();
+    canonical ?? new URL(canonicalPath, siteConfig.url).toString();
 ---
 
 <!-- Global Metadata -->
@@ -45,7 +52,7 @@ const canonicalURL =
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website" />
-<meta property="og:url" content={Astro.url} />
+<meta property="og:url" content={canonicalURL} />
 <meta property="og:title" content={fullTitle} />
 <meta property="og:description" content={description} />
 <meta property="og:image" content={new URL(ogImageSrc, siteConfig.url)} />
@@ -53,7 +60,7 @@ const canonicalURL =
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:url" content={Astro.url} />
+<meta name="twitter:url" content={canonicalURL} />
 <meta name="twitter:title" content={fullTitle} />
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={new URL(ogImageSrc, siteConfig.url)} />
