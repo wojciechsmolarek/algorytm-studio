@@ -20,7 +20,6 @@ export const siteConfig = {
      { text: "O nas", href: "/o-nas" },
     {
       text: "Oferta",
-      href: "/oferta",
       children: [
         { text: "SEO Techniczne", href: "/oferta/seo-techniczne" },
         { text: "Konsultacje SEO", href: "/oferta/konsultacje-seo" },
