@@ -1,0 +1,19 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ExpertProfile from "../../components/sections/ExpertProfile.astro";
+import { experts } from "../../config/experts";
+
+const expert = experts.find((e) => e.slug === "jakub-witkowski");
+if (!expert) {
+  throw new Error("Expert not found");
+}
+
+const metadata = {
+  title: `${expert.name} — ${expert.role}`,
+  description: expert.description,
+};
+---
+
+<BaseLayout {metadata}>
+  <ExpertProfile {expert} />
+</BaseLayout>

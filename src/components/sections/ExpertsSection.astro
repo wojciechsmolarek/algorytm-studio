@@ -1,10 +1,5 @@
 ---
-interface Expert {
-	name: string;
-	role: string;
-	description: string;
-	image: string;
-}
+import type { Expert } from "../../config/experts";
 
 interface Props {
 	experts: Expert[];
@@ -25,7 +20,10 @@ const { experts } = Astro.props;
 		<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 			{
 				experts.map((expert) => (
-					<div class="group bg-card rounded-3xl p-6 border border-border text-center reveal-on-scroll hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+					<a
+						href={`/ekspert/${expert.slug}`}
+						class="group bg-card rounded-3xl p-6 border border-border text-center reveal-on-scroll hover:shadow-lg hover:-translate-y-1 transition-all duration-300 block"
+					>
 						<div class="relative w-28 h-28 mx-auto mb-5 overflow-hidden rounded-full border-4 border-muted">
 							<img
 								alt={expert.name}
@@ -41,7 +39,7 @@ const { experts } = Astro.props;
 						<p class="text-sm text-muted-foreground leading-relaxed">
 							{expert.description}
 						</p>
-					</div>
+					</a>
 				))
 			}
 		</div>

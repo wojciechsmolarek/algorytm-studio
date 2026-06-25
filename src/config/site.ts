@@ -31,6 +31,14 @@ export const siteConfig = {
         { text: "SEO w modelu pre-paid", href: "/oferta/seo-pre-paid" },
       ],
     },
+    {
+      text: "Eksperci",
+      children: [
+        { text: "Wojciech Smolarek", href: "/ekspert/wojciech-smolarek" },
+        { text: "Piotr Firyn", href: "/ekspert/piotr-firyn" },
+        { text: "Jakub Witkowski", href: "/ekspert/jakub-witkowski" },
+      ],
+    },
     // { text: "Baza Wiedzy", href: "/blog" },
     //{ text: "Kontakt", href: "/kontakt" },
   ],

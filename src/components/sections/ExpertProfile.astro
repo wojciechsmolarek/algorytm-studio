@@ -1,0 +1,188 @@
+---
+import type { Expert } from "../../config/experts";
+
+interface Props {
+	expert: Expert;
+}
+
+const { expert } = Astro.props;
+---
+
+<section class="pt-36 pb-20 px-6 md:px-12 lg:px-24 bg-muted">
+	<div class="max-w-6xl mx-auto">
+		<div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+			<div class="reveal-on-scroll order-2 lg:order-1">
+				<span class="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm uppercase tracking-widest font-medium mb-6">
+					{expert.role}
+				</span>
+				<h1 class="font-serif text-4xl md:text-6xl leading-tight mb-6 text-balance">
+					{expert.name}
+				</h1>
+				<p class="text-xl text-muted-foreground leading-relaxed mb-8">
+					{expert.description}
+				</p>
+				<a
+					href={`mailto:${expert.email}`}
+					class="inline-flex items-center gap-2 text-primary font-medium hover:underline"
+				>
+					{expert.email}
+				</a>
+			</div>
+			<div class="reveal-on-scroll order-1 lg:order-2">
+				<div class="relative aspect-[4/5] max-w-md mx-auto lg:max-w-none rounded-3xl overflow-hidden border-4 border-card shadow-xl">
+					<img
+						src={expert.image}
+						alt={expert.name}
+						class="w-full h-full object-cover"
+						loading="eager"
+					/>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="py-20 px-6 md:px-12 lg:px-24">
+	<div class="max-w-6xl mx-auto">
+		<div class="mb-14 reveal-on-scroll">
+			<span class="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm uppercase tracking-widest font-medium mb-6">O mnie</span>
+			<h2 class="font-serif text-3xl md:text-4xl mb-4 text-balance max-w-3xl">
+				Poznaj <span class="text-primary">{expert.name.split(" ")[0]}</span>
+			</h2>
+		</div>
+		<div class="bg-card rounded-3xl p-8 md:p-12 border border-border reveal-on-scroll">
+			<p class="text-lg text-muted-foreground leading-relaxed text-balance">
+				{expert.fullBio}
+			</p>
+		</div>
+	</div>
+</section>
+
+{expert.technologies.length > 0 && (
+	<section class="py-20 px-6 md:px-12 lg:px-24 bg-muted">
+		<div class="max-w-6xl mx-auto">
+			<div class="mb-14 reveal-on-scroll">
+				<span class="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm uppercase tracking-widest font-medium mb-6">Technologie</span>
+				<h2 class="font-serif text-3xl md:text-4xl mb-4 text-balance max-w-3xl">
+					Stack <span class="text-primary">technologiczny</span>
+				</h2>
+			</div>
+			<div class="flex flex-wrap gap-3 reveal-on-scroll">
+				{expert.technologies.map((tech) => (
+					<span class="inline-block bg-card border border-border rounded-full px-5 py-2.5 text-sm font-medium text-foreground">
+						{tech}
+					</span>
+				))}
+			</div>
+		</div>
+	</section>
+)}
+
+{expert.publications.length > 0 && (
+	<section class="py-20 px-6 md:px-12 lg:px-24">
+		<div class="max-w-6xl mx-auto">
+			<div class="mb-14 reveal-on-scroll">
+				<span class="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm uppercase tracking-widest font-medium mb-6">Publikacje</span>
+				<h2 class="font-serif text-3xl md:text-4xl mb-4 text-balance max-w-3xl">
+					Teksty <span class="text-primary">branżowe</span>
+				</h2>
+			</div>
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+				{expert.publications.map((pub) => (
+					<div class="bg-card rounded-3xl overflow-hidden border border-border reveal-on-scroll hover:shadow-lg transition-all duration-300">
+						{pub.image && (
+							<img src={pub.image} alt={pub.title} class="w-full h-48 object-cover" />
+						)}
+						<div class="p-8">
+							<a
+								href={pub.url}
+								target="_blank"
+								rel="noopener noreferrer"
+								class="text-foreground hover:text-primary transition-colors flex items-start gap-3"
+							>
+								<span class="w-1.5 h-1.5 rounded-full bg-accent shrink-0 mt-2"></span>
+								<span class="text-sm leading-relaxed underline underline-offset-4">{pub.title}</span>
+							</a>
+						</div>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+)}
+
+<section class="py-20 px-6 md:px-12 lg:px-24 bg-muted">
+	<div class="max-w-6xl mx-auto">
+		<div class="mb-14 reveal-on-scroll">
+			<span class="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm uppercase tracking-widest font-medium mb-6">Doświadczenie</span>
+			<h2 class="font-serif text-3xl md:text-4xl mb-4 text-balance max-w-3xl">
+				{expert.experience.title} <span class="text-primary">zawodowe</span>
+			</h2>
+			<p class="text-lg text-muted-foreground leading-relaxed max-w-3xl">
+				{expert.experience.summary}
+			</p>
+		</div>
+
+		<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+			{expert.experience.timeline.map((item) => (
+				<div class="bg-card rounded-3xl p-8 border border-border reveal-on-scroll hover:shadow-lg transition-all duration-300">
+					<p class="text-sm text-muted-foreground mb-3">{item.period}</p>
+					<h3 class="text-xl font-medium text-foreground mb-1">{item.role}</h3>
+					<p class="text-sm font-medium text-primary mb-3">{item.company}</p>
+					{item.description && (
+						<p class="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
+					)}
+				</div>
+			))}
+		</div>
+
+		<div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
+			{expert.experience.highlights.map((h) => (
+				<div class="bg-card rounded-3xl p-8 border border-border reveal-on-scroll">
+					<p class="text-xs uppercase tracking-widest text-primary font-medium mb-2">{h.label}</p>
+					<p class="text-sm text-muted-foreground leading-relaxed">{h.value}</p>
+				</div>
+			))}
+			<div class="bg-card rounded-3xl p-8 border border-border reveal-on-scroll flex items-start">
+				<a
+					href={expert.linkedin}
+					target="_blank"
+					rel="noopener noreferrer"
+					class="inline-flex items-center gap-2 text-primary font-medium hover:underline"
+				>
+					<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+						<path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+					</svg>
+					Pełny profil na LinkedIn
+				</a>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="py-20 px-6 md:px-12 lg:px-24 bg-muted">
+	<div class="max-w-6xl mx-auto">
+		<div class="bg-primary rounded-3xl p-8 md:p-12 lg:p-16 text-white text-center reveal-on-scroll">
+			<h2 class="font-serif text-3xl md:text-5xl mb-6 text-balance max-w-3xl mx-auto">
+				Porozmawiajmy z {expert.name.split(" ")[0]}em
+			</h2>
+			<p class="text-white/80 text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
+				Masz pytania w obszarze {expert.role.toLowerCase()}? Napisz bezpośrednio — odpowiemy w ciągu 24h w dni robocze.
+			</p>
+			<div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+				<a
+					href={`mailto:${expert.email}`}
+					class="inline-block bg-white text-primary px-8 py-4 rounded-full font-medium hover:scale-105 transition-transform shadow-lg"
+				>
+					Napisz do {expert.name.split(" ")[0]}
+				</a>
+				<a
+					href="/kontakt"
+					class="inline-block bg-white/10 text-white px-8 py-4 rounded-full font-medium hover:scale-105 transition-transform"
+				>
+					Formularz kontaktowy
+				</a>
+			</div>
+		</div>
+	</div>
+</section>
