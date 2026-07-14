@@ -6,18 +6,16 @@ const blog = defineCollection({
     const posts = await getBlogPosts();
     return posts.map((post) => ({
       id: post.id,
-      data: {
-        title: post.title,
-        description: post.description,
-        content: post.content,
-        pubDate: post.pubDate,
-        author: post.author,
-        authorSlug: post.authorSlug,
-        image: post.image,
-        tags: post.tags,
-        category: post.category,
-        categorySlug: post.categorySlug,
-      },
+      title: post.title,
+      description: post.description,
+      content: post.content,
+      pubDate: post.pubDate,
+      author: post.author,
+      authorSlug: post.authorSlug,
+      image: post.image,
+      tags: post.tags,
+      category: post.category,
+      categorySlug: post.categorySlug,
     }));
   },
   schema: z.object({

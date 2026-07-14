@@ -17,7 +17,7 @@
     "build-preview": "npm run build && npm run preview"
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.6",
+    "@astrojs/check": "^0.9.9",
     "@astrojs/rss": "^4.0.18",
     "@astrojs/sitemap": "^3.7.0",
     "@iconify-json/lucide": "^1.2.86",
@@ -25,14 +25,12 @@
     "@tailwindcss/vite": "^4.1.18",
     "@vercel/analytics": "^2.0.1",
     "@vercel/speed-insights": "^2.0.0",
-    "astro": "^6.1.4",
+    "astro": "^7.0.9",
     "astro-icon": "^1.1.5",
     "remark-reading-time": "^2.0.2",
     "tailwindcss": "^4.1.18",
-    "typescript": "^6.0.2"
-  },
-  "overrides": {
-    "vite": "^7"
+    "typescript": "^6.0.2",
+    "vite": "^7.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

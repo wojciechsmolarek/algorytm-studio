@@ -47,7 +47,7 @@ export interface BlogPost {
   title: string;
   description: string;
   content: string;
-  pubDate: Date;
+  pubDate: string;
   author: string;
   authorSlug: string;
   image: string | undefined;
@@ -102,7 +102,7 @@ function transformPost(post: WPPost): BlogPost {
     title: stripHtml(post.title.rendered),
     description: stripHtml(post.excerpt.rendered),
     content: post.content.rendered,
-    pubDate: new Date(post.date),
+    pubDate: post.date,
     author: post._embedded?.author?.[0]?.name ?? "Studio Algorytm",
     authorSlug: post._embedded?.author?.[0]?.slug ?? "",
     image: post._embedded?.["wp:featuredmedia"]?.[0]?.source_url,

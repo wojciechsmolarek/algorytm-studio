@@ -6,7 +6,7 @@ import type { BlogPost } from "../../lib/wordpress";
 type PostData = {
     title: string;
     description: string;
-    pubDate: Date;
+    pubDate: Date | string;
     author: string;
     authorSlug?: string;
     image?: string;
@@ -24,6 +24,7 @@ const { post } = Astro.props;
 const data: PostData = "data" in post ? post.data : post;
 const id = "id" in post ? post.id : (post as CollectionEntry<"blog">).id;
 const authorSlug = data.authorSlug;
+const pubDate = typeof data.pubDate === "string" ? new Date(data.pubDate) : data.pubDate;
 ---
 
 <article
@@ -68,9 +69,9 @@ const authorSlug = data.authorSlug;
             </div>
             <div class="">
                 <div class="flex space-x-1 text-sm text-muted-foreground">
-                    <time datetime={data.pubDate.toISOString()}>
+                    <time datetime={pubDate.toISOString()}>
                         {
-                            data.pubDate.toLocaleDateString("pl-PL", {
+                            pubDate.toLocaleDateString("pl-PL", {
                                 year: "numeric",
                                 month: "long",
                                 day: "numeric",
