@@ -1,46 +1,68 @@
 ---
 import type { Page } from "astro";
-import type { CollectionEntry } from "astro:content";
-import { Icon } from "astro-icon/components";
 
 export interface Props {
-    page: Page<CollectionEntry<"blog">>;
+    page: Page<any>;
     class?: string;
 }
 
 const { page, class: className } = Astro.props;
 const { currentPage, lastPage, url } = page;
 const { prev, next } = url;
+
+const paginationPages = Array.from({ length: lastPage }, (_, i) => i + 1).map((pageNum) => {
+    const showPage =
+        pageNum === 1 ||
+        pageNum === lastPage ||
+        Math.abs(pageNum - currentPage) <= 1;
+    const showEllipsisBefore = pageNum === currentPage - 2 && currentPage > 3;
+    const showEllipsisAfter = pageNum === currentPage + 2 && currentPage < lastPage - 2;
+    return { pageNum, showPage, showEllipsisBefore, showEllipsisAfter };
+});
 ---
 
 {
-    (prev || next) && (
-        <div class:list={["flex justify-between mt-12", className]}>
+    lastPage > 1 && (
+        <nav class:list={["flex items-center justify-center gap-2 mt-16", className]} aria-label="Paginacja">
             {prev ? (
-                <a
-                    href={prev}
-                    class="inline-flex items-center px-4 py-2 text-sm font-medium text-muted-foreground bg-card border border-border rounded-lg hover:bg-muted hover:text-foreground transition-colors"
-                >
-                    <Icon name="tabler:arrow-left" class="w-4 h-4 mr-2" />
-                    Previous
+                <a href={prev} class="px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors" aria-label="Poprzednia strona">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
                 </a>
             ) : (
-                <span />
+                <button class="px-3 py-2 text-sm font-medium text-muted-foreground/40 cursor-not-allowed" disabled aria-label="Poprzednia strona">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                </button>
             )}
-            <div class="flex items-center text-sm text-muted-foreground">
-                Strona {currentPage} z {lastPage}
-            </div>
+
+            {paginationPages.map((p) => {
+                if (p.showEllipsisBefore || p.showEllipsisAfter) {
+                    return <span class="px-2 text-muted-foreground">...</span>;
+                }
+                if (!p.showPage) return null;
+                return (
+                    <a
+                        href={p.pageNum === 1 ? url.current.replace(/\/\d+$/, "") || url.current : `${url.current.replace(/\/\d+$/, "")}/${p.pageNum}`}
+                        class={`px-4 py-2 font-medium text-sm rounded-lg transition-colors ${
+                            p.pageNum === currentPage
+                                ? "bg-primary text-white"
+                                : "bg-card text-muted-foreground border border-border hover:border-primary hover:text-foreground"
+                        }`}
+                        aria-current={p.pageNum === currentPage ? "page" : undefined}
+                    >
+                        {p.pageNum}
+                    </a>
+                );
+            })}
+
             {next ? (
-                <a
-                    href={next}
-                    class="inline-flex items-center px-4 py-2 text-sm font-medium text-muted-foreground bg-card border border-border rounded-lg hover:bg-muted hover:text-foreground transition-colors"
-                >
-                    Next
-                    <Icon name="tabler:arrow-right" class="w-4 h-4 ml-2" />
+                <a href={next} class="px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors" aria-label="Następna strona">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
                 </a>
             ) : (
-                <span />
+                <button class="px-3 py-2 text-sm font-medium text-muted-foreground/40 cursor-not-allowed" disabled aria-label="Następna strona">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                </button>
             )}
-        </div>
+        </nav>
     )
 }

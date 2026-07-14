@@ -89,7 +89,7 @@ export const experts: Expert[] = [
     publications: [
       {
         title: "Techniczne SEO, a rzeczywistość na platformach e-commerce opartych o SaaS",
-        url: "https://www.linkedin.com/posts/piotr-firyn_seo-poland-conference-talem-technologies-activity-6961298765432123456-abc1",
+        url: "https://www.linkedin.com/feed/update/urn:li:activity:6968980440086917120/",
         image: "https://media.licdn.com/dms/image/v2/C4D22AQEjdwYqHqAeuQ/feedshare-shrink_1280/feedshare-shrink_1280/0/1661534410176?e=1784160000&v=beta&t=KuWDuGlufaqZYWA9ut_8sSVmDbgpPf_k4TsX3N-mJUE",
       },
     ],

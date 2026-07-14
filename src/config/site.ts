@@ -12,7 +12,7 @@ export const siteConfig = {
   lang: "pl",
   locale: "pl_PL",
   author: "Studio Algorytm",
-  email: "wojciech@algorytm.studio",
+  email: "kontakt@algorytm.studio",
   tel: "+48 697 225 901",
   ogImage: ogImage,
   socialLinks: {
@@ -43,7 +43,7 @@ export const siteConfig = {
         { text: "Jakub Witkowski", href: "/ekspert/jakub-witkowski" },
       ],
     },
-    // { text: "Baza Wiedzy", href: "/blog" },
+    //{ text: "Blog", href: "/blog" },
     //{ text: "Kontakt", href: "/kontakt" },
   ] as NavLink[],
 };

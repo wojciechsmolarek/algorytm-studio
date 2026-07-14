@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import Form from "../components/ui/Form.astro";
+import { experts } from "../config/experts";
+import { siteConfig } from "../config/site";
 
 const metadata = {
     title: "Kontakt",
@@ -20,27 +21,40 @@ const metadata = {
                     <p class="text-muted-foreground text-lg max-w-md leading-relaxed mb-8">
                         Masz projekt? Potrzebujesz konsultacji? A może po prostu chcesz zapytać o możliwości współpracy? Napisz do nas.
                     </p>
-                    <a
-                        class="inline-block text-2xl border-b border-muted-foreground pb-2 hover:border-foreground transition-colors"
-                        href="mailto:kontakt@algorytm.studio"
-                    >
-                        kontakt@algorytm.studio
-                    </a>
 
-                    <div class="mt-16 grid grid-cols-2 gap-12">
+                    <div class="mt-16 space-y-12">
                         <div>
-                            <h3 class="uppercase tracking-widest text-xs font-medium mb-4">Telefon</h3>
-                            <p class="text-muted-foreground">+48 697 225 901</p>
+                            <h3 class="uppercase tracking-widest text-xs font-medium mb-4">Adres</h3>
+                            <p class="text-muted-foreground">Bydgoszcz, ul. Sępia 4</p>
                         </div>
                         <div>
-                            <h3 class="uppercase tracking-widest text-xs font-medium mb-4">Lokalizacja</h3>
-                            <p class="text-muted-foreground">Bydgoszcz, Polska</p>
+                            <h3 class="uppercase tracking-widest text-xs font-medium mb-4">Telefon</h3>
+                            <p class="text-muted-foreground">{siteConfig.tel}</p>
+                        </div>
+                        <div>
+                            <h3 class="uppercase tracking-widest text-xs font-medium mb-4">Kontakt e-mail</h3>
+                            <div class="space-y-2">
+                                <a class="block text-muted-foreground hover:text-foreground transition-colors" href="mailto:kontakt@algorytm.studio">kontakt@algorytm.studio</a>
+                                {experts.map((expert) => (
+                                    <a class="block text-muted-foreground hover:text-foreground transition-colors" href={`mailto:${expert.email}`}>
+                                        {expert.email} — {expert.name}
+                                    </a>
+                                ))}
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="bg-card border border-border p-8 md:p-12 rounded-lg reveal-on-scroll">
-                    <Form formId="contact-form-main" />
+                    <iframe
+                        src="https://maps.google.com/maps?q=S%C4%99pia%204%2C%20Bydgoszcz&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                        width="100%"
+                        height="100%"
+                        style="border:0; min-height: 400px;"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"
+                    ></iframe>
                 </div>
             </div>
         </div>
