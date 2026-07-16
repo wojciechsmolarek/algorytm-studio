@@ -15,7 +15,18 @@ export interface WPPost {
   date: string;
   author: number;
   _embedded?: {
-    author?: { name: string; slug: string; description?: string; avatar_urls?: { [key: string]: string } }[];
+    author?: {
+      name: string;
+      slug: string;
+      description?: string;
+      avatar_urls?: { [key: string]: string };
+      acf?: {
+        rola?: string;
+        ekspertyza?: string;
+        cytat?: string;
+        zdjecie?: string;
+      };
+    }[];
     "wp:featuredmedia"?: { source_url: string }[];
     "wp:term"?: WPTerm[][];
   };
@@ -50,6 +61,11 @@ export interface BlogPost {
   pubDate: string;
   author: string;
   authorSlug: string;
+  authorDescription: string;
+  authorAvatar: string;
+  authorRole: string | undefined;
+  authorExpertise: string | undefined;
+  authorPhoto: string | undefined;
   image: string | undefined;
   tags: string[];
   category: string | undefined;
@@ -66,6 +82,18 @@ export interface Author {
   expertise: string | undefined;
   quote: string | undefined;
   photo: string | undefined;
+}
+
+async function resolveMediaUrl(mediaId: string | number | undefined): Promise<string | undefined> {
+  if (!mediaId || mediaId === "") return undefined;
+  try {
+    const res = await fetch(`${WP_API}/media/${mediaId}`);
+    if (!res.ok) return undefined;
+    const media = await res.json();
+    return media.source_url as string;
+  } catch {
+    return undefined;
+  }
 }
 
 export interface Category {
@@ -97,14 +125,22 @@ function transformPost(post: WPPost): BlogPost {
     .map((t) => t.name);
   const cat = terms.find((t) => t.taxonomy === "category");
 
+  const authorData = post._embedded?.author?.[0];
+  const authorPhotoId = authorData?.acf?.zdjecie;
+
   return {
     id: post.slug,
     title: stripHtml(post.title.rendered),
     description: stripHtml(post.excerpt.rendered),
     content: post.content.rendered,
     pubDate: post.date,
-    author: post._embedded?.author?.[0]?.name ?? "Studio Algorytm",
-    authorSlug: post._embedded?.author?.[0]?.slug ?? "",
+    author: authorData?.name ?? "Studio Algorytm",
+    authorSlug: authorData?.slug ?? "",
+    authorDescription: authorData?.description ?? "",
+    authorAvatar: authorData?.avatar_urls?.["96"] ?? "",
+    authorRole: authorData?.acf?.rola,
+    authorExpertise: authorData?.acf?.ekspertyza,
+    authorPhoto: authorPhotoId ? undefined : undefined, // resolved in getBlogPosts
     image: post._embedded?.["wp:featuredmedia"]?.[0]?.source_url,
     tags,
     category: cat?.name,
@@ -114,7 +150,18 @@ function transformPost(post: WPPost): BlogPost {
 
 export async function getBlogPosts(): Promise<BlogPost[]> {
   const posts = await fetchPosts();
-  return posts.map(transformPost);
+  const transformed = posts.map(transformPost);
+  // Resolve author photo URLs (ACF returns media ID, not URL)
+  return Promise.all(
+    transformed.map(async (post) => {
+      const authorData = posts.find((p) => p.slug === post.id)?._embedded?.author?.[0];
+      const photoId = authorData?.acf?.zdjecie;
+      if (photoId) {
+        post.authorPhoto = await resolveMediaUrl(photoId);
+      }
+      return post;
+    })
+  );
 }
 
 export async function getAllAuthors(): Promise<Author[]> {
@@ -122,17 +169,19 @@ export async function getAllAuthors(): Promise<Author[]> {
     const res = await fetch(`${WP_API}/users?per_page=100`);
     if (!res.ok) return [];
     const users = (await res.json()) as WPUser[];
-    return users.map((user) => ({
-      id: user.id,
-      name: user.name,
-      slug: user.slug,
-      description: user.description || "",
-      avatar: user.avatar_urls?.["96"] ?? "",
-      role: user.acf?.rola,
-      expertise: user.acf?.ekspertyza,
-      quote: user.acf?.cytat,
-      photo: user.acf?.zdjecie,
-    }));
+    return Promise.all(
+      users.map(async (user) => ({
+        id: user.id,
+        name: user.name,
+        slug: user.slug,
+        description: user.description || "",
+        avatar: user.avatar_urls?.["96"] ?? "",
+        role: user.acf?.rola,
+        expertise: user.acf?.ekspertyza,
+        quote: user.acf?.cytat,
+        photo: await resolveMediaUrl(user.acf?.zdjecie),
+      }))
+    );
   } catch {
     return [];
   }
@@ -154,7 +203,7 @@ export async function getAuthorBySlug(slug: string): Promise<Author | null> {
       role: user.acf?.rola,
       expertise: user.acf?.ekspertyza,
       quote: user.acf?.cytat,
-      photo: user.acf?.zdjecie,
+      photo: await resolveMediaUrl(user.acf?.zdjecie),
     };
   } catch {
     return null;

@@ -13,7 +13,7 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props;
-const { title, description, pubDate, author, authorSlug, image, content } = post.data;
+const { title, description, pubDate, author, authorSlug, authorDescription, authorAvatar, authorRole, authorExpertise, authorPhoto, image, content } = post.data;
 
 const formattedDate = pubDate.toLocaleDateString("pl-PL", {
     year: "numeric",
@@ -73,6 +73,61 @@ const metadata = {
                 class="prose prose-lg dark:prose-invert mx-auto prose-headings:text-foreground prose-a:text-primary hover:prose-a:underline prose-p:text-muted-foreground prose-strong:text-foreground prose-li:text-muted-foreground prose-code:text-primary"
                 set:html={content}
             />
+
+            {/* Author Bio Card */}
+            <section class="mt-16 p-8 bg-muted rounded-2xl border border-border flex flex-col md:flex-row gap-8 items-center md:items-start">
+                <div class="w-32 h-32 flex-shrink-0 rounded-xl overflow-hidden bg-primary/10">
+                    {authorPhoto ? (
+                        <img
+                            src={authorPhoto}
+                            alt={author}
+                            width={128}
+                            height={128}
+                            loading="lazy"
+                            decoding="async"
+                            class="w-full h-full object-cover"
+                        />
+                    ) : authorAvatar ? (
+                        <img
+                            src={authorAvatar}
+                            alt={author}
+                            width={128}
+                            height={128}
+                            loading="lazy"
+                            decoding="async"
+                            class="w-full h-full object-cover"
+                        />
+                    ) : (
+                        <div class="w-full h-full bg-primary flex items-center justify-center text-white font-bold text-4xl">
+                            {author.charAt(0).toUpperCase()}
+                        </div>
+                    )}
+                </div>
+                <div class="text-center md:text-left">
+                    <h4 class="font-serif text-2xl font-medium mb-2">
+                        O autorze: {authorSlug ? (
+                            <a href={`/blog/autor/${authorSlug}`} class="text-primary hover:underline">{author}</a>
+                        ) : author}
+                    </h4>
+                    {authorRole && (
+                        <p class="text-sm font-bold uppercase tracking-widest text-primary mb-3">{authorRole}</p>
+                    )}
+                    {authorExpertise && (
+                        <p class="text-base text-muted-foreground mb-4 leading-relaxed">{authorExpertise}</p>
+                    )}
+                    {authorDescription && (
+                        <p class="text-sm text-muted-foreground leading-relaxed">{authorDescription}</p>
+                    )}
+                    {authorSlug && (
+                        <a href={`/blog/autor/${authorSlug}`} class="inline-flex items-center gap-2 text-primary hover:text-foreground font-medium text-sm mt-4 transition-colors">
+                            Zobacz wszystkie artykuły autora
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path d="M9 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </a>
+                    )}
+                </div>
+            </section>
         </div>
     </section>
 </BaseLayout>
