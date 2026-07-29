@@ -43,7 +43,7 @@ export const siteConfig = {
         { text: "Jakub Witkowski", href: "/ekspert/jakub-witkowski" },
       ],
     },
-    //{ text: "Blog", href: "/blog" },
+    { text: "Blog", href: "/blog" },
     //{ text: "Kontakt", href: "/kontakt" },
   ] as NavLink[],
 };
