@@ -12,6 +12,7 @@ interface Props {
         ogType?: string;
         canonical?: string;
         ignoreTitleTemplate?: boolean;
+        breadcrumbLabels?: Record<string, string>;
     };
 }
 
@@ -35,6 +36,7 @@ const finalOgImage = metadata?.ogImage || ogImage;
 const finalOgType = metadata?.ogType || ogType;
 const finalCanonical = metadata?.canonical || canonical;
 const finalIgnoreTitleTemplate = metadata?.ignoreTitleTemplate || false;
+const finalBreadcrumbLabels = metadata?.breadcrumbLabels;
 
 // Build global schema graph: WebSite + Organization + BreadcrumbList
 const founders = experts.map((e) => ({
@@ -48,7 +50,7 @@ const normalizedPath =
         ? "/"
         : Astro.url.pathname.replace(/\/$/, "");
 const pageUrl = new URL(normalizedPath, siteConfig.url).toString();
-const autoBreadcrumbs = generateBreadcrumbs(Astro.url.pathname);
+const autoBreadcrumbs = generateBreadcrumbs(Astro.url.pathname, finalBreadcrumbLabels);
 const showBreadcrumbs = Astro.url.pathname !== "/";
 
 const globalGraph = [

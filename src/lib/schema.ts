@@ -119,6 +119,7 @@ export function buildSchema(
                     "@type": "PostalAddress",
                     streetAddress: "ul. Sępia 4",
                     addressLocality: "Bydgoszcz",
+                    postalCode: "85-434",
                     addressCountry: "PL",
                 },
                 logo: {
