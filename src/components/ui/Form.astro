@@ -1,4 +1,4 @@
----
+﻿---
 interface Props {
     formId?: string;
 }
@@ -14,7 +14,7 @@ const { formId = "contact-form" } = Astro.props;
         <label
             for={`${formId}-name`}
             class="block text-xs uppercase tracking-widest text-current/50 mb-2"
-            >Imię i Nazwisko</label
+            >Imi─Ö i Nazwisko</label
         >
         <input
             type="text"
@@ -46,7 +46,7 @@ const { formId = "contact-form" } = Astro.props;
         <label
             for={`${formId}-message`}
             class="block text-xs uppercase tracking-widest text-current/50 mb-2"
-            >Wiadomość</label
+            >Wiadomo┼¢─ç</label
         >
         <textarea
             name="message"
@@ -54,15 +54,15 @@ const { formId = "contact-form" } = Astro.props;
             rows="4"
             required
             class="w-full bg-transparent border border-current/20 focus:border-current outline-none p-3 transition-colors placeholder:text-current/20 text-current resize-none"
-            placeholder="Opisz krótko swój projekt..."></textarea>
+            placeholder="Opisz kr├│tko sw├│j projekt..."></textarea>
     </div>
     <div>
         <button
             type="submit"
             class="bg-background text-foreground px-8 py-3 rounded-full font-medium hover:bg-background/80 transition w-full md:w-auto disabled:opacity-50 disabled:cursor-not-allowed"
         >
-            <span class="submit-text">Wyślij zapytanie</span>
-            <span class="loading-text hidden">Wysyłanie...</span>
+            <span class="submit-text">Wy┼¢lij zapytanie</span>
+            <span class="loading-text hidden">Wysy┼éanie...</span>
         </button>
     </div>
     <div class="result-message hidden mt-4 p-4 rounded-lg text-sm"></div>
@@ -96,18 +96,18 @@ const { formId = "contact-form" } = Astro.props;
 
             if (data.success) {
                 // Show success message
-                resultMessage.textContent = "✓ Dziękujemy! Twoja wiadomość została wysłana. Skontaktujemy się wkrótce.";
+                resultMessage.textContent = "Γ£ô Dzi─Ökujemy! Twoja wiadomo┼¢─ç zosta┼éa wys┼éana. Skontaktujemy si─Ö wkr├│tce.";
                 resultMessage.className = "result-message mt-4 p-4 rounded-lg text-sm bg-green-500/10 text-green-500 border border-green-500/20";
                 resultMessage.classList.remove('hidden');
 
                 // Reset form
                 form.reset();
             } else {
-                throw new Error(data.message || "Wystąpił błąd");
+                throw new Error(data.message || "Wyst─àpi┼é b┼é─àd");
             }
         } catch (error) {
             // Show error message
-            resultMessage.textContent = "✗ Wystąpił błąd podczas wysyłania formularza. Spróbuj ponownie lub skontaktuj się z nami telefonicznie.";
+            resultMessage.textContent = "Γ£ù Wyst─àpi┼é b┼é─àd podczas wysy┼éania formularza. Spr├│buj ponownie lub skontaktuj si─Ö z nami telefonicznie.";
             resultMessage.className = "result-message mt-4 p-4 rounded-lg text-sm bg-red-500/10 text-red-500 border border-red-500/20";
             resultMessage.classList.remove('hidden');
         } finally {

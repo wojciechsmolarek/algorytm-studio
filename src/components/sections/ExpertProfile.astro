@@ -36,6 +36,9 @@ const { expert } = Astro.props;
 						alt={expert.name}
 						width={800}
 						height={1000}
+						widths={[400, 800]}
+						sizes="(max-width: 1024px) 448px, 800px"
+						format="webp"
 						class="w-full h-full object-cover"
 						loading="eager"
 					/>

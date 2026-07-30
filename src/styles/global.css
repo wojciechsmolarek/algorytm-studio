@@ -1,22 +1,6 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
-@font-face {
-  font-family: 'Lora';
-  font-style: normal;
-  font-weight: 400 700;
-  font-display: swap;
-  src: url('https://fonts.gstatic.com/s/lora/v32/0QI6MX1D_JOuGQbTPlTBgwA.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Lora';
-  font-style: italic;
-  font-weight: 400 700;
-  font-display: swap;
-  src: url('https://fonts.gstatic.com/s/lora/v32/0QI8MX1D_JOuMw_hLdO6Hw2k.woff2') format('woff2');
-}
-
 @theme {
   --font-sans: 'Inter', system-ui, sans-serif;
   --font-serif: 'Lora', Georgia, serif;
@@ -77,6 +61,176 @@
 .reveal-visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* WordPress code block styling */
+.prose pre.wp-block-code,
+.prose pre:has(code) {
+  background-color: #22272e;
+  color: #adbac7;
+  border: 1px solid #444c56;
+  border-radius: 0.75rem;
+  padding: 1.25rem 1.5rem;
+  overflow-x: auto;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  margin: 1.5rem 0;
+}
+
+.prose pre.wp-block-code code,
+.prose pre:has(code) code,
+.prose pre code.hljs {
+  color: inherit;
+  background: none;
+  padding: 0;
+  font-size: inherit;
+  line-height: inherit;
+  font-family: 'Fira Code', 'JetBrains Mono', 'Cascadia Code', Consolas, monospace;
+  text-shadow: none;
+}
+
+/* Inline code outside pre blocks */
+.prose :not(pre) > code {
+  color: var(--primary);
+  background-color: var(--muted);
+  padding: 0.15rem 0.35rem;
+  border-radius: 0.3rem;
+  font-size: 0.875em;
+  font-weight: 500;
+}
+
+/* Blog table styling — WordPress + prose tables */
+
+/* Scroll wrapper for bare tables (added via JS) */
+.prose .table-scroll-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  margin: 1.75rem 0;
+  border-radius: 0.75rem;
+  border: 1px solid var(--border);
+}
+
+/* WordPress figure wrapper acts as scroll container */
+.prose figure.wp-block-table {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  margin: 1.75rem 0;
+  border-radius: 0.75rem;
+  border: 1px solid var(--border);
+}
+
+.prose table,
+.prose figure.wp-block-table table {
+  width: 100%;
+  border-collapse: collapse;
+  display: table;
+  table-layout: auto;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.prose .table-scroll-wrapper table {
+  margin: 0;
+}
+
+.prose thead {
+  background-color: #1F4738;
+}
+
+.prose thead th {
+  padding: 0.85rem 1rem;
+  font-weight: 700;
+  text-align: left;
+  font-size: 0.8rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  border-bottom: 3px solid #15372C;
+  color: #FFFFFF !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.prose thead th:first-child {
+  border-top-left-radius: 0.75rem;
+}
+
+.prose thead th:last-child {
+  border-top-right-radius: 0.75rem;
+}
+
+.prose tbody tr {
+  border-bottom: 1px solid var(--border);
+  transition: background-color 0.15s ease;
+}
+
+.prose tbody tr:nth-child(even) {
+  background-color: var(--muted);
+}
+
+.prose tbody tr:hover {
+  background-color: color-mix(in srgb, var(--primary) 8%, transparent);
+}
+
+.prose tbody tr:last-child {
+  border-bottom: none;
+}
+
+.prose tbody td {
+  padding: 0.65rem 1rem;
+  color: var(--foreground);
+  vertical-align: top;
+}
+
+.prose tbody td strong {
+  color: var(--primary);
+}
+
+.prose figure.wp-block-table figcaption {
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--muted-foreground);
+  margin-top: 0.5rem;
+  font-style: italic;
+  padding: 0.5rem 1rem;
+}
+
+/* Blog content heading styles — override prose defaults */
+.prose h2 {
+  font-family: var(--font-serif);
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--foreground);
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--border);
+}
+
+.prose h3 {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--foreground);
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  line-height: 1.35;
+}
+
+.prose h4 {
+  font-family: var(--font-sans);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
 }
 
 /* Custom scrollbar */

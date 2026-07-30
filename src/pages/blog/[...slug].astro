@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Schema from "../../components/seo/Schema.astro";
+import CodeHighlighter from "../../components/CodeHighlighter.astro";
 
 import { getCollection } from "astro:content";
 
@@ -29,6 +30,7 @@ const metadata = {
 ---
 
 <BaseLayout metadata={metadata}>
+    <CodeHighlighter />
     <Schema
         type="BlogPosting"
         data={{
@@ -41,7 +43,7 @@ const metadata = {
         }}
     />
     <section class="relative px-4 py-8 sm:px-6 lg:px-8 md:py-12">
-        <div class="relative mx-auto max-w-3xl">
+        <div class="relative mx-auto max-w-5xl">
             <div class="mb-10 text-center">
                 <p
                     class="text-sm font-semibold tracking-wide text-primary uppercase"
@@ -70,7 +72,7 @@ const metadata = {
             }
 
             <div
-                class="prose prose-lg dark:prose-invert mx-auto prose-headings:text-foreground prose-a:text-primary hover:prose-a:underline prose-p:text-muted-foreground prose-strong:text-foreground prose-li:text-muted-foreground prose-code:text-primary"
+                class="prose prose-lg dark:prose-invert mx-auto prose-headings:text-foreground prose-a:text-primary hover:prose-a:underline prose-p:text-muted-foreground prose-strong:text-foreground prose-li:text-muted-foreground"
                 set:html={content}
             />
 
@@ -130,4 +132,14 @@ const metadata = {
             </section>
         </div>
     </section>
+
+    <script>
+        document.querySelectorAll('.prose table').forEach((table) => {
+            if (table.closest('figure.wp-block-table') || table.closest('.table-scroll-wrapper')) return;
+            const wrapper = document.createElement('div');
+            wrapper.className = 'table-scroll-wrapper';
+            table.parentNode?.insertBefore(wrapper, table);
+            wrapper.appendChild(table);
+        });
+    </script>
 </BaseLayout>

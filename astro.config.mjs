@@ -6,11 +6,6 @@ import icon from "astro-icon";
 export default defineConfig({
   site: "https://algorytm.studio/",
   trailingSlash: "never",
-  image: {
-    service: {
-      entrypoint: "astro/assets/services/noop",
-    },
-  },
   integrations: [sitemap(), icon()],
   prefetch: {
     prefetchAll: true,

@@ -39,7 +39,7 @@ const { services } = Astro.props;
 							</li>
 						))}
 					</ul>
-					<a class="inline-flex items-center gap-2 text-primary font-medium group/link" href={service.href}>
+					<a class="inline-flex items-center gap-2 text-primary font-medium group/link" href={service.href} aria-label={`Zobacz więcej: ${service.title}`} title={`Zobacz więcej: ${service.title}`}>
 						Zobacz więcej
 						<span class="group-hover/link:translate-x-1 transition-transform">→</span>
 					</a>

@@ -25,6 +25,11 @@ const fullTitle =
         ? `${title} | ${siteConfig.name}`
         : title || siteConfig.name;
 
+const truncatedDescription =
+    description && description.length > 150
+        ? description.slice(0, 147).trimEnd() + "..."
+        : description;
+
 const normalizeTrailingSlash = (pathname: string) => {
     if (pathname === "/") return pathname;
     return pathname.endsWith("/") ? pathname.slice(0, -1) : pathname;
@@ -47,14 +52,14 @@ const canonicalURL =
 <!-- Primary Meta Tags -->
 <title>{fullTitle}</title>
 <meta name="title" content={fullTitle} />
-<meta name="description" content={description} />
+<meta name="description" content={truncatedDescription} />
 <meta name="author" content={siteConfig.author} />
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website" />
 <meta property="og:url" content={canonicalURL} />
 <meta property="og:title" content={fullTitle} />
-<meta property="og:description" content={description} />
+<meta property="og:description" content={truncatedDescription} />
 <meta property="og:image" content={new URL(ogImageSrc, siteConfig.url)} />
 <meta property="og:locale" content={siteConfig.locale} />
 
@@ -62,7 +67,7 @@ const canonicalURL =
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:url" content={canonicalURL} />
 <meta name="twitter:title" content={fullTitle} />
-<meta name="twitter:description" content={description} />
+<meta name="twitter:description" content={truncatedDescription} />
 <meta name="twitter:image" content={new URL(ogImageSrc, siteConfig.url)} />
 {
     siteConfig.socialLinks.twitter && (

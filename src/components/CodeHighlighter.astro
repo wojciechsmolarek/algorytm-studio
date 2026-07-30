@@ -1,0 +1,56 @@
+---
+import 'highlight.js/styles/github-dark-dimmed.css';
+---
+
+<script>
+    function highlightCodeBlocks() {
+        const codeBlocks = document.querySelectorAll('.prose pre code');
+        if (codeBlocks.length === 0) return;
+
+        import('highlight.js').then((hljs) => {
+            codeBlocks.forEach((codeEl) => {
+                const pre = codeEl.closest('pre');
+                if (!pre || pre.dataset.highlighted) return;
+
+                let lang = null;
+                const classList = Array.from(codeEl.classList);
+                for (const cls of classList) {
+                    if (cls.startsWith('language-')) {
+                        lang = cls.replace('language-', '');
+                        break;
+                    }
+                }
+
+                if (!lang) {
+                    const preClass = Array.from(pre.classList);
+                    for (const cls of preClass) {
+                        if (cls.startsWith('language-')) {
+                            lang = cls.replace('language-', '');
+                            break;
+                        }
+                    }
+                }
+
+                try {
+                    if (lang && hljs.default.getLanguage(lang)) {
+                        const result = hljs.default.highlight(codeEl.textContent || '', { language: lang });
+                        codeEl.innerHTML = result.value;
+                    } else {
+                        const result = hljs.default.highlightAuto(codeEl.textContent || '');
+                        codeEl.innerHTML = result.value;
+                    }
+                    codeEl.classList.add('hljs');
+                    pre.dataset.highlighted = '1';
+                } catch {
+                    pre.dataset.highlighted = '1';
+                }
+            });
+        });
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', highlightCodeBlocks);
+    } else {
+        highlightCodeBlocks();
+    }
+</script>

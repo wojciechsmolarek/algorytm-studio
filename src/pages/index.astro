@@ -9,9 +9,6 @@ import ExpertsSection from "../components/sections/ExpertsSection.astro";
 import WhyUsSection from "../components/sections/WhyUsSection.astro";
 import ServicesSection from "../components/sections/ServicesSection.astro";
 import StrategySection from "../components/sections/StrategySection.astro";
-import ClientsSection from "../components/sections/ClientsSection.astro";
-import KnowledgeSection from "../components/sections/KnowledgeSection.astro";
-
 const metadata = {
 	title: `${siteConfig.name} — Wspólnie budujemy widoczność`,
 	description: siteConfig.description,
@@ -33,54 +30,6 @@ const strategyColumns = [
 		title: "Technologia i bezpieczeństwo.",
 		description:
 			'Migracja serwisu czy stałe utrzymanie to fundament bezpieczeństwa. Jako kolektyw specjalistów bierzemy pełną odpowiedzialność za <strong class="text-foreground font-semibold">technologiczną stronę</strong> Twojego biznesu.',
-	},
-];
-
-const clients = [
-	"Massimo.",
-	"Gossos",
-	"Rathra",
-	"VibeLabs",
-	"Conneor",
-	"IBMO",
-	"Business+",
-	"Slastic",
-	"Emcorp",
-	"Mobolch",
-	"Zircon",
-	"Aether",
-];
-
-const articles = [
-	{
-		image: {
-			src: "https://lh3.googleusercontent.com/aida-public/AB6AXuBD65BUcsuG4w32rl2lmXmn5Km90lIEoNm1ka2MPPe201PWJROVuEC72bQ3NovPiTfHq25ysNSCJ80adLQKxsxxTAnvtRKIqk1EF1wjO-FMovUmA9vpJl1no_-BIfx2-yZLOUR-5gXx5TbYKKGHEFaTjLIs-j14kpp94fhvbocL-wOjit4De3cwoSwmNp8LJOFAnBbjFvj54q0M_IbP_IbHfpMOgQUyvhptN5bIRyaavlX6GW2ll3Gex_y15JlRQ1zqVJBrWX-nOZOn",
-			alt: "SEO Strategy",
-		},
-		category: "Strategia",
-		title: "Strategiczne podejście do B2B",
-		excerpt:
-			"Dlaczego warto inwestować w długoterminowe działania zamiast jednorazowych strzałów. Analiza przypadków z polskiego rynku.",
-	},
-	{
-		image: {
-			src: "https://lh3.googleusercontent.com/aida-public/AB6AXuDlV6BHN27ZgNYRzJ5dkmsckAimCoMelSpjCVqh0MlMC1ky-owbHH5twgTLFcqgLyHscwq6yIZKsOKPHjIu52XUFVJ-GfZiPP6HhnOFzKeJU605Qd1ZMiwFRniqhZfrnoFq_HwTCYmCDlN4roCzPjUYF35WKD9hXb19xuua7BwFHtawxQ68EgnHrWf-dmEZdz1YjGZnyBJh2OSHeQknCnI5mI_i_frxpJ4tPpi4l_2DYSO9ybH0qnGJhD7kP9fkbT8x-DigwVO9SwnP",
-			alt: "Ecommerce B2B",
-		},
-		category: "E-commerce",
-		title: "Dlaczego SEO w B2B różni się od e-commerce",
-		excerpt:
-			"Inna ścieżka klienta, inne słowa kluczowe. Jak dostosować sklep internetowy do sprzedaży hurtowej?",
-	},
-	{
-		image: {
-			src: "https://lh3.googleusercontent.com/aida-public/AB6AXuC7VcNiSn-TYvysPH21YpHIoGg5Egm6puLiQimV10OiHc30zaxLzA2jBkN21g72ylV8YXZx8qWQdyEBVFbUpSdhV0VXeD1_Z0mQJgkWsJEU8Lhn838GmcMOD1oXasiBtKOButAK-pkeI99Vy4WRwnWEBDIQZOnBBzRCaee_tr5WhL0-E0r9ecBPmPCIx4nU8QSJ61PMy5syGr9f2JEIhDfq4JZbWi0wuDCpC4gJL5YcBouQmn76wPHnGEiTTnPZVes3oh6-b0hr-KEH",
-			alt: "Analytics",
-		},
-		category: "Analityka",
-		title: "Mierzenie ROI w działaniach contentowych",
-		excerpt:
-			"Jak sprawdzić, czy Twój blog firmowy rzeczywiście przynosi zyski? Konfiguracja GA4 dla B2B.",
 	},
 ];
 
@@ -113,8 +62,4 @@ const articles = [
 		headline="Strategiczne podejście do B2B"
 		columns={strategyColumns}
 	/>
-
-	<!-- <ClientsSection clients={clients} /> -->
-
-	<!-- <KnowledgeSection articles={articles} /> -->
 </BaseLayout>
