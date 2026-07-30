@@ -1,5 +1,3 @@
-import ogImage from "../assets/og-image.png";
-
 export type NavChild = { text: string; href: string };
 export type NavLink =
   | { text: string; href: string; children?: undefined }
@@ -14,7 +12,6 @@ export const siteConfig = {
   author: "Studio Algorytm",
   email: "kontakt@algorytm.studio",
   tel: "+48 697 225 901",
-  ogImage: ogImage,
   socialLinks: {
     twitter: "",
     github: "",
