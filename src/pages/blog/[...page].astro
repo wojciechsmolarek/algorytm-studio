@@ -1,11 +1,13 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import Schema from "../../components/seo/Schema.astro";
 import { getCollection } from "astro:content";
 import Headline from "../../components/ui/Headline.astro";
 import Pagination from "../../components/ui/Pagination.astro";
 import PostItem from "../../components/blog/PostItem.astro";
 import { getAllCategories } from "../../lib/wordpress";
 import type { GetStaticPathsOptions } from "astro";
+import { siteConfig } from "../../config/site";
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
     const blogEntries = await getCollection("blog");
@@ -24,9 +26,14 @@ const metadata = {
     title: page.currentPage === 1 ? "Blog" : `Blog — Strona ${page.currentPage}`,
     description: "Artykuły ekspertów Studio Algorytm — SEO, web development, strategia B2B.",
 };
+const schemaGraph = [
+    { type: "Blog" as const, data: { name: metadata.title, posts: blog.map((p) => ({ slug: p.id, title: p.data.title, pubDate: p.data.pubDate })) } },
+];
+
 ---
 
 <BaseLayout metadata={metadata}>
+    <Schema graph={schemaGraph} />
     <section class="pt-36 pb-16 px-6 md:px-12 lg:px-24 bg-muted">
         <div class="max-w-6xl mx-auto text-center">
             <Headline

@@ -1,62 +1,31 @@
 ---
-import { siteConfig } from "../../config/site";
+import {
+    buildGraph,
+    buildSchema,
+    type SchemaType,
+    type SchemaItem,
+} from "../../lib/schema";
 
 interface Props {
-    type: "WebSite" | "BlogPosting" | "BreadcrumbList";
-    data: {
-        title?: string;
-        description?: string;
-        image?: string;
-        pubDate?: Date;
-        author?: string;
-        url?: string;
-    };
+    type?: SchemaType;
+    data?: Record<string, any>;
+    graph?: SchemaItem[];
 }
 
-const { type, data } = Astro.props;
+const { type, data = {}, graph } = Astro.props;
 
-let schema = {};
+let json: any;
 
-if (type === "WebSite") {
-    schema = {
+if (graph && graph.length > 0) {
+    json = buildGraph(graph);
+} else if (type) {
+    json = {
         "@context": "https://schema.org",
-        "@type": "WebSite",
-        name: siteConfig.name,
-        url: siteConfig.url,
-        description: siteConfig.description,
-        author: {
-            "@type": "Organization",
-            name: siteConfig.author,
-        },
-        sameAs: [siteConfig.socialLinks.twitter, siteConfig.socialLinks.github],
-    };
-} else if (type === "BlogPosting") {
-    schema = {
-        "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        headline: data.title,
-        description: data.description,
-        image: data.image,
-        datePublished: data.pubDate,
-        author: {
-            "@type": "Person",
-            name: data.author,
-        },
-        mainEntityOfPage: {
-            "@type": "WebPage",
-            "@id": data.url,
-        },
-        publisher: {
-            "@type": "Organization",
-            name: siteConfig.name,
-            logo: {
-                "@type": "ImageObject",
-                // Placeholder, ideally should be a real logo URL
-                url: new URL("/favicon.svg", siteConfig.url).toString(),
-            },
-        },
+        "@graph": [buildSchema(type, data)].filter(
+            (obj) => Object.keys(obj).length > 0,
+        ),
     };
 }
 ---
 
-<script type="application/ld+json" set:html={JSON.stringify(schema)} />
+{json && <script type="application/ld+json" set:html={JSON.stringify(json)} />}

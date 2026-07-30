@@ -16,10 +16,10 @@ export const siteConfig = {
   tel: "+48 697 225 901",
   ogImage: ogImage,
   socialLinks: {
-    twitter: "https://twitter.com",
-    github: "https://github.com",
-    discord: "https://discord.com",
-    linkedin: "https://linkedin.com",
+    twitter: "",
+    github: "",
+    discord: "",
+    linkedin: "",
   },
   navLinks: [
     {

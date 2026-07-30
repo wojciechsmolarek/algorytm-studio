@@ -1,5 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import Schema from "../../components/seo/Schema.astro";
+import { siteConfig } from "../../config/site";
 
 const metadata = {
     title: "Pozycjonowanie w AI",
@@ -197,9 +199,16 @@ const faqs = [
         answer: "Zależy od branży. AI pozycjonowanie najszybciej daje efekty w niszach z wyraźnymi pytaniami zakupowymi — usługi B2B, SaaS, specjalistyczne produkty, usługi lokalne. Dla sklepu z ogólnym asortymentem efekty będą trudniejsze do osiągnięcia i zmierzenia. Oceniamy potencjał indywidualnie na etapie bezpłatnego audytu.",
     },
 ];
+const pageUrl = new URL(Astro.url.pathname, siteConfig.url).toString();
+const schemaGraph = [
+    { type: "Service" as const, data: { title: metadata.title, description: metadata.description, url: pageUrl } },
+    { type: "FAQPage" as const, data: { url: pageUrl, faqs } },
+];
+
 ---
 
 <BaseLayout {metadata}>
+    <Schema graph={schemaGraph} />
     <!-- Hero -->
     <section class="pt-36 pb-20 px-6 md:px-12 lg:px-24 bg-muted">
         <div class="max-w-6xl mx-auto">

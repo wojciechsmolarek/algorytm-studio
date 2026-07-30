@@ -1,5 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import Schema from "../../components/seo/Schema.astro";
+import { siteConfig } from "../../config/site";
 
 const metadata = {
     title: "SEO w modelu pre-paid",
@@ -67,9 +69,15 @@ const processSteps = [
         description: "Realizujemy zadania według ustalonych priorytetów. Po każdym okresie rozliczeniowym dostajesz raport z wykonanych prac.",
     },
 ];
+const pageUrl = new URL(Astro.url.pathname, siteConfig.url).toString();
+const schemaGraph = [
+    { type: "Service" as const, data: { title: metadata.title, description: metadata.description, url: pageUrl } },
+];
+
 ---
 
 <BaseLayout {metadata}>
+    <Schema graph={schemaGraph} />
     <!-- Hero -->
     <section class="pt-36 pb-20 px-6 md:px-12 lg:px-24 bg-muted">
         <div class="max-w-6xl mx-auto">

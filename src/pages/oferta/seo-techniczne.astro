@@ -1,5 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import Schema from "../../components/seo/Schema.astro";
+import { siteConfig } from "../../config/site";
 
 const metadata = {
     title: "SEO Techniczne",
@@ -105,9 +107,16 @@ const faqs = [
         answer: "Tak. Po wdrożeniu zmian oferujemy stały nadzór techniczny w modelu miesięcznym — monitorowanie GSC, reagowanie na nowe błędy, bieżące konsultacje i kwartalne mini-audyty.",
     },
 ];
+const pageUrl = new URL(Astro.url.pathname, siteConfig.url).toString();
+const schemaGraph = [
+    { type: "Service" as const, data: { title: metadata.title, description: metadata.description, url: pageUrl } },
+    { type: "FAQPage" as const, data: { url: pageUrl, faqs } },
+];
+
 ---
 
 <BaseLayout {metadata}>
+    <Schema graph={schemaGraph} />
     <!-- Hero -->
     <section class="pt-36 pb-20 px-6 md:px-12 lg:px-24 bg-muted">
         <div class="max-w-6xl mx-auto">

@@ -4,6 +4,8 @@ import Schema from "../../components/seo/Schema.astro";
 import CodeHighlighter from "../../components/CodeHighlighter.astro";
 
 import { getCollection } from "astro:content";
+import { siteConfig } from "../../config/site";
+import { generateBreadcrumbs } from "../../lib/schema";
 
 export async function getStaticPaths() {
     const blog = await getCollection("blog");
@@ -26,22 +28,21 @@ const metadata = {
     title: title,
     description: description,
     ogImage: image,
+    ogType: "article",
 };
+
+const pageUrl = new URL(Astro.url.pathname, siteConfig.url).toString();
+const breadcrumbs = generateBreadcrumbs(Astro.url.pathname, { [post.id]: title });
+const articleBody = content.replace(/<[^>]*>/g, "").trim();
+const schemaGraph = [
+    { type: "BlogPosting" as const, data: { title, description, image, pubDate, author, authorSlug, articleBody, url: pageUrl, tags: post.data.tags, category: post.data.category } },
+    { type: "BreadcrumbList" as const, data: { breadcrumbs, url: pageUrl } },
+];
 ---
 
 <BaseLayout metadata={metadata}>
     <CodeHighlighter />
-    <Schema
-        type="BlogPosting"
-        data={{
-            title,
-            description,
-            image,
-            pubDate,
-            author,
-            url: Astro.url.href,
-        }}
-    />
+    <Schema graph={schemaGraph} />
     <section class="relative px-4 py-8 sm:px-6 lg:px-8 md:py-12">
         <div class="relative mx-auto max-w-5xl">
             <div class="mb-10 text-center">
@@ -72,7 +73,7 @@ const metadata = {
             }
 
             <div
-                class="prose prose-lg dark:prose-invert mx-auto prose-headings:text-foreground prose-a:text-primary hover:prose-a:underline prose-p:text-muted-foreground prose-strong:text-foreground prose-li:text-muted-foreground"
+                class="prose prose-lg dark:prose-invert mx-auto max-w-none prose-headings:text-foreground prose-a:text-primary hover:prose-a:underline prose-p:text-muted-foreground prose-strong:text-foreground prose-li:text-muted-foreground"
                 set:html={content}
             />
 

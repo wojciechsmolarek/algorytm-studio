@@ -1,5 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import Schema from "../../components/seo/Schema.astro";
+import { siteConfig } from "../../config/site";
 
 const metadata = {
     title: "Strony, które zarabiają",
@@ -236,9 +238,16 @@ const faqs = [
         answer: "Dobieramy technologię do projektu. Strony firmowe budujemy w Astro lub Next.js — są szybkie, tanie w utrzymaniu i doskonale rankują. Sklepy — w WooCommerce lub Shopify, zależnie od skali i potrzeb integracyjnych. Zawsze tłumaczymy dlaczego wybieramy daną technologię w kontekście Twojego biznesu i co to oznacza dla Ciebie długoterminowo.",
     },
 ];
+const pageUrl = new URL(Astro.url.pathname, siteConfig.url).toString();
+const schemaGraph = [
+    { type: "Service" as const, data: { title: metadata.title, description: metadata.description, url: pageUrl } },
+    { type: "FAQPage" as const, data: { url: pageUrl, faqs } },
+];
+
 ---
 
 <BaseLayout {metadata}>
+    <Schema graph={schemaGraph} />
     <!-- Hero -->
     <section class="pt-36 pb-20 px-6 md:px-12 lg:px-24 bg-muted">
         <div class="max-w-6xl mx-auto">

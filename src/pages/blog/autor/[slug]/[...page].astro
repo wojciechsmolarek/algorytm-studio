@@ -1,9 +1,12 @@
 ---
 import type { GetStaticPaths } from 'astro';
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import Schema from '../../../../components/seo/Schema.astro';
 import PostItem from '../../../../components/blog/PostItem.astro';
 import Pagination from '../../../../components/ui/Pagination.astro';
 import { getAllAuthors, getPostsByAuthor, type BlogPost, type Author } from '../../../../lib/wordpress';
+import { siteConfig } from '../../../../config/site';
+import { generateBreadcrumbs } from '../../../../lib/schema';
 
 export const getStaticPaths = (async ({ paginate }) => {
   const authors = await getAllAuthors();
@@ -37,9 +40,18 @@ const metadata = {
     : `${author.name} — Strona ${page.currentPage}`,
   description: author.description || `Artykuły autora ${author.name}.`,
 };
+const pageUrl = new URL(Astro.url.pathname, siteConfig.url).toString();
+const breadcrumbs = generateBreadcrumbs(Astro.url.pathname, { [author.slug]: author.name });
+const schemaGraph = [
+  { type: "Person" as const, data: { name: author.name, jobTitle: author.role, description: author.description, url: pageUrl, sameAs: [], knowsAbout: author.expertise ? [author.expertise] : [] } },
+  { type: "CollectionPage" as const, data: { name: metadata.title, url: pageUrl, posts: gridPosts.map((p) => ({ slug: p.id, title: p.title, pubDate: p.pubDate })) } },
+  { type: "BreadcrumbList" as const, data: { breadcrumbs, url: pageUrl } },
+];
+
 ---
 
 <BaseLayout {metadata}>
+  <Schema graph={schemaGraph} />
   <section class="pt-36 pb-12 px-6 md:px-12 lg:px-24 bg-muted">
     <div class="max-w-6xl mx-auto">
       <div class="bg-card rounded-3xl border border-border overflow-hidden">

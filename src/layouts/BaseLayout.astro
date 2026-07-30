@@ -3,11 +3,13 @@ interface Props {
     title?: string;
     description?: string;
     ogImage?: string;
+    ogType?: string;
     canonical?: string;
     metadata?: {
         title?: string;
         description?: string;
         ogImage?: string;
+        ogType?: string;
         canonical?: string;
         ignoreTitleTemplate?: boolean;
     };
@@ -22,14 +24,40 @@ import SpeedInsights from "@vercel/speed-insights/astro";
 import Analytics from "@vercel/analytics/astro";
 
 import { siteConfig } from "../config/site";
+import { experts } from "../config/experts";
+import { generateBreadcrumbs } from "../lib/schema";
 
-const { title, description, ogImage, canonical, metadata } = Astro.props;
+const { title, description, ogImage, ogType, canonical, metadata } = Astro.props;
 
 const finalTitle = metadata?.title || title;
 const finalDescription = metadata?.description || description;
 const finalOgImage = metadata?.ogImage || ogImage;
+const finalOgType = metadata?.ogType || ogType;
 const finalCanonical = metadata?.canonical || canonical;
 const finalIgnoreTitleTemplate = metadata?.ignoreTitleTemplate || false;
+
+// Build global schema graph: WebSite + Organization + BreadcrumbList
+const founders = experts.map((e) => ({
+    "@type": "Person" as const,
+    name: e.name,
+    url: new URL(`/ekspert/${e.slug}`, siteConfig.url).toString(),
+}));
+
+const normalizedPath =
+    Astro.url.pathname === "/"
+        ? "/"
+        : Astro.url.pathname.replace(/\/$/, "");
+const pageUrl = new URL(normalizedPath, siteConfig.url).toString();
+const autoBreadcrumbs = generateBreadcrumbs(Astro.url.pathname);
+const showBreadcrumbs = Astro.url.pathname !== "/";
+
+const globalGraph = [
+    { type: "WebSite" as const, data: {} },
+    { type: "Organization" as const, data: { founders } },
+    ...(showBreadcrumbs
+        ? [{ type: "BreadcrumbList" as const, data: { breadcrumbs: autoBreadcrumbs, url: pageUrl } }]
+        : []),
+];
 ---
 
 <!doctype html>
@@ -39,16 +67,30 @@ const finalIgnoreTitleTemplate = metadata?.ignoreTitleTemplate || false;
             title={finalTitle}
             description={finalDescription}
             ogImage={finalOgImage}
+            ogType={finalOgType}
             canonical={finalCanonical}
             ignoreTitleTemplate={finalIgnoreTitleTemplate}
         />
-        <Schema type="WebSite" data={{}} />
+        <Schema graph={globalGraph} />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
+            rel="preload"
+            as="style"
             href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap"
-            rel="stylesheet"
         />
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap"
+            media="print"
+            onload="this.media='all'"
+        />
+        <noscript>
+            <link
+                rel="stylesheet"
+                href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap"
+            />
+        </noscript>
         <slot name="head" />
     </head>
     <body

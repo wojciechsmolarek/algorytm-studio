@@ -1,7 +1,9 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import ExpertProfile from "../../components/sections/ExpertProfile.astro";
+import Schema from "../../components/seo/Schema.astro";
 import { experts } from "../../config/experts";
+import { siteConfig } from "../../config/site";
 
 const expert = experts.find((e) => e.slug === "jakub-witkowski");
 if (!expert) {
@@ -12,8 +14,15 @@ const metadata = {
   title: `${expert.name} — ${expert.role}`,
   description: expert.description,
 };
+
+const pageUrl = new URL(Astro.url.pathname, siteConfig.url).toString();
+const schemaGraph = [
+  { type: "Person" as const, data: { name: expert.name, jobTitle: expert.role, description: expert.description, image: typeof expert.image === "string" ? expert.image : expert.image.src, url: pageUrl, sameAs: [expert.linkedin], knowsAbout: expert.technologies } },
+  { type: "ProfilePage" as const, data: { url: pageUrl } },
+];
 ---
 
 <BaseLayout {metadata}>
+  <Schema graph={schemaGraph} />
   <ExpertProfile {expert} />
 </BaseLayout>
