@@ -87,8 +87,7 @@ export interface Author {
 async function resolveMediaUrl(mediaId: string | number | undefined): Promise<string | undefined> {
   if (!mediaId || mediaId === "") return undefined;
   try {
-    const res = await fetch(`${WP_API}/media/${mediaId}`);
-    if (!res.ok) return undefined;
+    const res = await fetchWithRetry(`${WP_API}/media/${mediaId}`);
     const media = await res.json();
     return media.source_url as string;
   } catch {
@@ -107,15 +106,42 @@ function stripHtml(html: string): string {
   return html.replace(/<[^>]*>/g, "").trim();
 }
 
-async function fetchPosts(params: Record<string, string> = {}): Promise<WPPost[]> {
-  try {
-    const query = new URLSearchParams({ _embed: "1", per_page: "100", ...params });
-    const res = await fetch(`${WP_API}/posts?${query.toString()}`);
-    if (!res.ok) return [];
-    return (await res.json()) as WPPost[];
-  } catch {
-    return [];
+const FETCH_TIMEOUT_MS = 15000;
+const MAX_RETRIES = 3;
+const RETRY_DELAY_MS = 2000;
+
+async function fetchWithRetry(url: string, retries = MAX_RETRIES): Promise<Response> {
+  for (let attempt = 1; attempt <= retries; attempt++) {
+    try {
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
+      const res = await fetch(url, { signal: controller.signal });
+      clearTimeout(timeout);
+      if (!res.ok) {
+        if (attempt < retries) {
+          console.warn(`[WordPress] fetch attempt ${attempt}/${retries} failed: HTTP ${res.status}, retrying in ${RETRY_DELAY_MS}ms...`);
+          await new Promise((r) => setTimeout(r, RETRY_DELAY_MS));
+          continue;
+        }
+        throw new Error(`WordPress API returned HTTP ${res.status} for ${url}`);
+      }
+      return res;
+    } catch (err) {
+      if (attempt < retries) {
+        console.warn(`[WordPress] fetch attempt ${attempt}/${retries} failed: ${err instanceof Error ? err.message : String(err)}, retrying in ${RETRY_DELAY_MS}ms...`);
+        await new Promise((r) => setTimeout(r, RETRY_DELAY_MS));
+        continue;
+      }
+      throw err;
+    }
   }
+  throw new Error(`WordPress API: exhausted all ${retries} retries for ${url}`);
+}
+
+async function fetchPosts(params: Record<string, string> = {}): Promise<WPPost[]> {
+  const query = new URLSearchParams({ _embed: "1", per_page: "100", ...params });
+  const res = await fetchWithRetry(`${WP_API}/posts?${query.toString()}`);
+  return (await res.json()) as WPPost[];
 }
 
 function transformPost(post: WPPost): BlogPost {
@@ -150,6 +176,11 @@ function transformPost(post: WPPost): BlogPost {
 
 export async function getBlogPosts(): Promise<BlogPost[]> {
   const posts = await fetchPosts();
+  if (posts.length === 0) {
+    throw new Error(
+      "WordPress API returned 0 posts. Aborting build to prevent deploying an empty site. Check if the WordPress API is accessible."
+    );
+  }
   const transformed = posts.map(transformPost);
   // Resolve author photo URLs (ACF returns media ID, not URL)
   return Promise.all(
@@ -166,8 +197,7 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
 
 export async function getAllAuthors(): Promise<Author[]> {
   try {
-    const res = await fetch(`${WP_API}/users?per_page=100`);
-    if (!res.ok) return [];
+    const res = await fetchWithRetry(`${WP_API}/users?per_page=100`);
     const users = (await res.json()) as WPUser[];
     return Promise.all(
       users.map(async (user) => ({
@@ -189,8 +219,7 @@ export async function getAllAuthors(): Promise<Author[]> {
 
 export async function getAuthorBySlug(slug: string): Promise<Author | null> {
   try {
-    const res = await fetch(`${WP_API}/users?slug=${slug}&per_page=1`);
-    if (!res.ok) return null;
+    const res = await fetchWithRetry(`${WP_API}/users?slug=${slug}&per_page=1`);
     const users = (await res.json()) as WPUser[];
     if (!users.length) return null;
     const user = users[0];
@@ -220,8 +249,7 @@ export async function getPostsByAuthor(authorSlug: string): Promise<BlogPost[]> 
 
 export async function getAllCategories(): Promise<Category[]> {
   try {
-    const res = await fetch(`${WP_API}/categories?per_page=100`);
-    if (!res.ok) return [];
+    const res = await fetchWithRetry(`${WP_API}/categories?per_page=100`);
     const cats = (await res.json()) as WPCategory[];
     return cats
       .filter((c) => c.slug !== "uncategorized" && c.count > 0)
@@ -233,8 +261,7 @@ export async function getAllCategories(): Promise<Category[]> {
 
 export async function getPostsByCategory(categorySlug: string): Promise<BlogPost[]> {
   try {
-    const catRes = await fetch(`${WP_API}/categories?slug=${categorySlug}&per_page=1`);
-    if (!catRes.ok) return [];
+    const catRes = await fetchWithRetry(`${WP_API}/categories?slug=${categorySlug}&per_page=1`);
     const cats = (await catRes.json()) as WPCategory[];
     if (!cats.length) return [];
     const posts = await fetchPosts({ categories: String(cats[0].id) });

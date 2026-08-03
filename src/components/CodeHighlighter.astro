@@ -7,7 +7,20 @@ import 'highlight.js/styles/github-dark-dimmed.css';
         const codeBlocks = document.querySelectorAll('.prose pre code');
         if (codeBlocks.length === 0) return;
 
-        import('highlight.js').then((hljs) => {
+        import('highlight.js/lib/core').then(async (hljs) => {
+            const languages = [
+                'javascript', 'typescript', 'python', 'bash',
+                'json', 'yaml', 'xml', 'css', 'markdown', 'sql',
+                'nginx', 'diff', 'plaintext'
+            ];
+
+            for (const lang of languages) {
+                try {
+                    const mod = await import(`highlight.js/lib/languages/${lang}`);
+                    hljs.default.registerLanguage(lang, mod.default);
+                } catch {}
+            }
+
             codeBlocks.forEach((codeEl) => {
                 const pre = codeEl.closest('pre');
                 if (!pre || pre.dataset.highlighted) return;
