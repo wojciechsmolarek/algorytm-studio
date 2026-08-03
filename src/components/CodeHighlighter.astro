@@ -3,61 +3,75 @@ import 'highlight.js/styles/github-dark-dimmed.css';
 ---
 
 <script>
+    import hljs from 'highlight.js/lib/core';
+    import javascript from 'highlight.js/lib/languages/javascript';
+    import typescript from 'highlight.js/lib/languages/typescript';
+    import python from 'highlight.js/lib/languages/python';
+    import bash from 'highlight.js/lib/languages/bash';
+    import json from 'highlight.js/lib/languages/json';
+    import yaml from 'highlight.js/lib/languages/yaml';
+    import xml from 'highlight.js/lib/languages/xml';
+    import css from 'highlight.js/lib/languages/css';
+    import markdown from 'highlight.js/lib/languages/markdown';
+    import sql from 'highlight.js/lib/languages/sql';
+    import nginx from 'highlight.js/lib/languages/nginx';
+    import diff from 'highlight.js/lib/languages/diff';
+    import plaintext from 'highlight.js/lib/languages/plaintext';
+
+    hljs.registerLanguage('javascript', javascript);
+    hljs.registerLanguage('typescript', typescript);
+    hljs.registerLanguage('python', python);
+    hljs.registerLanguage('bash', bash);
+    hljs.registerLanguage('json', json);
+    hljs.registerLanguage('yaml', yaml);
+    hljs.registerLanguage('xml', xml);
+    hljs.registerLanguage('css', css);
+    hljs.registerLanguage('markdown', markdown);
+    hljs.registerLanguage('sql', sql);
+    hljs.registerLanguage('nginx', nginx);
+    hljs.registerLanguage('diff', diff);
+    hljs.registerLanguage('plaintext', plaintext);
+
     function highlightCodeBlocks() {
         const codeBlocks = document.querySelectorAll('.prose pre code');
         if (codeBlocks.length === 0) return;
 
-        import('highlight.js/lib/core').then(async (hljs) => {
-            const languages = [
-                'javascript', 'typescript', 'python', 'bash',
-                'json', 'yaml', 'xml', 'css', 'markdown', 'sql',
-                'nginx', 'diff', 'plaintext'
-            ];
+        codeBlocks.forEach((codeEl) => {
+            const pre = codeEl.closest('pre');
+            if (!pre || pre.dataset.highlighted) return;
 
-            for (const lang of languages) {
-                try {
-                    const mod = await import(`highlight.js/lib/languages/${lang}`);
-                    hljs.default.registerLanguage(lang, mod.default);
-                } catch {}
+            let lang = null;
+            const classList = Array.from(codeEl.classList);
+            for (const cls of classList) {
+                if (cls.startsWith('language-')) {
+                    lang = cls.replace('language-', '');
+                    break;
+                }
             }
 
-            codeBlocks.forEach((codeEl) => {
-                const pre = codeEl.closest('pre');
-                if (!pre || pre.dataset.highlighted) return;
-
-                let lang = null;
-                const classList = Array.from(codeEl.classList);
-                for (const cls of classList) {
+            if (!lang) {
+                const preClass = Array.from(pre.classList);
+                for (const cls of preClass) {
                     if (cls.startsWith('language-')) {
                         lang = cls.replace('language-', '');
                         break;
                     }
                 }
+            }
 
-                if (!lang) {
-                    const preClass = Array.from(pre.classList);
-                    for (const cls of preClass) {
-                        if (cls.startsWith('language-')) {
-                            lang = cls.replace('language-', '');
-                            break;
-                        }
-                    }
+            try {
+                if (lang && hljs.getLanguage(lang)) {
+                    const result = hljs.highlight(codeEl.textContent || '', { language: lang });
+                    codeEl.innerHTML = result.value;
+                } else {
+                    const result = hljs.highlightAuto(codeEl.textContent || '');
+                    codeEl.innerHTML = result.value;
                 }
-
-                try {
-                    if (lang && hljs.default.getLanguage(lang)) {
-                        const result = hljs.default.highlight(codeEl.textContent || '', { language: lang });
-                        codeEl.innerHTML = result.value;
-                    } else {
-                        const result = hljs.default.highlightAuto(codeEl.textContent || '');
-                        codeEl.innerHTML = result.value;
-                    }
-                    codeEl.classList.add('hljs');
-                    pre.dataset.highlighted = '1';
-                } catch {
-                    pre.dataset.highlighted = '1';
-                }
-            });
+                codeEl.classList.add('hljs');
+                pre.dataset.highlighted = '1';
+            } catch {
+                pre.dataset.highlighted = '1';
+            }
         });
     }
 
