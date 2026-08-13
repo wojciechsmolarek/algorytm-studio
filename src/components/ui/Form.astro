@@ -6,7 +6,7 @@ interface Props {
 const { formId = "contact-form" } = Astro.props;
 ---
 
-<form id={formId} class="space-y-6">
+<form id={formId} data-form-id={formId} class="space-y-6">
     <input type="hidden" name="access_key" value="fff22f9d-51df-46d9-9dfa-e191b75b1d15" />
     <input type="hidden" name="subject" value="Nowe zapytanie z formularza kontaktowego" />
 
@@ -68,8 +68,8 @@ const { formId = "contact-form" } = Astro.props;
     <div class="result-message hidden mt-4 p-4 rounded-lg text-sm"></div>
 </form>
 
-<script define:vars={{ formId }}>
-    const form = document.getElementById(formId);
+<script is:inline>
+    const form = document.querySelector('[data-form-id]');
     const button = form.querySelector('button[type="submit"]');
     const submitText = button.querySelector('.submit-text');
     const loadingText = button.querySelector('.loading-text');

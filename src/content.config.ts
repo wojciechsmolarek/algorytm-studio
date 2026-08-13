@@ -1,4 +1,5 @@
-import { defineCollection, z } from "astro:content";
+import { defineCollection } from "astro:content";
+import { z } from "zod";
 import { getBlogPosts } from "./lib/wordpress";
 
 const blog = defineCollection({

@@ -24,7 +24,7 @@ const { services } = Astro.props;
 			</p>
 		</div>
 		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-			{services.map((service, i) => (
+			{services.map((service) => (
 				<article class="group bg-card rounded-3xl p-10 border border-border reveal-on-scroll hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col">
 					<div class="w-12 h-12 rounded-2xl bg-muted flex items-center justify-center mb-8 text-primary font-serif text-2xl">
 						{service.num}
