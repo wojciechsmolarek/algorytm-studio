@@ -84,11 +84,14 @@ export interface Author {
   photo: string | undefined;
 }
 
-async function resolveMediaUrl(mediaId: string | number | undefined): Promise<string | undefined> {
+async function resolveMediaUrl(mediaId: string | number | undefined, size?: string): Promise<string | undefined> {
   if (!mediaId || mediaId === "") return undefined;
   try {
     const res = await fetchWithRetry(`${WP_API}/media/${mediaId}`);
     const media = await res.json();
+    if (size && media.media_details?.sizes?.[size]?.source_url) {
+      return media.media_details.sizes[size].source_url as string;
+    }
     return media.source_url as string;
   } catch {
     return undefined;
@@ -188,7 +191,7 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
       const authorData = posts.find((p) => p.slug === post.id)?._embedded?.author?.[0];
       const photoId = authorData?.acf?.zdjecie;
       if (photoId) {
-        post.authorPhoto = await resolveMediaUrl(photoId);
+        post.authorPhoto = await resolveMediaUrl(photoId, "thumbnail");
       }
       return post;
     })
@@ -209,7 +212,7 @@ export async function getAllAuthors(): Promise<Author[]> {
         role: user.acf?.rola,
         expertise: user.acf?.ekspertyza,
         quote: user.acf?.cytat,
-        photo: await resolveMediaUrl(user.acf?.zdjecie),
+        photo: await resolveMediaUrl(user.acf?.zdjecie, "medium"),
       }))
     );
   } catch {
@@ -232,7 +235,7 @@ export async function getAuthorBySlug(slug: string): Promise<Author | null> {
       role: user.acf?.rola,
       expertise: user.acf?.ekspertyza,
       quote: user.acf?.cytat,
-      photo: await resolveMediaUrl(user.acf?.zdjecie),
+      photo: await resolveMediaUrl(user.acf?.zdjecie, "medium"),
     };
   } catch {
     return null;
