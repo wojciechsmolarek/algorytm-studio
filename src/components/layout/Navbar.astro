@@ -2,87 +2,87 @@
 import { siteConfig } from "../../config/site";
 ---
 
-<nav
-    class="fixed top-0 w-full z-50 px-6 py-4 flex justify-between items-center text-foreground bg-background/80 backdrop-blur-md border-b border-border"
->
-    <!-- Logo -->
-    <div class="z-50">
+<!-- Hallmark · nav: N5 Floating pill — centered floating chip, not full-width sticky bar -->
+<div class="fixed top-4 inset-x-0 z-50 flex justify-center px-4 pointer-events-none">
+    <nav
+        class="pointer-events-auto flex items-center gap-1 md:gap-2 bg-card/85 backdrop-blur-md border border-border rounded-full pl-3 pr-2 py-2 shadow-sm max-w-[min(100%,64rem)] w-full"
+        aria-label="Główna nawigacja"
+    >
+        <!-- Logo -->
         <a
             href="/"
-            aria-label="Studio Algorytm Home"
-            class="pointer-events-auto flex items-center gap-3"
+            aria-label="Studio Algorytm — strona główna"
+            class="flex items-center gap-2 pr-2 md:pr-3 md:border-r md:border-border shrink-0"
         >
-            <img src="/images/logo/logo-mark.svg" alt="" class="w-8 h-8" />
-            <span class="font-serif text-2xl font-medium text-foreground">Studio Algorytm</span>
+            <img src="/images/logo/logo-mark.svg" alt="" class="w-7 h-7" />
+            <span class="font-serif text-lg font-medium text-foreground hidden sm:inline whitespace-nowrap">Studio Algorytm</span>
         </a>
-    </div>
 
-    <!-- Desktop Menu -->
-    <div
-        class="hidden md:flex gap-8 text-sm font-medium pointer-events-auto items-center"
-    >
-        {
-            siteConfig.navLinks.map((link) =>
-                link.children ? (
-                    <div class="relative group">
-                        {link.href ? (
-                            <a
-                                href={link.href}
-                                class="text-foreground/80 hover:text-primary transition-colors flex items-center gap-1 peer"
-                            >
-                                {link.text}
-                                <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                                </svg>
-                            </a>
-                        ) : (
-                            <span class="text-foreground/80 hover:text-primary transition-colors flex items-center gap-1 peer cursor-default">
-                                {link.text}
-                                <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                                </svg>
-                            </span>
-                        )}
-                        <div class="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
-                            <div class="bg-card border border-border rounded-2xl shadow-xl py-3 min-w-[260px]">
-                                {link.children.map((child) => (
-                                    <a
-                                        href={child.href}
-                                        class="block px-5 py-2.5 text-sm text-foreground/80 hover:text-primary hover:bg-muted transition-colors rounded-xl mx-1"
-                                    >
-                                        {child.text}
-                                    </a>
-                                ))}
+        <!-- Desktop Menu -->
+        <div class="hidden md:flex items-center gap-1 text-sm font-medium flex-1 justify-center">
+            {
+                siteConfig.navLinks.map((link) =>
+                    link.children ? (
+                        <div class="relative group">
+                            {link.href ? (
+                                <a
+                                    href={link.href}
+                                    class="px-3 py-2 rounded-full text-foreground/80 hover:text-primary hover:bg-muted transition-colors flex items-center gap-1 whitespace-nowrap"
+                                >
+                                    {link.text}
+                                    <svg class="w-3.5 h-3.5 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </a>
+                            ) : (
+                                <span class="px-3 py-2 rounded-full text-foreground/80 hover:text-primary hover:bg-muted transition-colors flex items-center gap-1 cursor-default whitespace-nowrap">
+                                    {link.text}
+                                    <svg class="w-3.5 h-3.5 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </span>
+                            )}
+                            <div class="absolute top-full left-1/2 -translate-x-1/2 pt-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                                <div class="bg-card border border-border rounded-2xl shadow-lg py-2 min-w-[260px]">
+                                    {link.children.map((child) => (
+                                        <a
+                                            href={child.href}
+                                            class="block px-4 py-2 text-sm text-foreground/80 hover:text-primary hover:bg-muted transition-colors rounded-xl mx-1 whitespace-nowrap"
+                                        >
+                                            {child.text}
+                                        </a>
+                                    ))}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                ) : (
-                    <a
-                        href={link.href}
-                        class="text-foreground/80 hover:text-primary transition-colors"
-                    >
-                        {link.text}
-                    </a>
+                    ) : (
+                        <a
+                            href={link.href}
+                            class="px-3 py-2 rounded-full text-foreground/80 hover:text-primary hover:bg-muted transition-colors whitespace-nowrap"
+                        >
+                            {link.text}
+                        </a>
+                    )
                 )
-            )
-        }
+            }
+        </div>
+
+        <!-- CTA (desktop) -->
         <a
             href="/kontakt"
-            class="bg-primary text-white px-5 py-2.5 rounded-full text-sm font-medium hover:scale-105 transition-transform"
+            class="hidden md:inline-flex items-center bg-primary text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-primary-ink transition-colors whitespace-nowrap shrink-0"
         >
             Darmowa wycena
         </a>
-    </div>
 
-    <!-- Hamburger / Mobile Menu Button -->
-    <div class="md:hidden flex items-center z-50">
+        <!-- Hamburger / Mobile Menu Button -->
         <button
             id="mobile-menu-button"
-            class="pointer-events-auto group p-2 -mr-2 focus:outline-none"
+            class="md:hidden pointer-events-auto group p-2 -mr-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-full shrink-0"
             type="button"
             aria-controls="mobile-menu"
             aria-expanded="false"
-            aria-label="Toggle menu"
+            aria-label="Otwórz menu"
         >
             <div class="w-6 h-5 flex flex-col justify-between items-end">
                 <span
@@ -96,8 +96,8 @@ import { siteConfig } from "../../config/site";
                 ></span>
             </div>
         </button>
-    </div>
-</nav>
+    </nav>
+</div>
 
 <!-- Mobile Full-Screen Menu -->
 <div

@@ -17,19 +17,19 @@ const metadata = {
 
 const strategyColumns = [
 	{
-		title: "Od lokalnych liderów po globalnych graczy.",
+		title: "B2B ma dłuższy cykl i wyższą wartość transakcji.",
 		description:
-			'Swobodnie poruszamy się w realiach małych, lokalnych przedsiębiorstw, jak i dużych globalnych graczy. Rozumiemy różnice w dynamice pracy i wiemy, jak efektywnie lokować budżety marketingowe o każdej skali.',
+			'W B2B decyzja zapada tygodniami lub miesiącami, a w grę wchodzi kilkudziesięcio- lub kilkusettysięczna umowa. Strona i SEO muszą wspierać ten cykl — od pierwszego zapytania, przez research zespołu, po decyzję decydenta.',
 	},
 	{
-		title: "Design wspierający sprzedaż.",
+		title: "Design przedłużający dział sprzedaży.",
 		description:
-			'Nowoczesna strona WWW musi być przedłużeniem Twojego działu sprzedaży. Projektujemy interfejsy, które <strong class="text-foreground font-semibold">skracają drogę</strong> od pierwszego kontaktu do zapytania ofertowego.',
+			'Strona WWW powinna skracać drogę od pierwszego kontaktu do zapytania ofertowego. Projektujemy interfejsy, które <strong class="text-foreground font-semibold">prowadzą leada</strong> przez argumenty, dowody i CTA — nie wystarczą ładne grafiki.',
 	},
 	{
-		title: "Technologia i bezpieczeństwo.",
+		title: "Migracje bez utraty pozycji, monitoring na żywo.",
 		description:
-			'Migracja serwisu czy stałe utrzymanie to fundament bezpieczeństwa. Jako kolektyw specjalistów bierzemy pełną odpowiedzialność za <strong class="text-foreground font-semibold">technologiczną stronę</strong> Twojego biznesu.',
+			'Przekierowania 301, canonical, mapa linkowania wewnętrznego — jeden błąd przy migracji i miesiące odbudowywania widoczności. Przejmujemy <strong class="text-foreground font-semibold">technologiczną stronę</strong> projektu i monitorujemy GSC, zanim cokolwiek zacznie spadać.',
 	},
 ];
 
@@ -37,29 +37,24 @@ const strategyColumns = [
 
 <BaseLayout {metadata}>
 	<HeroSection
-		title='Kolektyw 3 ekspertów SEO i web dev. <span class="italic text-primary">Bez agencyjnego szumu.</span>'
-		subtitle="Jesteśmy kolektywem, nie agencją. Trzech specjalistów: SEO, web development i UX. Żadnych pośredników, żadnych project managerów — tylko ludzie, którzy realnie wykonują pracę."
+		title='Kolektyw 3 ekspertów SEO i web dev. Bez agencyjnego szumu.'
+		subtitle="Jesteśmy kolektywem trzech specjalistów: SEO, web development i UX. Rozmawiasz bezpośrednio z osobami, które wykonują pracę — bez pośredników i project managerów."
 		primaryCta={{ text: "Porozmawiajmy", href: "#contact" }}
 		secondaryCta={{ text: "Nasze usługi", href: "#services" }}
-		image={{
-			src: "https://lh3.googleusercontent.com/aida-public/AB6AXuCFbbybPfNH6l8i7ZW20gdulyIwfECJERXK2i1lWCXp5hmRVONaKuwzbOY5FoQ3VNLt4RkCGXH3vQmL4iYnLNj8p8b2ak9qM_YRKDYRh8JdRVpfwWCNxxccMhcRzxCkt00ecg2TlOUchKPmWVY3ZAV3h3F9UDV9UGXBGphWB-qFC-41tT2iwMkTus2eXYikVJjPjsfuazmgf_4FLxyAcC8ZBnlUyPw0o5kYDWslI75aI2_hKlnGFG9Xxlj5TIVrh5chBIUkXmm3ykV5",
-			alt: "B2B Collective Founders",
-		}}
 	/>
-
 
 	<ExpertsSection experts={experts} />
 
 	<WhyUsSection
-		tagline="Dlaczego My?"
-		headline="Bez pośredników. <br/>Bez project managerów. <br/><span class='text-primary'>Transparentne działania.</span> <br/>Głębsze zrozumienie B2B."
+		tagline="Dlaczego my"
+		headline="Rozmawiasz z ludźmi, którzy robią pracę. Transparentne działania i głębsze zrozumienie B2B."
 		description="Eliminujemy szum komunikacyjny. Rozmawiasz bezpośrednio z osobami, które wykonują pracę. To gwarantuje jakość i szybkość wdrażania zmian."
 	/>
 
 	<ServicesSection services={services} />
 
 	<StrategySection
-		headline="Strategiczne podejście do B2B"
+		headline="Jak pracujemy z B2B"
 		columns={strategyColumns}
 	/>
 </BaseLayout>

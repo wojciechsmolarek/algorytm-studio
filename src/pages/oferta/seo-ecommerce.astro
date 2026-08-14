@@ -224,144 +224,149 @@ const schemaGraph = [
 
 <BaseLayout {metadata}>
     <Schema graph={schemaGraph} />
-    <!-- Hero -->
-    <section class="pt-36 pb-20 px-6 md:px-12 lg:px-24 bg-muted">
+    <!-- Hallmark · oferta: long-document macro — hairline rows, no eyebrow pills, no 3-col cards -->
+
+    <!-- Hero — asymmetric, no eyebrow pill, no accent-emphasis word in H1 -->
+    <section class="pt-36 md:pt-44 pb-20 px-6 md:px-12 lg:px-24 bg-surface">
         <div class="max-w-6xl mx-auto">
-            <div class="reveal-on-scroll">
-                <span class="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm uppercase tracking-widest font-medium mb-6">Oferta</span>
-                <h1 class="font-serif text-4xl md:text-6xl leading-tight mb-6 text-balance max-w-3xl">
-                    SEO dla <span class="text-primary">e-commerce</span>
+            <div class="reveal-on-scroll max-w-3xl">
+                <h1 class="font-serif text-4xl md:text-6xl lg:text-7xl leading-[1.05] mb-8 text-balance">
+                    SEO dla e-commerce
                 </h1>
-                <div class="flex items-center gap-4">
-                    <div class="w-16 h-px bg-foreground shrink-0"></div>
-                    <p class="text-lg max-w-xl text-muted-foreground leading-relaxed">
-                        Sklep internetowy to nie blog — wymaga specjalistycznego podejścia do SEO. Optymalizujemy każdy element, od kart produktów po nawigację fasetową.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Results -->
-    <section class="py-20 px-6 md:px-12 lg:px-24">
-        <div class="max-w-6xl mx-auto">
-            <div class="mb-14 reveal-on-scroll">
-                <span class="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm uppercase tracking-widest font-medium mb-6">Wyniki</span>
-                <h2 class="font-serif text-3xl md:text-4xl mb-4 text-balance max-w-3xl">
-                    Efekty, które <span class="text-primary">możesz zmierzyć</span>
-                </h2>
-            </div>
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                {results.map((item) => (
-                    <article class="bg-card rounded-3xl p-8 border border-border reveal-on-scroll hover:shadow-lg transition-all duration-300">
-                        <div class="mb-6 pb-6 border-b border-border">
-                            <p class="text-sm font-medium mb-1">{item.client}</p>
-                            <p class="text-xs text-muted-foreground uppercase tracking-widest">{item.platform}</p>
-                        </div>
-                        <div class="grid grid-cols-3 gap-4 mb-6">
-                            {item.metrics.map((m) => (
-                                <div>
-                                    <p class="font-serif text-2xl font-bold text-primary mb-1">{m.value}</p>
-                                    <p class="text-xs text-muted-foreground leading-tight">{m.label}</p>
-                                </div>
-                            ))}
-                        </div>
-                        <p class="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
-                    </article>
-                ))}
-            </div>
-        </div>
-    </section>
-
-    <!-- Challenges -->
-    <section class="py-20 px-6 md:px-12 lg:px-24 bg-muted">
-        <div class="max-w-6xl mx-auto">
-            <div class="mb-14 reveal-on-scroll">
-                <span class="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm uppercase tracking-widest font-medium mb-6">Wyzwania</span>
-                <h2 class="font-serif text-3xl md:text-4xl mb-4 text-balance max-w-3xl">
-                    Specyfika SEO <span class="text-primary">w e-commerce</span>
-                </h2>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {challenges.map((item) => (
-                    <div class="bg-card rounded-3xl p-8 border border-border reveal-on-scroll hover:shadow-lg transition-all duration-300">
-                        <h3 class="text-xl font-medium mb-3">{item.title}</h3>
-                        <p class="text-muted-foreground leading-relaxed">{item.description}</p>
-                    </div>
-                ))}
-            </div>
-        </div>
-    </section>
-
-    <!-- Scope -->
-    <section class="py-20 px-6 md:px-12 lg:px-24">
-        <div class="max-w-6xl mx-auto">
-            <div class="mb-14 reveal-on-scroll">
-                <span class="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm uppercase tracking-widest font-medium mb-6">Zakres</span>
-                <h2 class="font-serif text-3xl md:text-4xl mb-4 text-balance max-w-3xl">
-                    Co robimy <span class="text-primary">dla Twojego sklepu?</span>
-                </h2>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {scope.map((item) => (
-                    <article class="bg-card rounded-3xl p-8 border border-border reveal-on-scroll hover:shadow-lg transition-all duration-300">
-                        <span class="block text-4xl font-serif text-muted-foreground/40 mb-4">{item.num}</span>
-                        <h3 class="text-xl font-medium mb-3">{item.title}</h3>
-                        <p class="text-muted-foreground text-sm leading-relaxed mb-5">{item.description}</p>
-                        <ul class="space-y-2">
-                            {item.details.map((detail) => (
-                                <li class="flex items-start gap-2 text-sm text-muted-foreground">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-accent mt-1.5 shrink-0"></span>
-                                    {detail}
-                                </li>
-                            ))}
-                        </ul>
-                    </article>
-                ))}
-            </div>
-        </div>
-    </section>
-
-    <!-- Timeline -->
-    <section class="py-20 px-6 md:px-12 lg:px-24 bg-muted">
-        <div class="max-w-6xl mx-auto">
-            <div class="mb-14 reveal-on-scroll">
-                <span class="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm uppercase tracking-widest font-medium mb-6">Harmonogram</span>
-                <h2 class="font-serif text-3xl md:text-4xl mb-4 text-balance max-w-3xl">
-                    Kiedy zobaczysz <span class="text-primary">pierwsze efekty?</span>
-                </h2>
-                <p class="mt-6 text-muted-foreground max-w-2xl leading-relaxed">
-                    SEO to inwestycja, nie wydatek. Poniżej realistyczny harmonogram — bez obietnic, które trudno dotrzymać.
+                <p class="text-xl text-foreground leading-relaxed mb-4 max-w-2xl">
+                    Sklep internetowy to nie blog — wymaga specjalistycznego podejścia do SEO.
+                </p>
+                <p class="text-lg text-ink-soft leading-relaxed max-w-2xl">
+                    Optymalizujemy każdy element, od kart produktów po nawigację fasetową.
                 </p>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {timeline.map((item) => (
-                    <div class="bg-card rounded-3xl p-8 border border-border reveal-on-scroll">
-                        <span class="text-xs uppercase tracking-widest text-primary font-medium mb-3 block">{item.period}</span>
-                        <h3 class="text-lg font-medium mb-3">{item.title}</h3>
-                        <p class="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
+        </div>
+    </section>
+
+    <!-- Results — hairline rows, not 3-col cards -->
+    <section class="py-20 md:py-24 px-6 md:px-12 lg:px-24">
+        <div class="max-w-6xl mx-auto">
+            <div class="mb-12 reveal-on-scroll max-w-3xl">
+                <h2 class="font-serif text-2xl md:text-4xl leading-tight text-balance">
+                    Efekty, które możesz zmierzyć
+                </h2>
+            </div>
+            <div class="border-t-2 border-foreground">
+                {results.map((item) => (
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 py-7 md:py-8 border-b border-border-strong reveal-on-scroll">
+                        <div class="md:col-span-4">
+                            <p class="text-lg font-medium text-foreground mb-1">{item.client}</p>
+                            <p class="text-xs uppercase tracking-widest text-muted-foreground">{item.platform}</p>
+                        </div>
+                        <div class="md:col-span-5">
+                            <p class="text-base text-ink-soft leading-relaxed">{item.description}</p>
+                        </div>
+                        <div class="md:col-span-3">
+                            <div class="grid grid-cols-3 gap-3 md:gap-4">
+                                {item.metrics.map((m) => (
+                                    <div class="border-t border-border-strong pt-3">
+                                        <p class="font-serif text-xl md:text-2xl text-primary mb-1 tabular-nums">{m.value}</p>
+                                        <p class="text-xs text-ink-soft leading-tight">{m.label}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
                     </div>
                 ))}
             </div>
         </div>
     </section>
 
-    <!-- Testimonials -->
-    <section class="py-20 px-6 md:px-12 lg:px-24">
+    <!-- Challenges — 2-col asymmetric, not 2-col cards -->
+    <section class="py-20 md:py-24 px-6 md:px-12 lg:px-24 bg-surface">
         <div class="max-w-6xl mx-auto">
-            <div class="mb-14 reveal-on-scroll">
-                <span class="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm uppercase tracking-widest font-medium mb-6">Opinie</span>
-                <h2 class="font-serif text-3xl md:text-4xl mb-4 text-balance max-w-3xl">
-                    Co mówią <span class="text-primary">nasi klienci?</span>
+            <div class="mb-12 reveal-on-scroll max-w-3xl">
+                <h2 class="font-serif text-2xl md:text-4xl leading-tight text-balance">
+                    Specyfika SEO w e-commerce
                 </h2>
             </div>
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10">
+                {challenges.map((item) => (
+                    <div class="border-t border-border-strong pt-5 reveal-on-scroll">
+                        <h3 class="font-serif text-lg md:text-xl text-foreground mb-2">{item.title}</h3>
+                        <p class="text-base text-ink-soft leading-relaxed">{item.description}</p>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <!-- Scope — genuinely numbered, hairline rows with ordinal -->
+    <section class="py-20 md:py-24 px-6 md:px-12 lg:px-24">
+        <div class="max-w-6xl mx-auto">
+            <div class="mb-12 reveal-on-scroll max-w-3xl">
+                <h2 class="font-serif text-2xl md:text-4xl leading-tight text-balance">
+                    Co robimy dla Twojego sklepu?
+                </h2>
+            </div>
+            <div class="border-t-2 border-foreground">
+                {scope.map((item) => (
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 py-8 md:py-10 border-b border-border-strong reveal-on-scroll">
+                        <div class="md:col-span-2">
+                            <span class="font-serif text-3xl text-primary tabular-nums">{item.num}</span>
+                        </div>
+                        <div class="md:col-span-10">
+                            <h3 class="font-serif text-xl md:text-2xl text-foreground mb-2">{item.title}</h3>
+                            <p class="text-base text-ink-soft leading-relaxed mb-4">{item.description}</p>
+                            <ul class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2">
+                                {item.details.map((detail) => (
+                                    <li class="flex items-start gap-2 text-sm text-ink-soft">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-accent mt-1.5 shrink-0"></span>
+                                        {detail}
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline — hairline rows, not 4-col cards -->
+    <section class="py-20 md:py-24 px-6 md:px-12 lg:px-24 bg-surface">
+        <div class="max-w-6xl mx-auto">
+            <div class="mb-12 reveal-on-scroll max-w-3xl">
+                <h2 class="font-serif text-2xl md:text-4xl leading-tight text-balance mb-3">
+                    Kiedy zobaczysz pierwsze efekty?
+                </h2>
+                <p class="text-ink-soft">SEO to inwestycja, nie wydatek. Poniżej realistyczny harmonogram — bez obietnic, które trudno dotrzymać.</p>
+            </div>
+            <div class="border-t-2 border-foreground">
+                {timeline.map((item) => (
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 py-7 md:py-8 border-b border-border-strong reveal-on-scroll">
+                        <div class="md:col-span-3">
+                            <span class="text-xs uppercase tracking-widest text-muted-foreground">{item.period}</span>
+                        </div>
+                        <div class="md:col-span-9">
+                            <h3 class="font-serif text-lg md:text-xl text-foreground mb-2">{item.title}</h3>
+                            <p class="text-base text-ink-soft leading-relaxed">{item.description}</p>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials — blockquotes, no boxed cards -->
+    <section class="py-20 md:py-24 px-6 md:px-12 lg:px-24">
+        <div class="max-w-6xl mx-auto">
+            <div class="mb-12 reveal-on-scroll max-w-3xl">
+                <h2 class="font-serif text-2xl md:text-4xl leading-tight text-balance">
+                    Co mówią nasi klienci?
+                </h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10">
                 {testimonials.map((item) => (
-                    <blockquote class="bg-card rounded-3xl p-8 border border-border flex flex-col justify-between reveal-on-scroll">
-                        <p class="text-sm leading-relaxed mb-8 text-muted-foreground">&ldquo;{item.quote}&rdquo;</p>
-                        <footer>
-                            <p class="font-bold text-sm">{item.name}</p>
-                            <p class="text-xs text-muted-foreground">{item.role}, {item.company}</p>
+                    <blockquote class="border-l-2 border-foreground pl-6 reveal-on-scroll">
+                        <p class="text-base md:text-lg font-serif leading-relaxed mb-5 text-foreground">&ldquo;{item.quote}&rdquo;</p>
+                        <footer class="text-sm text-muted-foreground">
+                            <strong class="text-foreground">{item.name}</strong> — {item.role}, {item.company}
                         </footer>
                     </blockquote>
                 ))}
@@ -369,18 +374,17 @@ const schemaGraph = [
         </div>
     </section>
 
-    <!-- Platforms -->
-    <section class="py-20 px-6 md:px-12 lg:px-24 bg-muted">
+    <!-- Platforms — 2-col hairline list, not 4-col cards -->
+    <section class="py-20 md:py-24 px-6 md:px-12 lg:px-24 bg-surface">
         <div class="max-w-6xl mx-auto">
-            <div class="mb-14 reveal-on-scroll">
-                <span class="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm uppercase tracking-widest font-medium mb-6">Platformy</span>
-                <h2 class="font-serif text-3xl md:text-4xl mb-4 text-balance max-w-3xl">
-                    Pracujemy z <span class="text-primary">każdą platformą</span>
+            <div class="mb-12 reveal-on-scroll max-w-3xl">
+                <h2 class="font-serif text-2xl md:text-4xl leading-tight text-balance">
+                    Pracujemy z każdą platformą
                 </h2>
             </div>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 reveal-on-scroll">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-0 reveal-on-scroll">
                 {platforms.map((platform) => (
-                    <div class="bg-card border border-border rounded-2xl px-5 py-4 text-sm text-muted-foreground hover:text-primary hover:border-primary transition-colors text-center">
+                    <div class="border-t border-border-strong py-4 text-base text-ink-soft">
                         {platform}
                     </div>
                 ))}
@@ -388,57 +392,43 @@ const schemaGraph = [
         </div>
     </section>
 
-    <!-- FAQ -->
-    <section class="py-20 px-6 md:px-12 lg:px-24 bg-muted">
+    <!-- FAQ — hairline rows, not stacked cards -->
+    <section class="py-20 md:py-24 px-6 md:px-12 lg:px-24">
         <div class="max-w-6xl mx-auto">
-            <div class="mb-14 reveal-on-scroll">
-                <span class="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm uppercase tracking-widest font-medium mb-6">FAQ</span>
-                <h2 class="font-serif text-3xl md:text-4xl mb-4 text-balance max-w-3xl">
-                    Pytania, które <span class="text-primary">słyszymy najczęściej</span>
+            <div class="mb-12 reveal-on-scroll max-w-3xl">
+                <h2 class="font-serif text-2xl md:text-4xl leading-tight text-balance">
+                    Pytania, które słyszymy najczęściej
                 </h2>
             </div>
-            <div class="space-y-4">
+            <div class="border-t-2 border-foreground">
                 {faqs.map((faq) => (
-                    <div class="bg-card rounded-2xl p-6 border border-border reveal-on-scroll">
-                        <h3 class="text-lg font-medium text-foreground mb-3">{faq.question}</h3>
-                        <p class="text-muted-foreground leading-relaxed">{faq.answer}</p>
-                    </div>
+                    <details class="border-b border-border-strong reveal-on-scroll group">
+                        <summary class="flex items-center justify-between gap-4 py-6 cursor-pointer list-none">
+                            <h3 class="text-lg font-medium text-foreground">{faq.question}</h3>
+                            <span class="text-primary text-xl shrink-0 group-open:rotate-45 transition-transform">+</span>
+                        </summary>
+                        <p class="text-base text-ink-soft leading-relaxed pb-6 pr-8">{faq.answer}</p>
+                    </details>
                 ))}
             </div>
         </div>
     </section>
 
-    <!-- CTA with form -->
-    <section class="py-20 px-6 md:px-12 lg:px-24 bg-muted">
-        <div class="max-w-6xl mx-auto">
-            <div class="bg-primary rounded-3xl p-8 md:p-12 lg:p-16 text-white reveal-on-scroll">
-                <div class="max-w-3xl">
-                    <span class="inline-block bg-white/10 px-4 py-2 rounded-full text-sm uppercase tracking-widest font-medium mb-6">Bezpłatna analiza</span>
-                    <h2 class="font-serif text-3xl md:text-5xl mb-6 text-balance">
-                        Twój sklep zasługuje na więcej ruchu.
-                    </h2>
-                    <p class="text-white/80 text-lg leading-relaxed mb-8">
-                        45-minutowe spotkanie, na którym analizujemy obecną widoczność sklepu, wskazujemy największe blokery wzrostu i przedstawiamy konkretne kroki do podjęcia.
-                    </p>
-                    <ul class="space-y-3 text-white/80 mb-10">
-                        <li class="flex items-center gap-3">
-                            <span class="w-1.5 h-1.5 rounded-full bg-accent shrink-0"></span>
-                            Odpowiedź w 24h w dni robocze
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <span class="w-1.5 h-1.5 rounded-full bg-accent shrink-0"></span>
-                            45 minut analizy Twojego sklepu — bezpłatnie
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <span class="w-1.5 h-1.5 rounded-full bg-accent shrink-0"></span>
-                            Bez zobowiązań. Bez slajdów sprzedażowych.
-                        </li>
-                    </ul>
-                    <a class="inline-block bg-white text-primary px-8 py-4 rounded-full font-medium hover:scale-105 transition-transform shadow-lg" href="/kontakt">
-                        Napisz do nas
-                    </a>
-                </div>
-            </div>
+    <!-- CTA — letter-style, not bg-primary rounded-3xl card -->
+    <section class="py-20 md:py-28 px-6 md:px-12 lg:px-24 bg-surface">
+        <div class="max-w-3xl mx-auto text-center reveal-on-scroll">
+            <h2 class="font-serif text-3xl md:text-5xl leading-tight mb-6 text-balance">
+                Twój sklep zasługuje na więcej ruchu.
+            </h2>
+            <p class="text-lg text-ink-soft leading-relaxed mb-10 max-w-xl mx-auto">
+                45-minutowe spotkanie, na którym analizujemy obecną widoczność sklepu, wskazujemy największe blokery wzrostu i przedstawiamy konkretne kroki do podjęcia.
+            </p>
+            <a
+                class="inline-flex items-center bg-primary text-white px-7 py-3.5 rounded-full font-medium hover:bg-primary-ink transition-colors whitespace-nowrap"
+                href="/kontakt"
+            >
+                Napisz do nas
+            </a>
         </div>
     </section>
 </BaseLayout>

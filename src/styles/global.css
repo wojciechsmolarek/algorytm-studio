@@ -1,61 +1,102 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+/* Hallmark · macrostructure: Bento Grid (home) / Long Document (oferta) / Photographic (ekspert) / Workbench (kontakt)
+ * genre: editorial · theme: custom-tuned (brand: krem + zieleń + brzoskwinia)
+ * nav: N5 Floating pill · footer: Ft6 Letter close
+ * pre-emit critique: P5 H4 E4 S5 R4 V4
+ */
+
 @theme {
   --font-sans: 'Inter', system-ui, sans-serif;
   --font-serif: 'Lora', Georgia, serif;
+  --font-mono: 'Fira Code', 'JetBrains Mono', Consolas, monospace;
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);
+  --color-primary-ink: var(--primary-ink);
   --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-card: var(--card);
   --color-surface: var(--surface);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
-
-  --animate-marquee: marquee 30s linear infinite;
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-code-bg: var(--code-bg);
+  --color-code-fg: var(--code-fg);
+  --color-code-border: var(--code-border);
+  --color-table-head: var(--table-head);
+  --color-table-head-border: var(--table-head-border);
 }
 
 :root {
+  /* Paper — kremowy, tintowany w stronę ciepłą */
   --background: #FDFBF7;
-  --foreground: #1F1F1F;
-  --primary: #2A5D4E;
-  --border: #E8E2D9;
-  --muted: #F5F1EA;
+  --card: #FBF8F1;        /* tintowane, nie czysta biel */
+  --surface: #F5F1E8;     /* głębszy krem dla sekcji */
+  --muted: #F1ECE2;       /* najgłębszy krem */
+
+  /* Ink — tintowana czerń w stronę zielonej */
+  --foreground: #1F2622;
+  --ink: #1F2622;
+  --ink-soft: #4A524C;
   --muted-foreground: #6B6560;
-  --card: #FFFFFF;
-  --surface: #FFFFFF;
+
+  /* Brand — zieleń + brzoskwinia (zachowane) */
+  --primary: #2A5D4E;
+  --primary-ink: #15372C; /* głębsza zieleń dla table-head */
   --accent: #E8A87C;
-  --accent-foreground: #1F1F1F;
+  --accent-foreground: #1F2622;
+
+  /* Hairlines */
+  --border: #E8E2D9;
+  --border-strong: #D6CFC2;
+
+  /* Code block — tokenizowane (były inline hex) */
+  --code-bg: #22272e;
+  --code-fg: #adbac7;
+  --code-border: #444c56;
+
+  /* Table head — tokenizowane */
+  --table-head: #1F4738;
+  --table-head-border: #15372C;
 }
 
 /* Base styles */
 @layer base {
+  html, body {
+    overflow-x: clip; /* gate 34 — nigdy hidden */
+  }
+
   body {
     background-color: var(--background);
     color: var(--foreground);
+    font-feature-settings: "ss01", "cv11";
   }
 
   :focus-visible {
     outline: 2px solid var(--primary);
     outline-offset: 2px;
   }
+
+  /* Display headers — wrap long words, no italic (gate 38a, 51) */
+  h1, h2, h3 {
+    font-style: normal;
+    overflow-wrap: anywhere;
+    min-width: 0;
+  }
 }
 
-/* Marquee animation */
-@keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-/* Scroll reveal animation */
+/* Scroll reveal — używane oszczędnie (gate: animate-on-scroll on everything) */
 .reveal-on-scroll {
   opacity: 0;
-  transform: translateY(30px);
-  transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(20px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .reveal-visible {
@@ -63,13 +104,21 @@
   transform: translateY(0);
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .reveal-on-scroll {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
 /* WordPress code block styling */
 .prose pre.wp-block-code,
 .prose pre:has(code) {
-  background-color: #22272e;
-  color: #adbac7;
-  border: 1px solid #444c56;
-  border-radius: 0.75rem;
+  background-color: var(--code-bg);
+  color: var(--code-fg);
+  border: 1px solid var(--code-border);
+  border-radius: 0.5rem;
   padding: 1.25rem 1.5rem;
   overflow-x: auto;
   font-size: 0.875rem;
@@ -85,7 +134,7 @@
   padding: 0;
   font-size: inherit;
   line-height: inherit;
-  font-family: 'Fira Code', 'JetBrains Mono', 'Cascadia Code', Consolas, monospace;
+  font-family: var(--font-mono);
   text-shadow: none;
 }
 
@@ -97,27 +146,26 @@
   border-radius: 0.3rem;
   font-size: 0.875em;
   font-weight: 500;
+  font-family: var(--font-mono);
 }
 
 /* Blog table styling — WordPress + prose tables */
 
-/* Scroll wrapper for bare tables (added via JS) */
 .prose .table-scroll-wrapper {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: thin;
   margin: 1.75rem 0;
-  border-radius: 0.75rem;
+  border-radius: 0.5rem;
   border: 1px solid var(--border);
 }
 
-/* WordPress figure wrapper acts as scroll container */
 .prose figure.wp-block-table {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: thin;
   margin: 1.75rem 0;
-  border-radius: 0.75rem;
+  border-radius: 0.5rem;
   border: 1px solid var(--border);
 }
 
@@ -130,6 +178,7 @@
   font-size: 0.9rem;
   line-height: 1.6;
   margin: 0;
+  font-variant-numeric: tabular-nums;
 }
 
 .prose .table-scroll-wrapper table {
@@ -137,7 +186,7 @@
 }
 
 .prose thead {
-  background-color: #1F4738;
+  background-color: var(--table-head);
 }
 
 .prose thead th {
@@ -148,17 +197,17 @@
   letter-spacing: 0.03em;
   text-transform: uppercase;
   white-space: nowrap;
-  border-bottom: 3px solid #15372C;
+  border-bottom: 3px solid var(--table-head-border);
   color: #FFFFFF !important;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .prose thead th:first-child {
-  border-top-left-radius: 0.75rem;
+  border-top-left-radius: 0.5rem;
 }
 
 .prose thead th:last-child {
-  border-top-right-radius: 0.75rem;
+  border-top-right-radius: 0.5rem;
 }
 
 .prose tbody tr {

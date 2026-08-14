@@ -17,33 +17,35 @@ const schemaGraph = [
 
 <BaseLayout {metadata}>
     <Schema graph={schemaGraph} />
-    <section class="pt-40 pb-32 px-6 md:px-12 lg:px-24">
-        <div class="max-w-7xl mx-auto">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
-                <div class="reveal-on-scroll">
-                    <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">Kontakt</span>
-                    <h1 class="font-serif text-5xl md:text-7xl leading-tight mb-8 text-balance">
-                        <span class="inline-block" aria-hidden="true">&rarr;</span> Porozmawiajmy
+    <!-- Hallmark · kontakt: workbench — asymmetric, hairline rows, no eyebrow pills -->
+    <section class="pt-36 md:pt-44 pb-24 px-6 md:px-12 lg:px-24">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+                <!-- Left — heading + contact details -->
+                <div class="lg:col-span-7 reveal-on-scroll">
+                    <h1 class="font-serif text-4xl md:text-6xl lg:text-7xl leading-[1.05] mb-8 text-balance">
+                        Porozmawiajmy o Twoim projekcie
                     </h1>
-                    <p class="text-muted-foreground text-lg max-w-md leading-relaxed mb-8">
+                    <p class="text-lg text-ink-soft max-w-md leading-relaxed mb-12">
                         Masz projekt? Potrzebujesz konsultacji? A może po prostu chcesz zapytać o możliwości współpracy? Napisz do nas.
                     </p>
 
-                    <div class="mt-16 space-y-12">
-                        <div>
-                            <h3 class="uppercase tracking-widest text-xs font-medium mb-4">Adres</h3>
-                            <p class="text-muted-foreground">Bydgoszcz, ul. Sępia 4</p>
+                    <!-- Contact details — hairline rows, not 3 stacked blocks -->
+                    <div class="border-t-2 border-foreground">
+                        <div class="grid grid-cols-1 md:grid-cols-12 gap-4 py-6 border-b border-border-strong">
+                            <p class="md:col-span-4 text-xs uppercase tracking-widest text-muted-foreground">Adres</p>
+                            <p class="md:col-span-8 text-ink-soft">Bydgoszcz, ul. Sępia 4</p>
                         </div>
-                        <div>
-                            <h3 class="uppercase tracking-widest text-xs font-medium mb-4">Telefon</h3>
-                            <p class="text-muted-foreground">{siteConfig.tel}</p>
+                        <div class="grid grid-cols-1 md:grid-cols-12 gap-4 py-6 border-b border-border-strong">
+                            <p class="md:col-span-4 text-xs uppercase tracking-widest text-muted-foreground">Telefon</p>
+                            <p class="md:col-span-8 text-ink-soft tabular-nums">{siteConfig.tel}</p>
                         </div>
-                        <div>
-                            <h3 class="uppercase tracking-widest text-xs font-medium mb-4">Kontakt e-mail</h3>
-                            <div class="space-y-2">
-                                <a class="block text-muted-foreground hover:text-foreground transition-colors" href="mailto:kontakt@algorytm.studio">kontakt@algorytm.studio</a>
+                        <div class="grid grid-cols-1 md:grid-cols-12 gap-4 py-6 border-b border-border-strong">
+                            <p class="md:col-span-4 text-xs uppercase tracking-widest text-muted-foreground">E-mail</p>
+                            <div class="md:col-span-8 space-y-1.5">
+                                <a class="block text-foreground border-b border-foreground/30 hover:border-foreground transition-colors w-fit" href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
                                 {experts.map((expert) => (
-                                    <a class="block text-muted-foreground hover:text-foreground transition-colors" href={`mailto:${expert.email}`}>
+                                    <a class="block text-ink-soft hover:text-foreground transition-colors w-fit" href={`mailto:${expert.email}`}>
                                         {expert.email} — {expert.name}
                                     </a>
                                 ))}
@@ -52,16 +54,20 @@ const schemaGraph = [
                     </div>
                 </div>
 
-                <div class="bg-card border border-border p-8 md:p-12 rounded-lg reveal-on-scroll">
-                    <iframe
-                        src="https://maps.google.com/maps?q=S%C4%99pia%204%2C%20Bydgoszcz&t=&z=15&ie=UTF8&iwloc=&output=embed"
-                        width="100%"
-                        height="100%"
-                        style="border:0; min-height: 400px;"
-                        allowfullscreen=""
-                        loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade"
-                    ></iframe>
+                <!-- Right — map -->
+                <div class="lg:col-span-5 reveal-on-scroll">
+                    <div class="bg-card border border-border p-2 h-full min-h-[400px]">
+                        <iframe
+                            src="https://maps.google.com/maps?q=S%C4%99pia%204%2C%20Bydgoszcz&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                            width="100%"
+                            height="100%"
+                            style="border:0; min-height: 400px;"
+                            allowfullscreen=""
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"
+                            title="Mapa — Bydgoszcz, ul. Sępia 4"
+                        ></iframe>
+                    </div>
                 </div>
             </div>
         </div>

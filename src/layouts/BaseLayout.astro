@@ -79,18 +79,18 @@ const globalGraph = [
         <link
             rel="preload"
             as="style"
-            href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@400;500;600;700&display=swap"
         />
         <link
             rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@400;500;600;700&display=swap"
             media="print"
             onload="this.media='all'"
         />
         <noscript>
             <link
                 rel="stylesheet"
-                href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap"
+                href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@400;500;600;700&display=swap"
             />
         </noscript>
         <slot name="head" />
@@ -105,7 +105,7 @@ const globalGraph = [
             Przejdź do strony
         </a>
 
-        <div class="relative flex min-h-screen flex-col overflow-x-hidden">
+        <div class="relative flex min-h-screen flex-col">
             <Navbar />
             <main id="main-content" class="relative z-10 grow">
                 <slot />

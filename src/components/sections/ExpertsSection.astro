@@ -9,43 +9,49 @@ interface Props {
 const { experts } = Astro.props;
 ---
 
-<section class="py-20 px-6 md:px-12 lg:px-24" id="eksperci">
+<!-- Hallmark · experts: editorial portrait row — hairline top rule, no bordered cards, asymmetric -->
+<section class="py-20 md:py-28 px-6 md:px-12 lg:px-24" id="eksperci">
 	<div class="max-w-6xl mx-auto">
-		<div class="text-center mb-14 reveal-on-scroll">
-			<span class="text-sm uppercase tracking-widest text-primary font-medium mb-3 block">Kolektyw, nie agencja</span>
-			<h2 class="font-serif text-4xl md:text-5xl mb-4">Poznaj zespół</h2>
-			<p class="text-muted-foreground max-w-2xl mx-auto text-lg leading-relaxed">
-				Trzech ekspertów. Bez pośredników, bez project managerów — rozmawiasz bezpośrednio z osobami, które wykonują pracę.
+		<!-- Section head — left-aligned, no eyebrow pill, no centering -->
+		<div class="mb-14 md:mb-16 reveal-on-scroll max-w-3xl">
+			<h2 class="font-serif text-3xl md:text-5xl leading-tight text-balance mb-4">
+				Trzech ekspertów. Bez pośredników.
+			</h2>
+			<p class="text-lg text-ink-soft leading-relaxed">
+				Rozmawiasz bezpośrednio z osobami, które wykonują pracę — żadnych project managerów, żadnego szumu komunikacyjnego.
 			</p>
 		</div>
-		<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-			{
-				experts.map((expert) => (
-					<a
-						href={`/ekspert/${expert.slug}`}
-						class="group bg-card rounded-3xl p-6 border border-border text-center reveal-on-scroll hover:shadow-lg hover:-translate-y-1 transition-all duration-300 block"
-					>
-						<div class="relative w-28 h-28 mx-auto mb-5 overflow-hidden rounded-full border-4 border-muted">
-							<Image
-								alt={expert.name}
-								class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-								src={expert.image}
-								width={224}
-								height={224}
-								format="webp"
-								loading="lazy"
-							/>
-						</div>
-						<h3 class="text-xl font-serif mb-1">{expert.name}</h3>
-						<p class="text-xs font-bold uppercase tracking-wide text-primary mb-3">
-							{expert.role}
-						</p>
-						<p class="text-sm text-muted-foreground leading-relaxed">
-							{expert.description}
-						</p>
-					</a>
-				))
-			}
+
+		<!-- Portrait row — 3 real people, hairline top rule per item, no boxed cards -->
+		<div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
+			{experts.map((expert) => (
+				<a
+					href={`/ekspert/${expert.slug}`}
+					class="group block border-t-2 border-foreground pt-6 reveal-on-scroll"
+				>
+					<div class="relative w-full aspect-[4/5] mb-6 overflow-hidden bg-muted">
+						<Image
+							alt={expert.name}
+							class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+							src={expert.image}
+							width={480}
+							height={600}
+							format="webp"
+							loading="lazy"
+						/>
+					</div>
+					<h3 class="font-serif text-2xl text-foreground mb-1">{expert.name}</h3>
+					<p class="text-xs uppercase tracking-widest text-primary font-medium mb-4">
+						{expert.role}
+					</p>
+					<p class="text-sm text-ink-soft leading-relaxed mb-4">
+						{expert.description}
+					</p>
+					<span class="text-sm text-foreground border-b border-foreground/30 group-hover:border-foreground transition-colors">
+						Profil eksperta →
+					</span>
+				</a>
+			))}
 		</div>
 	</div>
 </section>

@@ -1,4 +1,4 @@
-﻿---
+---
 interface Props {
     formId?: string;
 }
@@ -6,7 +6,8 @@ interface Props {
 const { formId = "contact-form" } = Astro.props;
 ---
 
-<form id={formId} data-form-id={formId} class="space-y-6">
+<!-- Hallmark · form: hairline-underline inputs, no boxed-card styling -->
+<form id={formId} data-form-id={formId} class="space-y-7">
     <input type="hidden" name="access_key" value="fff22f9d-51df-46d9-9dfa-e191b75b1d15" />
     <input type="hidden" name="subject" value="Nowe zapytanie z formularza kontaktowego" />
 
@@ -53,19 +54,19 @@ const { formId = "contact-form" } = Astro.props;
             id={`${formId}-message`}
             rows="4"
             required
-            class="w-full bg-transparent border border-current/20 focus:border-current outline-none p-3 transition-colors placeholder:text-current/20 text-current resize-none"
+            class="w-full bg-transparent border-b border-current/20 focus:border-current outline-none py-2 transition-colors placeholder:text-current/20 text-current resize-none"
             placeholder="Opisz krótko swój projekt..."></textarea>
     </div>
     <div>
         <button
             type="submit"
-            class="bg-background text-foreground px-8 py-3 rounded-full font-medium hover:bg-background/80 transition w-full md:w-auto disabled:opacity-50 disabled:cursor-not-allowed"
+            class="bg-background text-foreground px-7 py-3 rounded-full font-medium hover:bg-background/80 transition-colors w-full md:w-auto disabled:opacity-50 disabled:cursor-not-allowed focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-primary"
         >
             <span class="submit-text">Wyślij zapytanie</span>
             <span class="loading-text hidden">Wysyłanie...</span>
         </button>
     </div>
-    <div class="result-message hidden mt-4 p-4 rounded-lg text-sm"></div>
+    <div class="result-message hidden mt-4 p-4 text-sm"></div>
 </form>
 
 <script is:inline>
@@ -97,7 +98,7 @@ const { formId = "contact-form" } = Astro.props;
             if (data.success) {
                 // Show success message
                 resultMessage.textContent = "✓ Dziękujemy! Twoja wiadomość została wysłana. Skontaktujemy się wkrótce.";
-                resultMessage.className = "result-message mt-4 p-4 rounded-lg text-sm bg-green-500/10 text-green-500 border border-green-500/20";
+                resultMessage.className = "result-message mt-4 p-4 text-sm border-l-2 border-foreground text-foreground";
                 resultMessage.classList.remove('hidden');
 
                 // Reset form
@@ -108,7 +109,7 @@ const { formId = "contact-form" } = Astro.props;
         } catch (error) {
             // Show error message
             resultMessage.textContent = "✗ Wystąpił błąd podczas wysyłania formularza. Spróbuj ponownie lub skontaktuj się z nami telefonicznie.";
-            resultMessage.className = "result-message mt-4 p-4 rounded-lg text-sm bg-red-500/10 text-red-500 border border-red-500/20";
+            resultMessage.className = "result-message mt-4 p-4 text-sm border-l-2 border-primary text-primary";
             resultMessage.classList.remove('hidden');
         } finally {
             // Re-enable button and restore text

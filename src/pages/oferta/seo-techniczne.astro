@@ -12,19 +12,19 @@ const metadata = {
 const painPoints = [
     {
         symptom: "Duży ruch z reklam, ale organika stoi w miejscu",
-        cause: "Roboty Google nie mogą poprawnie zaindeksować kluczowych podstron — budżet crawl jest marnowany na strony bez wartości.",
+        cause: "Roboty Google marnują budżet crawl na strony bez wartości i nie docierają do kluczowych podstron. Płacisz za reklamę, która prowadzi do witryny, której Google nie potrafi poprawnie zaindeksować.",
     },
     {
         symptom: "Migracja lub redesign strony i nagły spadek pozycji",
-        cause: "Błędnie skonfigurowane przekierowania 301, utracone canonical lub zepsuta mapa linkowania wewnętrznego.",
+        cause: "Najczęściej: błędnie skonfigurowane przekierowania 301, utracone canonical albo zepsuta mapa linkowania wewnętrznego.",
     },
     {
         symptom: "Tysiące produktów, a Google widzi tylko część",
-        cause: "Problemy z paginacją, duplikaty URL z filtrów fasetowych lub nieoptymalna architektura kategorii blokują indeksację.",
+        cause: "Paginacja, duplikaty URL z filtrów fasetowych, nieoptymalna architektura kategorii — każda z tych rzeczy osobno blokuje indeksację. Razem potrafią ukryć przed Google większość katalogu.",
     },
     {
         symptom: "Strona ładuje się wolno mimo szybkiego hostingu",
-        cause: "Niezoptymalizowane obrazy, blokujące skrypty JS lub brak CDN powodują niskie wyniki Core Web Vitals.",
+        cause: "Niezoptymalizowane obrazy, blokujące skrypty JS lub brak CDN — Core Web Vitals spadają, a z nimi pozycje i konwersja.",
     },
 ];
 
@@ -87,7 +87,7 @@ const features = [
 
 const faqs = [
     {
-        question: "Czym różni się audyt techniczny od pełnego audytu SEO?",
+        question: "Czym różi się audyt techniczny od pełnego audytu SEO?",
         answer: "Audyt techniczny skupia się wyłącznie na warstwie technicznej strony: jak Google ją crawluje, indeksuje i ocenia pod kątem wydajności. Pełne SEO to dodatkowo treści, słowa kluczowe i linki zewnętrzne. Często techniczny jest pierwszym krokiem — bez solidnych fundamentów reszta nie przynosi efektów.",
     },
     {
@@ -117,177 +117,167 @@ const schemaGraph = [
 
 <BaseLayout {metadata}>
     <Schema graph={schemaGraph} />
-    <!-- Hero -->
-    <section class="pt-36 pb-20 px-6 md:px-12 lg:px-24 bg-muted">
+    <!-- Hallmark · oferta: long-document macro — hairline rows, no eyebrow pills, no 3-col cards -->
+
+    <!-- Hero — asymmetric, no eyebrow pill, no accent-emphasis word in H1 -->
+    <section class="pt-36 md:pt-44 pb-20 px-6 md:px-12 lg:px-24 bg-surface">
         <div class="max-w-6xl mx-auto">
-            <div class="reveal-on-scroll">
-                <span class="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm uppercase tracking-widest font-medium mb-6">Oferta</span>
-                <h1 class="font-serif text-4xl md:text-6xl leading-tight mb-6 text-balance max-w-3xl">
-                    SEO <span class="text-primary">Techniczne</span>
+            <div class="reveal-on-scroll max-w-3xl">
+                <h1 class="font-serif text-4xl md:text-6xl lg:text-7xl leading-[1.05] mb-8 text-balance">
+                    SEO Techniczne
                 </h1>
-                <div class="max-w-2xl">
-                    <p class="text-xl leading-relaxed mb-4">
-                        Google może nie widzieć połowy Twojej strony — i Ty możesz o tym nie wiedzieć.
-                    </p>
-                    <p class="text-muted-foreground leading-relaxed">
-                        Audytujemy fundamenty techniczne, które decydują o tym czy Twoje treści w ogóle trafiają do indeksu. Bez sprawnej techniki każda złotówka wydana na content i linki jest częściowo zmarnowana.
-                    </p>
-                </div>
+                <p class="text-xl text-foreground leading-relaxed mb-4 max-w-2xl">
+                    Google może nie widzieć połowy Twojej strony — i Ty możesz o tym nie wiedzieć.
+                </p>
+                <p class="text-lg text-ink-soft leading-relaxed max-w-2xl">
+                    Audytujemy fundamenty techniczne, które decydują o tym czy Twoje treści w ogóle trafiają do indeksu. Bez sprawnej techniki każda złotówka wydana na content i linki jest częściowo zmarnowana.
+                </p>
             </div>
         </div>
     </section>
 
-    <!-- Pain Points -->
-    <section class="py-20 px-6 md:px-12 lg:px-24 bg-muted">
+    <!-- Pain Points — hairline rows, not 2-col cards -->
+    <section class="py-20 md:py-24 px-6 md:px-12 lg:px-24">
         <div class="max-w-6xl mx-auto">
-            <div class="mb-14 reveal-on-scroll">
-                <span class="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm uppercase tracking-widest font-medium mb-6">Rozpoznajesz to?</span>
-                <h2 class="font-serif text-3xl md:text-4xl mb-4 text-balance max-w-3xl">
-                    Objawy, które widzimy <span class="text-primary">najczęściej</span>
+            <div class="mb-12 reveal-on-scroll max-w-3xl">
+                <h2 class="font-serif text-2xl md:text-4xl leading-tight text-balance">
+                    Objawy, które widzimy najczęściej
                 </h2>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="border-t-2 border-foreground">
                 {painPoints.map((item) => (
-                    <div class="bg-card rounded-3xl p-8 border border-border reveal-on-scroll">
-                        <p class="text-lg font-medium text-foreground mb-3">{item.symptom}</p>
-                        <p class="text-muted-foreground leading-relaxed text-sm">{item.cause}</p>
-                    </div>
-                ))}
-            </div>
-        </div>
-    </section>
-
-    <!-- Deliverables / Process -->
-    <section class="py-20 px-6 md:px-12 lg:px-24">
-        <div class="max-w-6xl mx-auto">
-            <div class="mb-14 reveal-on-scroll">
-                <span class="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm uppercase tracking-widest font-medium mb-6">Proces</span>
-                <h2 class="font-serif text-3xl md:text-4xl mb-4 text-balance max-w-3xl">
-                    Co dostajesz <span class="text-primary">i kiedy?</span>
-                </h2>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {deliverables.map((step) => (
-                    <div class="bg-card rounded-3xl p-8 border border-border reveal-on-scroll">
-                        <div class="flex items-center justify-between mb-5">
-                            <span class="text-4xl font-serif text-muted-foreground/40">{step.num}</span>
-                            <span class="text-xs uppercase tracking-widest text-primary bg-primary/10 px-3 py-1 rounded-full">{step.time}</span>
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 py-7 md:py-8 border-b border-border-strong reveal-on-scroll">
+                        <div class="md:col-span-5">
+                            <p class="text-lg font-medium text-foreground">{item.symptom}</p>
                         </div>
-                        <h3 class="text-xl font-medium mb-3">{step.title}</h3>
-                        <p class="text-muted-foreground leading-relaxed text-sm">{step.description}</p>
+                        <div class="md:col-span-7">
+                            <p class="text-base text-ink-soft leading-relaxed">{item.cause}</p>
+                        </div>
                     </div>
                 ))}
             </div>
         </div>
     </section>
 
-    <!-- Features Grid -->
-    <section class="py-20 px-6 md:px-12 lg:px-24 bg-muted">
+    <!-- Deliverables / Process — genuinely numbered, hairline rows with ordinal -->
+    <section class="py-20 md:py-24 px-6 md:px-12 lg:px-24 bg-surface">
         <div class="max-w-6xl mx-auto">
-            <div class="mb-14 reveal-on-scroll">
-                <span class="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm uppercase tracking-widest font-medium mb-6">Zakres</span>
-                <h2 class="font-serif text-3xl md:text-4xl mb-4 text-balance max-w-3xl">
-                    Co obejmuje <span class="text-primary">audyt techniczny?</span>
+            <div class="mb-12 reveal-on-scroll max-w-3xl">
+                <h2 class="font-serif text-2xl md:text-4xl leading-tight text-balance mb-3">
+                    Co dostajesz i kiedy
                 </h2>
+                <p class="text-ink-soft">Trzy etapy, od audytu po wdrożenie.</p>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {features.map((feature) => (
-                    <article class="bg-card rounded-3xl p-8 border border-border reveal-on-scroll hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-                        <h3 class="text-xl font-medium mb-3">{feature.title}</h3>
-                        <p class="text-muted-foreground text-sm leading-relaxed">{feature.description}</p>
-                    </article>
+            <div class="border-t-2 border-foreground">
+                {deliverables.map((step) => (
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 py-8 md:py-10 border-b border-border-strong reveal-on-scroll">
+                        <div class="md:col-span-2">
+                            <span class="font-serif text-3xl text-primary tabular-nums">{step.num}</span>
+                        </div>
+                        <div class="md:col-span-7">
+                            <h3 class="font-serif text-xl md:text-2xl text-foreground mb-2">{step.title}</h3>
+                            <p class="text-base text-ink-soft leading-relaxed">{step.description}</p>
+                        </div>
+                        <div class="md:col-span-3 md:text-right">
+                            <span class="text-xs uppercase tracking-widest text-muted-foreground">{step.time}</span>
+                        </div>
+                    </div>
                 ))}
             </div>
         </div>
     </section>
 
-    <!-- Social Proof placeholder -->
-    <section class="py-20 px-6 md:px-12 lg:px-24">
+    <!-- Features — 2-col asymmetric, not 3-col cards -->
+    <section class="py-20 md:py-24 px-6 md:px-12 lg:px-24">
         <div class="max-w-6xl mx-auto">
-            <div class="mb-14 reveal-on-scroll">
-                <span class="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm uppercase tracking-widest font-medium mb-6">Efekty</span>
-                <h2 class="font-serif text-3xl md:text-4xl mb-4 text-balance max-w-3xl">
-                    Liczby, <span class="text-primary">które mówią same za siebie</span>
+            <div class="mb-12 reveal-on-scroll max-w-3xl">
+                <h2 class="font-serif text-2xl md:text-4xl leading-tight text-balance">
+                    Co obejmuje audyt techniczny
                 </h2>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
-                <div class="bg-card rounded-3xl p-8 border border-border reveal-on-scroll">
-                    <p class="font-serif text-5xl md:text-6xl text-primary mb-3">+187%</p>
-                    <p class="text-muted-foreground text-sm leading-relaxed">wzrost widoczności organicznej w 4 miesiące po audycie dla sklepu B2B z branży przemysłowej</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10">
+                {features.map((feature) => (
+                    <div class="border-t border-border-strong pt-5 reveal-on-scroll">
+                        <h3 class="font-serif text-lg md:text-xl text-foreground mb-2">{feature.title}</h3>
+                        <p class="text-base text-ink-soft leading-relaxed">{feature.description}</p>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof — stats as inline row with hairline dividers, not 3 cards -->
+    <section class="py-20 md:py-24 px-6 md:px-12 lg:px-24 bg-surface">
+        <div class="max-w-6xl mx-auto">
+            <div class="mb-12 reveal-on-scroll max-w-3xl">
+                <h2 class="font-serif text-2xl md:text-4xl leading-tight text-balance">
+                    Wyniki po audycie
+                </h2>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 mb-12 reveal-on-scroll">
+                <div class="border-t-2 border-foreground pt-5">
+                    <p class="font-serif text-4xl md:text-5xl text-primary mb-2 tabular-nums">+187%</p>
+                    <p class="text-sm text-ink-soft leading-relaxed">wzrost widoczności organicznej w 4 miesiące po audycie dla sklepu B2B z branży przemysłowej</p>
                 </div>
-                <div class="bg-card rounded-3xl p-8 border border-border reveal-on-scroll">
-                    <p class="font-serif text-5xl md:text-6xl text-primary mb-3">12 dni</p>
-                    <p class="text-muted-foreground text-sm leading-relaxed">średni czas realizacji pełnego audytu technicznego z priorytetyzowaną listą zadań</p>
+                <div class="border-t-2 border-foreground pt-5">
+                    <p class="font-serif text-4xl md:text-5xl text-primary mb-2 tabular-nums">12 dni</p>
+                    <p class="text-sm text-ink-soft leading-relaxed">średni czas realizacji pełnego audytu technicznego z priorytetyzowaną listą zadań</p>
                 </div>
-                <div class="bg-card rounded-3xl p-8 border border-border reveal-on-scroll">
-                    <p class="font-serif text-5xl md:text-6xl text-primary mb-3">40+</p>
-                    <p class="text-muted-foreground text-sm leading-relaxed">przeprowadzonych audytów dla firm produkcyjnych, dystrybutorów i sklepów e-commerce</p>
+                <div class="border-t-2 border-foreground pt-5">
+                    <p class="font-serif text-4xl md:text-5xl text-primary mb-2 tabular-nums">40+</p>
+                    <p class="text-sm text-ink-soft leading-relaxed">przeprowadzonych audytów dla firm produkcyjnych, dystrybutorów i sklepów e-commerce</p>
                 </div>
             </div>
 
-            <!-- Testimonial -->
-            <blockquote class="bg-card rounded-3xl p-8 md:p-10 border border-border max-w-3xl reveal-on-scroll">
-                <p class="text-xl md:text-2xl font-serif leading-relaxed mb-6 text-balance">
+            <!-- Testimonial — blockquote, no boxed card -->
+            <blockquote class="max-w-3xl reveal-on-scroll border-l-2 border-foreground pl-6">
+                <p class="text-xl md:text-2xl font-serif leading-relaxed mb-5 text-balance">
                     "Po audycie okazało się, że Google indeksowało tylko 30% naszego katalogu produktów. W ciągu 3 miesięcy od wdrożenia zmian ruch organiczny wzrósł o ponad 150%."
                 </p>
                 <footer class="text-sm text-muted-foreground">
-                    <strong class="text-foreground">Jolanta Maszczyk</strong> — Dyrektor marketingu sklepu e-commerce 
+                    <strong class="text-foreground">Jolanta Maszczyk</strong> — Dyrektor marketingu sklepu e-commerce
                 </footer>
             </blockquote>
         </div>
     </section>
 
-    <!-- FAQ -->
-    <section class="py-20 px-6 md:px-12 lg:px-24 bg-muted">
+    <!-- FAQ — hairline rows, not stacked cards -->
+    <section class="py-20 md:py-24 px-6 md:px-12 lg:px-24">
         <div class="max-w-6xl mx-auto">
-            <div class="mb-14 reveal-on-scroll">
-                <span class="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm uppercase tracking-widest font-medium mb-6">FAQ</span>
-                <h2 class="font-serif text-3xl md:text-4xl mb-4 text-balance max-w-3xl">
-                    Pytania, które <span class="text-primary">słyszymy najczęściej</span>
+            <div class="mb-12 reveal-on-scroll max-w-3xl">
+                <h2 class="font-serif text-2xl md:text-4xl leading-tight text-balance">
+                    Pytania, które słyszymy najczęściej
                 </h2>
             </div>
-            <div class="space-y-4">
+            <div class="border-t-2 border-foreground">
                 {faqs.map((faq) => (
-                    <div class="bg-card rounded-2xl p-6 border border-border reveal-on-scroll">
-                        <h3 class="text-lg font-medium text-foreground mb-3">{faq.question}</h3>
-                        <p class="text-muted-foreground leading-relaxed">{faq.answer}</p>
-                    </div>
+                    <details class="border-b border-border-strong reveal-on-scroll group">
+                        <summary class="flex items-center justify-between gap-4 py-6 cursor-pointer list-none">
+                            <h3 class="text-lg font-medium text-foreground">{faq.question}</h3>
+                            <span class="text-primary text-xl shrink-0 group-open:rotate-45 transition-transform">+</span>
+                        </summary>
+                        <p class="text-base text-ink-soft leading-relaxed pb-6 pr-8">{faq.answer}</p>
+                    </details>
                 ))}
             </div>
         </div>
     </section>
 
-    <!-- CTA with inline form -->
-    <section class="py-20 px-6 md:px-12 lg:px-24 bg-muted">
-        <div class="max-w-6xl mx-auto">
-            <div class="bg-primary rounded-3xl p-8 md:p-12 lg:p-16 text-white reveal-on-scroll">
-                <div class="max-w-3xl">
-                    <span class="inline-block bg-white/10 px-4 py-2 rounded-full text-sm uppercase tracking-widest font-medium mb-6">Bezpłatna konsultacja</span>
-                    <h2 class="font-serif text-3xl md:text-5xl mb-6 text-balance">
-                        Sprawdźmy czy Google widzi Twoją stronę w całości.
-                    </h2>
-                    <p class="text-white/80 text-lg leading-relaxed mb-8">
-                        Napisz do nas, a w ciągu 24 godzin odezwiemy się z wstępną oceną Twojej strony. Bez zobowiązań — tylko konkretna informacja co blokuje Twój wzrost organiczny.
-                    </p>
-                    <ul class="space-y-3 text-white/80 mb-10">
-                        <li class="flex items-center gap-3">
-                            <span class="w-1.5 h-1.5 rounded-full bg-accent shrink-0"></span>
-                            Odpowiedź w 24h w dni robocze
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <span class="w-1.5 h-1.5 rounded-full bg-accent shrink-0"></span>
-                            Wstępna analiza bez kosztów
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <span class="w-1.5 h-1.5 rounded-full bg-accent shrink-0"></span>
-                            Bez automatycznych maili i cold-callingów
-                        </li>
-                    </ul>
-                    <a class="inline-block bg-white text-primary px-8 py-4 rounded-full font-medium hover:scale-105 transition-transform shadow-lg" href="/kontakt">
-                        Napisz do nas
-                    </a>
-                </div>
-            </div>
+    <!-- CTA — letter-style, not bg-primary rounded-3xl card -->
+    <section class="py-20 md:py-28 px-6 md:px-12 lg:px-24 bg-surface">
+        <div class="max-w-3xl mx-auto text-center reveal-on-scroll">
+            <h2 class="font-serif text-3xl md:text-5xl leading-tight mb-6 text-balance">
+                Sprawdźmy czy Google widzi Twoją stronę w całości.
+            </h2>
+            <p class="text-lg text-ink-soft leading-relaxed mb-10 max-w-xl mx-auto">
+                Napisz do nas, a w ciągu 24 godzin odezwiemy się z wstępną oceną Twojej strony. Bez zobowiązań — tylko konkretna informacja co blokuje Twój wzrost organiczny.
+            </p>
+            <a
+                class="inline-flex items-center bg-primary text-white px-7 py-3.5 rounded-full font-medium hover:bg-primary-ink transition-colors whitespace-nowrap"
+                href="/kontakt"
+            >
+                Napisz do nas
+            </a>
         </div>
     </section>
 </BaseLayout>

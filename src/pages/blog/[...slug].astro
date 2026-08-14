@@ -41,18 +41,18 @@ const schemaGraph = [
 <BaseLayout metadata={metadata}>
     <CodeHighlighter />
     <Schema graph={schemaGraph} />
-    <section class="relative px-4 py-8 sm:px-6 lg:px-8 md:py-12">
-        <div class="relative mx-auto max-w-5xl">
-            <div class="mb-10 text-center">
+    <section class="relative pt-36 md:pt-44 pb-20 px-6 md:px-12 lg:px-24">
+        <div class="relative mx-auto max-w-3xl">
+            <div class="mb-10">
                 <p
-                    class="text-sm font-semibold tracking-wide text-primary uppercase"
+                    class="text-xs uppercase tracking-widest text-primary font-medium mb-5"
                 >
                     {formattedDate} • {authorSlug ? (
                         <a href={`/blog/autor/${authorSlug}`} class="hover:underline">{author}</a>
                     ) : author}
                 </p>
                 <h1
-                    class="font-heading mt-2 text-3xl font-bold leading-tight tracking-tighter text-foreground sm:text-4xl md:text-5xl"
+                    class="font-serif text-3xl md:text-5xl leading-[1.1] text-foreground text-balance"
                 >
                     {title}
                 </h1>
@@ -60,24 +60,24 @@ const schemaGraph = [
 
             {
                 image && (
-                    <div class="relative mb-8 h-96 w-full overflow-hidden rounded-xl shadow-lg">
+                    <div class="relative mb-10 w-full overflow-hidden bg-muted">
                         <img
                             src={image}
                             alt={title}
-                            class="h-full w-full object-cover"
+                            class="w-full h-auto object-cover"
                         />
                     </div>
                 )
             }
 
             <div
-                class="prose prose-lg dark:prose-invert mx-auto max-w-none prose-headings:text-foreground prose-a:text-primary hover:prose-a:underline prose-p:text-muted-foreground prose-strong:text-foreground prose-li:text-muted-foreground"
+                class="prose prose-lg dark:prose-invert mx-auto max-w-none prose-headings:font-serif prose-headings:text-foreground prose-a:text-primary hover:prose-a:underline prose-p:text-ink-soft prose-strong:text-foreground prose-li:text-ink-soft"
                 set:html={content}
             />
 
-            {/* Author Bio Card */}
-            <section class="mt-16 p-8 bg-muted rounded-2xl border border-border flex flex-col md:flex-row gap-8 items-center md:items-start">
-                <div class="w-32 h-32 flex-shrink-0 rounded-xl overflow-hidden bg-primary/10">
+            {/* Author Bio — hairline rule, not boxed card */}
+            <section class="mt-16 pt-8 border-t-2 border-foreground flex flex-col md:flex-row gap-8 items-center md:items-start">
+                <div class="w-28 h-28 flex-shrink-0 overflow-hidden bg-muted">
                     {authorPhoto ? (
                         <img
                             src={authorPhoto}
@@ -105,22 +105,22 @@ const schemaGraph = [
                     )}
                 </div>
                 <div class="text-center md:text-left">
-                    <h4 class="font-serif text-2xl font-medium mb-2">
+                    <h4 class="font-serif text-xl md:text-2xl font-medium mb-2 text-foreground">
                         O autorze: {authorSlug ? (
                             <a href={`/blog/autor/${authorSlug}`} class="text-primary hover:underline">{author}</a>
                         ) : author}
                     </h4>
                     {authorRole && (
-                        <p class="text-sm font-bold uppercase tracking-widest text-primary mb-3">{authorRole}</p>
+                        <p class="text-xs uppercase tracking-widest text-primary font-medium mb-3">{authorRole}</p>
                     )}
                     {authorExpertise && (
-                        <p class="text-base text-muted-foreground mb-4 leading-relaxed">{authorExpertise}</p>
+                        <p class="text-base text-ink-soft mb-4 leading-relaxed">{authorExpertise}</p>
                     )}
                     {authorDescription && (
-                        <p class="text-sm text-muted-foreground leading-relaxed">{authorDescription}</p>
+                        <p class="text-sm text-ink-soft leading-relaxed">{authorDescription}</p>
                     )}
                     {authorSlug && (
-                        <a href={`/blog/autor/${authorSlug}`} class="inline-flex items-center gap-2 text-primary hover:text-foreground font-medium text-sm mt-4 transition-colors">
+                        <a href={`/blog/autor/${authorSlug}`} class="inline-flex items-center gap-2 text-foreground border-b border-foreground/30 hover:border-foreground font-medium text-sm mt-4 transition-colors">
                             Zobacz wszystkie artykuły autora
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path d="M9 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />

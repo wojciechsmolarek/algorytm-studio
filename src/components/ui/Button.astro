@@ -20,15 +20,15 @@ const {
 } = Astro.props;
 
 const baseStyles =
-    "inline-flex items-center justify-center font-bold transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none rounded-xl";
+    "inline-flex items-center justify-center font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:opacity-50 disabled:pointer-events-none rounded-full";
 
 const variants = {
     primary:
-        "bg-foreground text-background hover:bg-foreground/90 transform hover:scale-105 shadow-lg shadow-primary/20",
+        "bg-primary text-white hover:bg-primary-ink",
     secondary:
-        "bg-muted text-foreground border border-border hover:bg-muted/80",
+        "bg-transparent text-foreground border border-border-strong hover:bg-muted",
     tertiary:
-        "bg-transparent text-foreground hover:bg-accent hover:text-accent-foreground",
+        "bg-transparent text-foreground hover:text-primary",
 };
 
 const sizes = {
