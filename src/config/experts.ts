@@ -131,9 +131,9 @@ export const experts: Expert[] = [
     slug: "jakub-witkowski",
     role: "SEO Specialist",
     description:
-      "SEO Specialist w Talem Technologies. Specjalizuje się w SEO dla e-commerce, optymalizacji technicznej i projektowaniu ścieżek konwersji.",
+      "Specjalista ds. SEO w PKO Leasing, gdzie współtworzy i realizuje strategię SEO dla serwisu Automarket.pl. Pierwsze kroki stawiał w bydgoskiej agencji SEO Talem Technologies, przechodząc drogę od stażu do roli samodzielnego specjalisty. W Studio Algorytm zajmuje się SXO oraz marketingiem B2B.",
     fullBio:
-      "Jakub pracuje jako SEO Specialist w Talem Technologies, gdzie zajmuje się SEO dla e-commerce, audytami technicznymi i wsparciem klientów. Karierę zaczynał od stażu jako Junior SEO Specialist, szybko rozwijając kompetencje w technicznym SEO i optymalizacji ścieżek użytkownika. W Studio Algorytm odpowiada za SXO, marketing B2B i projektowanie ścieżek konwersji.",
+      "Jakub jest Specjalistą ds. SEO w PKO Leasing, gdzie współtworzy i realizuje strategię SEO dla serwisu Automarket.pl. Pierwsze kroki stawiał w bydgoskiej agencji SEO Talem Technologies, przechodząc drogę od stażu do roli samodzielnego specjalisty. W Studio Algorytm przekłada to doświadczenie na praktykę, zajmując się SXO oraz marketingiem B2B.",
     image: jakubImage,
     email: "jakub@algorytm.studio",
     linkedin: "https://www.linkedin.com/in/jakub-witkowski-76ab5a24b/",
@@ -142,14 +142,21 @@ export const experts: Expert[] = [
     experience: {
       title: "Doświadczenie",
       summary:
-        "SEO Specialist w Talem Technologies. Staż od września 2023, pełne stanowisko od marca 2024. Specjalizacja w e-commerce i SEO technicznym.",
+        "Specjalista ds. SEO w PKO Leasing, gdzie współtworzy strategię SEO dla Automarket.pl. Nadal współpracuje z Talem Technologies, gdzie przeszedł drogę od stażu do samodzielnego specjalisty. W Studio Algorytm zajmuje się SXO i marketingiem B2B.",
       timeline: [
+        {
+          period: "obecnie",
+          role: "Specjalista ds. SEO",
+          company: "PKO Leasing",
+          description:
+            "Współtworzenie i realizacja strategii SEO dla serwisu Automarket.pl.",
+        },
         {
           period: "mar 2024 – obecnie",
           role: "SEO Specialist",
           company: "Talem Technologies",
           description:
-            "SEO dla e-commerce, optymalizacja techniczna, rozwój ponad 4 dodatkowych kompetencji.",
+            "SEO dla e-commerce, optymalizacja techniczna, rozwój do roli samodzielnego specjalisty.",
         },
         {
           period: "wrz 2023 – lut 2024",
@@ -160,7 +167,7 @@ export const experts: Expert[] = [
         },
       ],
       highlights: [
-        { label: "Obecnie", value: "SEO Specialist w Talem Technologies" }
+        { label: "Obecnie", value: "Specjalista ds. SEO w PKO Leasing" }
       ],
     },
   },
